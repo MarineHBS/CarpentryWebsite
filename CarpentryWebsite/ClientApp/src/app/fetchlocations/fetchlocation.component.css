@@ -1,0 +1,75 @@
+/*.tn{
+    margin: 6px;
+    border: 4px solid #eee;
+    box-shadow: #555 1px 1px 8px 1px;
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+button{
+    padding:0px 30px;
+    margin: 18px 0;
+    cursor: pointer;
+    position: relative;
+}
+.fav-button{
+    margin: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -40px, 50px;
+    position: relative;
+    margin-left: -120px;
+}
+
+.img-container{
+    margin: 50px;
+    box-shadow: #555 1px, 1px, 8px, 1px;
+    min-height: 660px;
+    width: 900px;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#caption{
+    margin-left:auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+    left: 50%;
+}
+<div class='main-nav'>
+  <div class='navbar navbar-inverse'>
+    <div class='clearfix'></div>
+    <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
+      <ul class='nav navbar-nav'>
+        <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
+          <a [routerLink]='["/"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-home'></span> Home
+          </a>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/counter"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-education'></span> Counter
+          </a>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/fetch-data"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-th-list'></span> Fetch data
+          </a>
+        </li>
+        <li [routerLinkActive]='["link-active"]'>
+          <a [routerLink]='["/fetch-location"]' (click)='collapse()'>
+            <span class='glyphicon glyphicon-globe'></span> Locations
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+*/

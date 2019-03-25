@@ -1,0 +1,28 @@
+a.list-group-item {
+    height:auto;
+    min-height:220px;
+}
+a.list-group-item.active small {
+    color:#fff;
+}
+.stars {
+    margin:20px auto 1px;
+}
+
+.opinion-entry{
+    border:1px solid grey;
+}
+
+.opinion-div{
+    padding-top: 50px;
+    padding-right: 450px;
+}
+
+.opinion-header{
+    padding-bottom: 20px;
+}
+
+.opinion-text{
+    padding-top:20px;
+    padding-bottom: 20px;
+}

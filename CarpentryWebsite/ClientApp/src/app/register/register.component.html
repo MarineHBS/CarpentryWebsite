@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="login-form">
+    <div class="main-div">
+      <div class="panel">
+        <h1>Register to the website</h1>
+      </div>
+      <form #f="ngForm" (ngSubmit)="registerUser(f)" novalidate>
+        <div class="form-group">
+          <input type="text" name="userName" class="form-control" id="name" placeholder="Username" [ngModel]="registerUser.userName" #name="ngModel">
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" class="form-control" id="email" placeholder="Email address" [ngModel]="registerUser.email" #email="ngModel">
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" class="form-control" id="password" placeholder="Password" ngModel>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" id="passwordc" placeholder="Confirm password">
+        </div>
+        <div *ngIf='errors'>
+            <p style="color: red; font-size: 12px">{{errors}}</p>
+        </div>
+        <button type="submit" class="btn btn-primary logBtn">Register</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>

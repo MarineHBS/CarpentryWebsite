@@ -1,0 +1,16 @@
+<p>
+  carpentry-service works!
+  <a [routerLink]="[ '/add-carpentry-service' ]">
+    <button>Új szolgáltatás felvétele</button></a>
+  <a [routerLink]="[ '/add-carpentry-service-type' ]">
+    <button>Új szolgáltatáscsoport felvétele</button></a>
+  </p>
+<div *ngFor="let type of carpentryServiceTypeList">
+  <h2>{{type.name}}</h2>
+  <!--{{'yes' | message}}
+  {{getCarpentryServicesByTypeId(2)}}-->
+  <div *ngFor="let service of carpentryServiceList">
+    {{service.name}}
+  </div>
+  <hr>
+</div>

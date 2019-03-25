@@ -1,0 +1,17 @@
+@media (max-width: 1500px) {
+  /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
+  .body-content {
+    padding-top: 50px;
+  }
+}
+.main-content{
+  padding-top:100px;
+}
+
+.container-fluid{
+  background-image: url(https://www.solidbackgrounds.com/images/1920x1080/1920x1080-linen-solid-color-background.jpg);
+}
+.content{
+  padding-left:300px;
+  padding-right:300px;
+}

@@ -1,0 +1,44 @@
+/*.tn{
+    margin: 6px;
+    border: 4px solid #eee;
+    box-shadow: #555 1px 1px 8px 1px;
+}
+
+button:hover{
+    opacity: 0.8;
+}
+
+button{
+    padding:0px 30px;
+    margin: 18px 0;
+    cursor: pointer;
+    position: relative;
+}
+.fav-button{
+    margin: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -40px, 50px;
+    position: relative;
+    margin-left: -120px;
+}
+
+.img-container{
+    margin: 50px;
+    box-shadow: #555 1px, 1px, 8px, 1px;
+    min-height: 660px;
+    width: 900px;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#caption{
+    margin-left:auto;
+    margin-right: auto;
+    text-align: center;
+    vertical-align: middle;
+    left: 50%;
+}*/
