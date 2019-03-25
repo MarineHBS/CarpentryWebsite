@@ -6,6 +6,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
+
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { CounterComponent } from './counter/counter.component';
@@ -15,7 +18,7 @@ import { LocationService } from './services/locationservice.service';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { RouterModule } from '@angular/router';
-import { LogoutComponent} from './logout/logout.component';
+import { LogoutComponent } from './logout/logout.component';
 import { RatingsComponentComponent } from './ratings/ratings.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
@@ -32,6 +35,17 @@ import { FabricComponent } from './fabric/fabric.component';
 import { ReferencePictureComponent } from './reference-picture/reference-picture.component';
 import { AddCarpentryServiceComponent } from './add-carpentry-service/add-carpentry-service.component';
 import { AddCarpentryServiceTypeComponent } from './add-carpentry-service-type/add-carpentry-service-type.component';
+import { ChatFormComponent } from './chat-form/chat-form.component';
+import { ChatroomComponent } from './chatroom/chatroom.component';
+import { FeedComponent } from './feed/feed.component';
+import { MessageComponent } from './message/message.component';
+import { UserListComponent } from './user-list/user-list.component';
+import { UserItemComponent } from './user-item/user-item.component';
+
+import { appRoutes } from './routes';
+import { ChatService } from './services/chat.service';
+import { environment } from '../../src/environments/environment';
+import { AngularFireAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
@@ -54,7 +68,13 @@ import { AddCarpentryServiceTypeComponent } from './add-carpentry-service-type/a
     FabricComponent,
     ReferencePictureComponent,
     AddCarpentryServiceComponent,
-    AddCarpentryServiceTypeComponent
+    AddCarpentryServiceTypeComponent,
+    ChatFormComponent,
+    ChatroomComponent,
+    FeedComponent,
+    MessageComponent,
+    UserListComponent,
+    UserItemComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -62,26 +82,15 @@ import { AddCarpentryServiceTypeComponent } from './add-carpentry-service-type/a
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot([
-      { path: '', redirectTo: '/home', pathMatch: 'full' },
-      { path: 'home', component: HomepageComponent },
-      { path: 'about-us', component: AboutUsComponent },
-      { path: 'carpentry-services', component: CarpentryServiceComponent },
-      { path: 'add-carpentry-service', component: AddCarpentryServiceComponent },
-      { path: 'add-carpentry-service-type', component: AddCarpentryServiceTypeComponent },
-      { path: 'fabrics', component: FabricComponent },
-      { path: 'contact-us', component: ContactUsComponent },
-
-      { path: 'registration', component: RegisterComponent },
-      { path: 'login', component: LoginComponent },
-      // { path: 'login', component: LoginComponent },
-      { path: 'logout', component: LogoutComponent }
-
-    ])
+    RouterModule.forRoot(appRoutes),
+    AngularFireModule,
+    AngularFireDatabaseModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [LocationService, CarpentryServiceService,
-      CarpentryServiceTypeService, FabricService, FabricTypeService,
-      ReferencePictureService, UserService, AuthGuard],
+    CarpentryServiceTypeService, FabricService, FabricTypeService,
+    ReferencePictureService, UserService, AuthGuard, ChatService,
+  AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
