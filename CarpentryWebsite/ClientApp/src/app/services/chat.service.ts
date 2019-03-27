@@ -11,7 +11,8 @@ export class ChatService {
   asd: any;
 
   user: any;
-  chatMessages: AngularFireList<ChatMessage[]>;
+  // todo: change any to Chatmessage
+  chatMessages: AngularFireList<any>;
   chatMessage: ChatMessage;
   userName: Observable<string>;
 
@@ -27,13 +28,13 @@ export class ChatService {
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
     // const email = this.user.email;
-    const email = 'blyat';
+    const email = 'testemail@email';
     this.chatMessages = this.getMessages();
     this.chatMessages.push({
-      message: msg,
       timeSent: timestamp,
+      message: msg,
       // userName: this.userName,
-      userName: 'rofl',
+      userName: 'testuser',
       email: email
     });
     console.log('Called sendmessage()');

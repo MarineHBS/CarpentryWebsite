@@ -20,8 +20,8 @@ export class MessageComponent implements OnInit {
   ngOnInit(chatMessage = this.chatMessage) {
     this.messageContent = chatMessage.message;
     this.timeStamp = chatMessage.timeSent;
-    this.userEmail = chatMessage.userName;
-    this.userName = chatMessage.userEmail;
+    this.userEmail = chatMessage.userEmail;
+    this.userName = chatMessage.userName;
   }
 
 }
