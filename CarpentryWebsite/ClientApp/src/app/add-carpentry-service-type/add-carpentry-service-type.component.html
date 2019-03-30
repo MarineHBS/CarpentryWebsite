@@ -11,6 +11,7 @@
     <div class="form-group">
       <div class="form-group">
         <input type="text" class="form-control" formControlName="name" placeholder="Szolgáltatáscsoport neve">
+        <span class="text-danger" *ngIf="name.invalid && formDir.submitted" >Kötelező nevet megadni</span>
       </div>
       <button type="submit" class="btn btn-primary" style="font-size:16px">Szolgáltatáscsoport felvétele</button>
       <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>

@@ -56,4 +56,5 @@ export class AddCarpentryServiceTypeComponent implements OnInit {
     cancel() {
         this._router.navigate(['/carpentry-services']);
     }
+    get name() { return this.addCarpentryServiceTypeForm.get('name'); }
 }

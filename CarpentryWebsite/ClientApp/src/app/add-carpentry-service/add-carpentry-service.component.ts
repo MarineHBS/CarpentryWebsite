@@ -69,7 +69,7 @@ export class AddCarpentryServiceComponent implements OnInit {
         this._router.navigate(['/carpentry-services']);
     }
     get name() { return this.addCarpentryServiceForm.get('name'); }
-    get description() { return this.addCarpentryServiceForm.get('description'); }
+    get price() { return this.addCarpentryServiceForm.get('price'); }
     get picture() { return this.addCarpentryServiceForm.get('picture');
 }
 
