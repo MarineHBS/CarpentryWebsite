@@ -2,21 +2,10 @@ import { UserService } from './../services/user.service';
 import { Component, Pipe, PipeTransform, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http } from '@angular/http';
-import { LocationService } from '../services/locationservice.service';
 import { CarpentryServiceType } from '../models/carpentry-service-type';
 import { CarpentryService } from '../models/carpentry-service';
 import { CarpentryServiceService } from '../services/carpentry-service.service';
 import { CarpentryServiceTypeService } from '../services/carpentry-service-type.service';
-import { Directive, Output, EventEmitter, Input, SimpleChange } from '@angular/core';
-
-@Pipe({ name: 'message' })
-export class MessagePipe implements PipeTransform {
-  transform(msg: string): string {
-    console.log('Run the pipe');
-    return msg;
-  }
-}
-
 
 @Component({
   selector: 'app-carpentry-service-component',
@@ -25,8 +14,8 @@ export class MessagePipe implements PipeTransform {
 
 export class CarpentryServiceComponent implements OnInit {
   carpentryServices: CarpentryService[];
-  currentCarpentryServices: CarpentryService[];
   carpentryServiceTypes: CarpentryServiceType[];
+  carpentryServicesWithIds: Map<CarpentryServiceType, CarpentryService[]> = new Map();
   public adminFlag: boolean;
 
   constructor(public http: Http, private _router: Router, private _carpentryServiceTypeService: CarpentryServiceTypeService,
@@ -35,8 +24,27 @@ export class CarpentryServiceComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getCarpentryServices();
-    this.getCarpentryServiceTypes();
+    this.initializeVariables();
+  }
+
+  addServicesToCarpentryServicesMap(type: CarpentryServiceType) {
+    this.carpentryServicesWithIds.set(type, this.carpentryServices
+      .filter(x => x.carpentryServiceTypeId === type.carpentryServiceTypeId));
+  }
+
+  initializeVariables() {
+    this._carpentryServiceService.getCarpentryServices().subscribe(
+      services => {
+        this.carpentryServices = services;
+        this._carpentryServiceTypeService.getCarpentryServiceTypes().subscribe(
+          types => {
+            this.carpentryServiceTypes = types;
+            for (const type of types) {
+              this.addServicesToCarpentryServicesMap(type);
+            }
+          });
+
+      });
   }
 
   getCarpentryServices() {
@@ -47,21 +55,16 @@ export class CarpentryServiceComponent implements OnInit {
 
   getCarpentryServiceTypes() {
     this._carpentryServiceTypeService.getCarpentryServiceTypes().subscribe(
-      types => this.carpentryServiceTypes = types
-    );
+      types => {
+        this.carpentryServiceTypes = types;
+        for (const type of this.carpentryServiceTypes) {
+          this.addServicesToCarpentryServicesMap(type);
+        }
+      });
   }
 
-  getCarpentryServicesByTypeId(typeId: number) {
-    console.log(this.carpentryServices.pop());
-    this.currentCarpentryServices = this.carpentryServices
-      .filter(x => x.carpentryServiceTypeId === typeId);
-    console.log(this.currentCarpentryServices.find(x => x.carpentryServiceTypeId === typeId));
-    // console.log(this.carpentryServices);
-    console.log(this.currentCarpentryServices);
-    /*
-    this._carpentryServiceService.getCarpentryServicesByTypeId(typeId).subscribe(
-      services => this.carpentryServiceList = services
-    );*/
+  getCarpentryServicesByTypeId(type: CarpentryServiceType) {
+    return this.carpentryServicesWithIds.get(type);
   }
 }
 

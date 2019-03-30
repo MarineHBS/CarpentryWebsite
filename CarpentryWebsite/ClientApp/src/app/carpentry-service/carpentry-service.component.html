@@ -1,18 +1,12 @@
-<p>
-  carpentry-service works!
-  <a [routerLink]="[ '/add-carpentry-service' ]">
-    <button>Új szolgáltatás felvétele</button></a>
-  <a [routerLink]="[ '/add-carpentry-service-type' ]">
-    <button>Új szolgáltatáscsoport felvétele</button></a>
-</p>
-
-<div *ngFor="let type of carpentryServiceTypes">
-  <h2>{{type.name}}</h2>
-  {{getCarpentryServicesByTypeId(type.id)}}
-  <div *ngIf="currentCarpentryServices">
-    <div *ngFor="let service of currentCarpentryServices">
+<a [routerLink]="[ '/add-carpentry-service' ]">
+  <button>Új szolgáltatás felvétele</button></a>
+<a [routerLink]="[ '/add-carpentry-service-type' ]">
+  <button>Új szolgáltatáscsoport felvétele</button></a>
+<div *ngIf="carpentryServices && carpentryServiceTypes">
+  <div *ngFor="let type of carpentryServiceTypes">
+    <h2>{{type.name}}</h2>
+    <div *ngFor="let service of getCarpentryServicesByTypeId(type)">
       {{service.name}}
     </div>
   </div>
-  <hr>
 </div>
