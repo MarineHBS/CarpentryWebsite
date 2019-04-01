@@ -2,16 +2,15 @@
 <html>
 
 <head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
   <div class="login-form">
     <div class="main-div">
-      <div class="panel">
         <h1>Log on to the website</h1>
-      </div>
       <form #f="ngForm" (ngSubmit)="loginUser(f)" novalidate>
         <div class="form-group">
           <input type="text" name="userName" class="form-control" id="userName" placeholder="Username" [ngModel]="loginUser.userName"

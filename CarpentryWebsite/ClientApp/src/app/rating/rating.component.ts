@@ -11,12 +11,39 @@ import { Router } from '@angular/router';
 })
 export class RatingComponent implements OnInit {
   ratings: Rating[];
+  numberOfStars: number;
 
   constructor(public http: Http, private _router: Router, private _ratingService: RatingService) {
     this.getRatings();
    }
 
   ngOnInit() {
+  }
+
+  getStars(r: Rating) {
+    switch (r.userRating) {
+      case 'Nagyon elégedett':
+        this.numberOfStars = 5;
+        break;
+        case 'Elégedett':
+        this.numberOfStars = 4;
+        break;
+        case 'Közepesen elégedett':
+        this.numberOfStars = 3;
+        break;
+        case 'Elégedetlen':
+        this.numberOfStars = 2;
+        break;
+        case 'Nagyon elégedetlen':
+        this.numberOfStars = 1;
+        break;
+        default: break;
+    }
+    return new Array(this.numberOfStars);
+  }
+
+  getBlackStars() {
+    return new Array(5 - this.numberOfStars);
   }
 
   getRatings() {

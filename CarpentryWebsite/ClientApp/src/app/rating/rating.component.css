@@ -5,8 +5,13 @@ a.list-group-item {
 a.list-group-item.active small {
     color:#fff;
 }
-.stars {
-    margin:20px auto 1px;
+
+.stars{
+    display: inline;
+}
+
+.checked{
+    color: orange;
 }
 
 .opinion-entry{

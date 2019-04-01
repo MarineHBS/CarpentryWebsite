@@ -1,12 +1,21 @@
-<a [routerLink]="[ '/add-carpentry-service' ]">
-  <button>Új szolgáltatás felvétele</button></a>
-<a [routerLink]="[ '/add-carpentry-service-type' ]">
-  <button>Új szolgáltatáscsoport felvétele</button></a>
-<div *ngIf="carpentryServices && carpentryServiceTypes">
-  <div *ngFor="let type of carpentryServiceTypes">
-    <h2>{{type.name}}</h2>
-    <div *ngFor="let service of getCarpentryServicesByTypeId(type)">
-      {{service.name}}
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+  <a [routerLink]="[ '/add-carpentry-service' ]">
+    <button>Új szolgáltatás felvétele</button></a>
+  <a [routerLink]="[ '/add-carpentry-service-type' ]">
+    <button>Új szolgáltatáscsoport felvétele</button></a>
+  <div *ngIf="carpentryServices && carpentryServiceTypes">
+    <div *ngFor="let type of carpentryServiceTypes">
+      <h2>{{type.name}}</h2>
+      <div *ngFor="let service of getCarpentryServicesByTypeId(type)">
+        {{service.name}}
+      </div>
     </div>
   </div>
-</div>
+</body>

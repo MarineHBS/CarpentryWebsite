@@ -11,7 +11,9 @@ app-chat-form{
   height: auto;
 }
 
-
+body{
+  background-image: url(https://www.solidbackgrounds.com/images/1920x1080/1920x1080-linen-solid-color-background.jpg);
+}
 
 
 .tn {

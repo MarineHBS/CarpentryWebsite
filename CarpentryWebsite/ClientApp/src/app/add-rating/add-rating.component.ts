@@ -21,7 +21,7 @@ export class AddRatingComponent implements OnInit {
         if (this._avRoute.snapshot.params['id']) {
             this.ratingId = this._avRoute.snapshot.params['id'];
         }
-        this.userRatingTypes = ['Nagyon elégedett', 'Elégedett', 'Elégedetlen', 'Nagyon elégedetlen'];
+        this.userRatingTypes = ['Nagyon elégedett', 'Elégedett', 'Közepesen elégedett', 'Elégedetlen', 'Nagyon elégedetlen'];
         this.addRatingForm = this._fb.group({
             ratingId: 0,
             user: ['', [Validators.required]],

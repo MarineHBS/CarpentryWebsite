@@ -3,6 +3,7 @@
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <div class="container">
@@ -17,33 +18,14 @@
           </div>
           <div class="col-md-3 text-center">
             <h2> {{rating.user}} </h2>
-            <div class="stars">
-              {{rating.userRating}}
+            <div class="stars" *ngFor="let star of getStars(rating)" style="display: inline">
+              <span class="fa fa-star checked"></span>
+            </div>
+            <div class="stars" *ngFor="let star of getBlackStars()" style="display: inline">
+                <span class="fa fa-star"></span>
             </div>
           </div>
         </div>
-        <div class="opinion-entry">
-            <div class="col-md-9">
-              <p class="list-group-item-text opinion-text"> Qui diam libris ei, vidisse incorrupte at mel. His euismod
-                salutandi dissentiunt eu. Habeo offendit ea mea. Nostro blandit sea ea, viris timeam molestiae an has. At
-                nisl platonem eum.
-                Vel et nonumy gubergren, ad has tota facilis probatus. Ea legere legimus tibique cum, sale tantas vim ea,
-                eu vivendo expetendis vim. Voluptua vituperatoribus et mel, ius no elitr deserunt mediocrem. Mea facilisi
-                torquatos ad.
-              </p>
-            </div>
-            <div class="col-md-3 text-center">
-              <h2> Béla </h2>
-              <div class="stars">
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star"></span>
-                <span class="glyphicon glyphicon-star-empty"></span>
-              </div>
-              <p> Jó 4.5 <small> / </small> 5 </p>
-            </div>
-          </div>
       </div>
     </div>
   </div>
