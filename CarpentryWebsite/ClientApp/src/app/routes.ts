@@ -10,6 +10,7 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ChatroomComponent } from './chatroom/chatroom.component';
+import { AddRatingComponent } from './add-rating/add-rating.component';
 
 export const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ export const appRoutes: Routes = [
     { path: 'carpentry-services', component: CarpentryServiceComponent },
     { path: 'add-carpentry-service', component: AddCarpentryServiceComponent },
     { path: 'add-carpentry-service-type', component: AddCarpentryServiceTypeComponent },
+    { path: 'add-rating', component: AddRatingComponent },
     { path: 'fabrics', component: FabricComponent },
     { path: 'contact-us', component: ContactUsComponent },
     { path: 'chat', component: ChatroomComponent },

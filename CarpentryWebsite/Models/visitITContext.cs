@@ -19,13 +19,16 @@ namespace CarpentryWebsite.Models
 
         public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<Favorite> Favorite { get; set; }
-
+  
         public virtual DbSet<CarpentryService> CarpentryService { get; set; }
         public virtual DbSet<CarpentryServiceType> CarpentryServiceType { get; set; }
         public virtual DbSet<Fabric> Fabric { get; set; }
         public virtual DbSet<FabricType> FabricType { get; set; }
         public virtual DbSet<ReferencePicture> ReferencePicture { get; set; }
         public virtual DbSet<Picture> Picture { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
+        public virtual DbSet<Rating> Rating { get; set; }
+
 
 
 

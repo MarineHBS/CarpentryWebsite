@@ -4,14 +4,16 @@ using CarpentryWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarpentryWebsite.Migrations
 {
     [DbContext(typeof(CarpentryWebsiteContext))]
-    partial class CarpentryWebsiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190330225328_contact table added")]
+    partial class contacttableadded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -214,23 +216,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("PictureId");
 
                     b.ToTable("Picture");
-                });
-
-            modelBuilder.Entity("CarpentryWebsite.Models.Rating", b =>
-                {
-                    b.Property<int>("RatingId")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Text");
-
-                    b.Property<string>("User");
-
-                    b.Property<string>("UserRating");
-
-                    b.HasKey("RatingId");
-
-                    b.ToTable("Rating");
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.ReferencePicture", b =>

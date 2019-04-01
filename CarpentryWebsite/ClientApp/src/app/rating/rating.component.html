@@ -1,0 +1,50 @@
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<div class="container">
+  <div class="row">
+    <div class="opinion-div">
+      <h1 class="opinion-header">Vélemények</h1>
+      <div class="list-group" *ngFor="let rating of ratings">
+        <div class="opinion-entry">
+          <div class="col-md-9">
+            <p class="list-group-item-text opinion-text"> {{rating.text}}
+            </p>
+          </div>
+          <div class="col-md-3 text-center">
+            <h2> {{rating.user}} </h2>
+            <div class="stars">
+              {{rating.userRating}}
+            </div>
+          </div>
+        </div>
+        <div class="opinion-entry">
+            <div class="col-md-9">
+              <p class="list-group-item-text opinion-text"> Qui diam libris ei, vidisse incorrupte at mel. His euismod
+                salutandi dissentiunt eu. Habeo offendit ea mea. Nostro blandit sea ea, viris timeam molestiae an has. At
+                nisl platonem eum.
+                Vel et nonumy gubergren, ad has tota facilis probatus. Ea legere legimus tibique cum, sale tantas vim ea,
+                eu vivendo expetendis vim. Voluptua vituperatoribus et mel, ius no elitr deserunt mediocrem. Mea facilisi
+                torquatos ad.
+              </p>
+            </div>
+            <div class="col-md-3 text-center">
+              <h2> Béla </h2>
+              <div class="stars">
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star"></span>
+                <span class="glyphicon glyphicon-star-empty"></span>
+              </div>
+              <p> Jó 4.5 <small> / </small> 5 </p>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

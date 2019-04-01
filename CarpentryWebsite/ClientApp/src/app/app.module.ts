@@ -19,7 +19,6 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { RouterModule } from '@angular/router';
 import { LogoutComponent } from './logout/logout.component';
-import { RatingsComponentComponent } from './ratings/ratings.component';
 import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -46,6 +45,9 @@ import { appRoutes } from './routes';
 import { ChatService } from './services/chat.service';
 import { environment } from '../../src/environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { RatingComponent } from './rating/rating.component';
+import { RatingService } from './services/rating.service';
+import { AddRatingComponent } from './add-rating/add-rating.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
-    RatingsComponentComponent,
     ContactUsComponent,
     AboutUsComponent,
     HomepageComponent,
@@ -74,7 +75,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
     FeedComponent,
     MessageComponent,
     UserListComponent,
-    UserItemComponent
+    UserItemComponent,
+    RatingComponent,
+    AddRatingComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -89,8 +92,8 @@ import { AngularFireAuth } from '@angular/fire/auth';
   ],
   providers: [LocationService, CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService,
-    ReferencePictureService, UserService, AuthGuard, ChatService,
-  AngularFireAuth],
+    ReferencePictureService, RatingService, UserService, AuthGuard, ChatService,
+    AngularFireAuth],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
