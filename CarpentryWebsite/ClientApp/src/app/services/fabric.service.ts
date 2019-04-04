@@ -20,14 +20,26 @@ export class FabricService {
         .catch(this.errorHandler);
     }
 
+    getFabricsByTypeId(id: number) {
+        return this._http.get(this.CarpentryWebsiteUrl + 'api/fabric/get-type/' + id)
+        .map((res: Response) => res.json())
+        .catch(this.errorHandler);
+    }
+
+    getFabricsPictureUrl() {
+        return this._http.get(this.CarpentryWebsiteUrl + 'api/fabric/get-url/')
+        .map((res: Response) => res.json())
+        .catch(this.errorHandler);
+    }
+
     getFabricDetails(id: number) {
         return this._http.get(this.CarpentryWebsiteUrl + 'api/fabric/details/' + id)
         .map((res: Response) => res.json())
         .catch(this.errorHandler);
     }
 
-    createFabric(fabric) {
-        return this._http.post(this.CarpentryWebsiteUrl + 'api/fabric/create', fabric)
+    createFabric(fabric, picture: string) {
+        return this._http.post(this.CarpentryWebsiteUrl + 'api/fabric/create', {fabric, picture})
             .map((response: Response) => response.json())
             .catch(this.errorHandler);
     }

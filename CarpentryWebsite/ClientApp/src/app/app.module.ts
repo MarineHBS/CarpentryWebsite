@@ -51,6 +51,8 @@ import { AddReferencePictureComponent } from './add-reference-picture/add-refere
 import { ContactComponent } from './contact/contact.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactService } from './services/contact.service';
+import { AddFabricComponent } from './add-fabric/add-fabric.component';
+import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
 
 @NgModule({
   declarations: [
@@ -83,7 +85,9 @@ import { ContactService } from './services/contact.service';
     AddRatingComponent,
     AddReferencePictureComponent,
     ContactComponent,
-    AddContactComponent
+    AddContactComponent,
+    AddFabricComponent,
+    AddFabricTypeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

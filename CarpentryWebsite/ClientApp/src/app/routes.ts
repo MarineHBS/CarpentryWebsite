@@ -13,6 +13,8 @@ import { AddRatingComponent } from './add-rating/add-rating.component';
 import { AddReferencePictureComponent } from './add-reference-picture/add-reference-picture.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactComponent } from './contact/contact.component';
+import { AddFabricComponent } from './add-fabric/add-fabric.component';
+import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
 
 export const appRoutes: Routes = [
     { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -21,6 +23,8 @@ export const appRoutes: Routes = [
     { path: 'carpentry-services', component: CarpentryServiceComponent },
     { path: 'add-carpentry-service', component: AddCarpentryServiceComponent },
     { path: 'add-carpentry-service-type', component: AddCarpentryServiceTypeComponent },
+    { path: 'add-fabric', component: AddFabricComponent },
+    { path: 'add-fabric-type', component: AddFabricTypeComponent },
     { path: 'add-rating', component: AddRatingComponent },
     { path: 'add-reference-picture', component: AddReferencePictureComponent },
     { path: 'add-contact', component: AddContactComponent },

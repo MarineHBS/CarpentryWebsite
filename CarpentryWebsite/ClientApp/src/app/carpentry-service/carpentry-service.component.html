@@ -15,6 +15,7 @@
       <h2>{{type.name}}</h2>
       <div *ngFor="let service of getCarpentryServicesByTypeId(type)">
         {{service.name}}
+        {{service.price}}
       </div>
     </div>
   </div>

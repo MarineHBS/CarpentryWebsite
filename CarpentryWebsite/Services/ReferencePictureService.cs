@@ -37,7 +37,6 @@ namespace CarpentryWebsite.Models
         {
             try
             {
-
                 IEnumerable<Picture> query = (from p in db.Picture
                              from rp in db.ReferencePicture
                              where p.PictureId == rp.PictureId
@@ -66,7 +65,6 @@ namespace CarpentryWebsite.Models
                 }
                 else
                 {
-                    Console.WriteLine(picture.PictureId);
                     referencePicture.PictureId = exists.PictureId;
                     referencePicture.Picture = exists;
                 }

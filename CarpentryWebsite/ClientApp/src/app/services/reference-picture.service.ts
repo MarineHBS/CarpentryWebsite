@@ -20,6 +20,7 @@ export class ReferencePictureService {
         .map((res: Response) => res.json())
         .catch(this.errorHandler);
     }
+
     getReferencePicturesWithUrl() {
         return this._http.get(this.CarpentryWebsiteUrl + 'api/reference-picture/get-pictures')
         .map((res: Response) => res.json())
