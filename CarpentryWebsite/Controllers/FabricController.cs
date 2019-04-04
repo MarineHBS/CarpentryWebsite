@@ -26,7 +26,7 @@ namespace CarpentryWebsite.Controllers
 
         [HttpGet]
         [Route("/api/fabric/get")]
-        public IEnumerable<Fabric> GetAllLocations()
+        public IEnumerable<Fabric> GetAllFabrics()
         {
             return fabricService.GetAllFabrics();
         }

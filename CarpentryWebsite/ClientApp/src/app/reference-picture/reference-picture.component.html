@@ -1,3 +1,12 @@
-<p>
-  reference-picture works!
-</p>
+<a [routerLink]="[ '/add-reference-picture' ]">
+  <button>Új Referenciakép felvétele</button></a>
+<div *ngIf="referencePictures">
+  <a *ngFor="let referencePicture of referencePictures">
+    <div class="container">
+      <a [routerLink]="['/about-us']">
+        <img class="tn" src="{{referencePicture.pictureUrl}}"
+          onerror="this.src='https://via.placeholder.com/300x210'" />
+      </a>
+    </div>
+  </a>
+</div>

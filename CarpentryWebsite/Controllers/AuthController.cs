@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 using CarpentryWebsite.Models;
 using CarpentryWebsite.Auth;
 using CarpentryWebsite.Helpers;
-using CarpentryWebsite.Models;
 
 namespace CarpentryWebsite.Controllers
 {

@@ -26,8 +26,7 @@ export class AddRatingComponent implements OnInit {
             ratingId: 0,
             user: ['', [Validators.required]],
             userRating: ['', [Validators.required]],
-            text: ['', [Validators.required]],
-            // picture: ['']
+            text: ['', [Validators.required]]
         });
     }
 
@@ -48,6 +47,5 @@ export class AddRatingComponent implements OnInit {
     }
     get user() { return this.addRatingForm.get('user'); }
     get userRating() { return this.addRatingForm.get('userRating'); }
-    get text() { return this.addRatingForm.get('text');
-}
+    get text() { return this.addRatingForm.get('text'); }
 }

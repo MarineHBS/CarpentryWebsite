@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CarpentryWebsite.Models;
-using CarpentryWebsite.Models;
 
 namespace CarpentryWebsite.Controllers
 {
@@ -27,7 +26,7 @@ namespace CarpentryWebsite.Controllers
 
         [HttpGet]
         [Route("/api/rating/get")]
-        public IEnumerable<Rating> GetAllLocations()
+        public IEnumerable<Rating> GetAllRatings()
         {
             return ratingService.GetAllRatings();
         }

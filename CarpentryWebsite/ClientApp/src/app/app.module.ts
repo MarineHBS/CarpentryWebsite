@@ -19,7 +19,6 @@ import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { RouterModule } from '@angular/router';
 import { LogoutComponent } from './logout/logout.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CarpentryServiceService } from './services/carpentry-service.service';
@@ -48,6 +47,10 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { RatingComponent } from './rating/rating.component';
 import { RatingService } from './services/rating.service';
 import { AddRatingComponent } from './add-rating/add-rating.component';
+import { AddReferencePictureComponent } from './add-reference-picture/add-reference-picture.component';
+import { ContactComponent } from './contact/contact.component';
+import { AddContactComponent } from './add-contact/add-contact.component';
+import { ContactService } from './services/contact.service';
 
 @NgModule({
   declarations: [
@@ -60,7 +63,7 @@ import { AddRatingComponent } from './add-rating/add-rating.component';
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
-    ContactUsComponent,
+    ContactComponent,
     AboutUsComponent,
     HomepageComponent,
     FabricTypeComponent,
@@ -77,7 +80,10 @@ import { AddRatingComponent } from './add-rating/add-rating.component';
     UserListComponent,
     UserItemComponent,
     RatingComponent,
-    AddRatingComponent
+    AddRatingComponent,
+    AddReferencePictureComponent,
+    ContactComponent,
+    AddContactComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -91,7 +97,7 @@ import { AddRatingComponent } from './add-rating/add-rating.component';
     AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [LocationService, CarpentryServiceService,
-    CarpentryServiceTypeService, FabricService, FabricTypeService,
+    CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,
     ReferencePictureService, RatingService, UserService, AuthGuard, ChatService,
     AngularFireAuth],
   bootstrap: [AppComponent]

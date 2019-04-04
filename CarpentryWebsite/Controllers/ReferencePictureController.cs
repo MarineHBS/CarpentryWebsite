@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using CarpentryWebsite.Models;
 using CarpentryWebsite.Models;
 
 namespace CarpentryWebsite.Controllers
@@ -27,16 +20,23 @@ namespace CarpentryWebsite.Controllers
 
         [HttpGet]
         [Route("/api/reference-picture/get")]
-        public IEnumerable<ReferencePicture> GetAllLocations()
+        public IEnumerable<ReferencePicture> GetReferencePictures()
         {
             return referencePictureService.GetAllReferencePictures();
         }
 
+        [HttpGet]
+        [Route("/api/reference-picture/get-pictures")]
+        public IEnumerable<Picture> GetAllReferencePicturesWithUrl()
+        {
+            return referencePictureService.GetAllReferencePicturesWithUrl();
+        }
+
         [HttpPost]
         [Route("/api/reference-picture/create")]
-        public int Create([FromBody] ReferencePicture referencePicture)
+        public int Create([FromBody] Picture picture)
         {
-            return referencePictureService.AddReferencePicture(referencePicture);
+            return referencePictureService.AddReferencePicture(picture);
         }
 
         [HttpGet]

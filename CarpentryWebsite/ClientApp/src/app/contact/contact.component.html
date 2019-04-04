@@ -1,0 +1,7 @@
+<a [routerLink]="[ '/add-contact' ]">
+  <button>Új kapcsolat felvétele</button></a>
+<div *ngFor="let contact of contacts">
+  {{contact.name}}
+  {{contact.phone}}
+  {{contact.emailAddress}}
+</div>

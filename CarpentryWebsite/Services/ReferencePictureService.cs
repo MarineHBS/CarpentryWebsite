@@ -33,10 +33,45 @@ namespace CarpentryWebsite.Models
             }
         }
 
-        public int AddReferencePicture(ReferencePicture referencePicture)
+        public IEnumerable<Picture> GetAllReferencePicturesWithUrl()
         {
             try
             {
+
+                IEnumerable<Picture> query = (from p in db.Picture
+                             from rp in db.ReferencePicture
+                             where p.PictureId == rp.PictureId
+                             select p).ToList();
+
+                return query;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public int AddReferencePicture(Picture picture)
+        {
+            try
+            {
+                ReferencePicture referencePicture = new ReferencePicture();
+                Picture exists = db.Picture.Where(p => p.PictureUrl == picture.PictureUrl).FirstOrDefault();
+
+                if (exists == null)
+                {
+                    db.Picture.Add(picture);
+                    referencePicture.PictureId = picture.PictureId;
+                    referencePicture.Picture = picture;
+                }
+                else
+                {
+                    Console.WriteLine(picture.PictureId);
+                    referencePicture.PictureId = exists.PictureId;
+                    referencePicture.Picture = exists;
+                }
+                
+
                 db.ReferencePicture.Add(referencePicture);
                 db.SaveChanges();
                 return 1;
