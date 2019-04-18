@@ -43,7 +43,6 @@ export class CarpentryServiceComponent implements OnInit {
               this.addServicesToCarpentryServicesMap(type);
             }
           });
-
       });
   }
 
@@ -64,7 +63,6 @@ export class CarpentryServiceComponent implements OnInit {
   }
 
   getCarpentryServicesByTypeId(type: CarpentryServiceType) {
-    console.log('clicked on this' + type);
     return this.carpentryServicesWithIds.get(type);
   }
 }
