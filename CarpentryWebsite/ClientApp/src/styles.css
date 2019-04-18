@@ -15,6 +15,11 @@ body{
   background-image: url(https://www.solidbackgrounds.com/images/1920x1080/1920x1080-linen-solid-color-background.jpg);
 }
 
+.price-estimate-container .mat-dialog-container{
+   background: #ffffff;
+   width:600px;
+}
+
 
 .tn {
   margin: 12px;
@@ -155,3 +160,6 @@ body{
   margin-top: -100px;
   margin-right: 100px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

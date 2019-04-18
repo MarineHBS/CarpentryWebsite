@@ -1,0 +1,63 @@
+<h1 style="margin-top:100px">{{title}}</h1>
+<hr />
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+  <div class="price-div">
+    <div class='title-div'>
+      <h1 class='title-span'>Árbecslés</h1>
+      <button type="button" class="close" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class='close-div'>
+    </div>
+    <div class='service-div'>
+      <div>
+        Szolgáltatáscsoport
+        <select [(ngModel)]="carpentryServiceTypeId">
+          <option *ngFor="let type of carpentryServiceTypeList" [ngValue]="type.carpentryServiceTypeId">
+            {{type.name}}
+          </option>
+        </select>
+      </div>
+      <div *ngIf="carpentryServiceTypeId">
+        {{getCarpentryServicesByTypeId(carpentryServiceTypeId)}}
+        Szolgáltatás
+        <select [(ngModel)]="currentCarpentryServicePrice">
+          <option *ngFor="let service of carpentryServices" [ngValue]="service.price">
+            {{service.name}}
+          </option>
+        </select>
+        {{currentCarpentryServicePrice}}
+      </div>
+    </div>
+    <div class='fabric-div'>
+      <div>
+        Szövettípus
+        <select [(ngModel)]="fabricTypeId">
+          <option *ngFor="let type of fabricTypes" [ngValue]="type.fabricTypeId">
+            {{type.name}}
+          </option>
+        </select>
+      </div>
+      <div *ngIf="fabricTypeId">
+        {{getFabricsByTypeId(fabricTypeId)}}
+        Szövet
+        <select [(ngModel)]="currentFabricPrice">
+          <option *ngFor="let fabric of fabrics" [ngValue]="fabric.price">
+            {{fabric.name}}
+          </option>
+        </select>
+        {{currentFabricPrice}}
+      </div>
+    </div>
+    <button class="btn btn-primary estimateButton" (click)="calculateEstimate()"
+      style="font-size:16px">Árbecslés</button>
+  </div>
+</body>

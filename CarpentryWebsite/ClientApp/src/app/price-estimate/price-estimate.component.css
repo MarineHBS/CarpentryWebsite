@@ -1,0 +1,31 @@
+body{
+    background: #ffffff;
+}
+
+.service-div{
+    width: 100px; 
+    float:left; 
+    height:100px;
+    margin:30px;
+}
+
+.title-span{
+    padding-left: 30px;
+}
+
+.fabric-div{
+    width: 100px; 
+    float:left; 
+    height:100px;
+    margin:30px
+}
+
+.price-div{
+    position:relative;
+}
+
+.estimateButton{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}

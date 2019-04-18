@@ -53,6 +53,9 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactService } from './services/contact.service';
 import { AddFabricComponent } from './add-fabric/add-fabric.component';
 import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
+import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
+import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -87,7 +90,8 @@ import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.compon
     ContactComponent,
     AddContactComponent,
     AddFabricComponent,
-    AddFabricTypeComponent
+    AddFabricTypeComponent,
+    PriceEstimateComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -95,10 +99,18 @@ import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.compon
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatTableModule,
+    MatCheckboxModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot(appRoutes),
     AngularFireModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase)
+  ],
+  entryComponents: [
+    PriceEstimateComponent
   ],
   providers: [LocationService, CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,
