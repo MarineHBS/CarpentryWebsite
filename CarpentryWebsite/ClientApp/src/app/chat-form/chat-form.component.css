@@ -5,3 +5,12 @@
 .feedWrapper{
     background-color: white;
 }
+.chatButton{
+    background: #5adf5a;
+    color:#ffffff;
+    width:100%;
+}
+
+.chatButton:hover{
+    background:green;
+}

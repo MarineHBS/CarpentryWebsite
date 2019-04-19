@@ -9,6 +9,8 @@ import { MatDialog } from '@angular/material';
 })
 export class AppComponent {
   title = 'app';
+  public isChatOpened: boolean;
+  isOpened: boolean;
 
   constructor(public dialog: MatDialog) {}
 
@@ -16,6 +18,16 @@ export class AppComponent {
     const dialogRef = this.dialog.open(PriceEstimateComponent, {
       panelClass: 'price-estimate-container'
     });
+  }
 
+  openChat() {
+    if (this.isChatOpened) {
+      console.log('close chat');
+      this.isChatOpened = false;
+    } else if (!this.isChatOpened) {
+      // TODO : chat window open
+      console.log('open chat');
+      this.isChatOpened = true;
+    }
   }
 }

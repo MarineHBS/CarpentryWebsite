@@ -56,17 +56,17 @@ export class AddCarpentryServiceComponent implements OnInit {
         if (this.title === 'Szolgáltatás felvétele') {
             this._carpentryServiceService.createCarpentryService(this.addCarpentryServiceForm.value)
                 .subscribe((data) => {
-                    this._router.navigate(['/carpentry-services']);
+                    this._router.navigate(['/admin-area']);
                 }, error => this.errorMessage = error);
         } else if (this.title === 'Edit') {
             this._carpentryServiceService.updateCarpentryService(this.addCarpentryServiceForm.value)
                 .subscribe((data) => {
-                    this._router.navigate(['/carpentry-services']);
+                    this._router.navigate(['/admin-area']);
                 }, error => this.errorMessage = error);
         }
     }
     cancel() {
-        this._router.navigate(['/carpentry-services']);
+        this._router.navigate(['/admin-area']);
     }
     get name() { return this.addCarpentryServiceForm.get('name'); }
     get price() { return this.addCarpentryServiceForm.get('price'); }

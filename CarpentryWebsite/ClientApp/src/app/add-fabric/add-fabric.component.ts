@@ -58,17 +58,17 @@ export class AddFabricComponent implements OnInit {
             name: this.addFabricForm.value.name,
             price: this.addFabricForm.value.price}, this.addFabricForm.value.picture)
               .subscribe((data) => {
-                  this._router.navigate(['/fabrics']);
+                  this._router.navigate(['/admin-area']);
               }, error => this.errorMessage = error);
       } else if (this.title === 'Edit') {
           this._fabricService.updateFabric(this.addFabricForm.value)
               .subscribe((data) => {
-                  this._router.navigate(['/fabrics']);
+                  this._router.navigate(['/admin-area']);
               }, error => this.errorMessage = error);
       }
   }
   cancel() {
-      this._router.navigate(['/fabrics']);
+      this._router.navigate(['/admin-area']);
   }
   get name() { return this.addFabricForm.get('name'); }
   get price() { return this.addFabricForm.get('price'); }

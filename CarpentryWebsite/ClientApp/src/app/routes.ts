@@ -15,25 +15,26 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { ContactComponent } from './contact/contact.component';
 import { AddFabricComponent } from './add-fabric/add-fabric.component';
 import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
+import { AdminAreaComponent } from './admin-area/admin-area.component';
 
 export const appRoutes: Routes = [
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
-    { path: 'home', component: HomepageComponent },
-    { path: 'about-us', component: AboutUsComponent },
-    { path: 'carpentry-services', component: CarpentryServiceComponent },
-    { path: 'add-carpentry-service', component: AddCarpentryServiceComponent },
-    { path: 'add-carpentry-service-type', component: AddCarpentryServiceTypeComponent },
-    { path: 'add-fabric', component: AddFabricComponent },
-    { path: 'add-fabric-type', component: AddFabricTypeComponent },
-    { path: 'add-rating', component: AddRatingComponent },
-    { path: 'add-reference-picture', component: AddReferencePictureComponent },
-    { path: 'add-contact', component: AddContactComponent },
-    { path: 'fabrics', component: FabricComponent },
-    { path: 'contact-us', component: ContactComponent },
-    { path: 'chat', component: ChatroomComponent },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomepageComponent },
+  { path: 'about-us', component: AboutUsComponent },
+  { path: 'carpentry-services', component: CarpentryServiceComponent },
+  { path: 'add-carpentry-service', component: AddCarpentryServiceComponent },
+  { path: 'add-carpentry-service-type', component: AddCarpentryServiceTypeComponent },
+  { path: 'add-fabric', component: AddFabricComponent },
+  { path: 'add-fabric-type', component: AddFabricTypeComponent },
+  { path: 'add-rating', component: AddRatingComponent },
+  { path: 'add-reference-picture', component: AddReferencePictureComponent },
+  { path: 'add-contact', component: AddContactComponent },
+  { path: 'fabrics', component: FabricComponent },
+  { path: 'contact-us', component: ContactComponent },
+  { path: 'chat', component: ChatroomComponent },
 
-    { path: 'registration', component: RegisterComponent },
-    { path: 'login', component: LoginComponent },
-    // { path: 'login', component: LoginComponent },
-    { path: 'logout', component: LogoutComponent }
-  ];
+  { path: 'admin-area', component: AdminAreaComponent },
+  { path: 'registration', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'logout', component: LogoutComponent }
+];

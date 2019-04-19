@@ -1,31 +1,20 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head>
-
 <body>
   <div class="login-form">
     <div class="main-div">
-        <h1>Log on to the website</h1>
-      <form #f="ngForm" (ngSubmit)="loginUser(f)" novalidate>
+        <h1>Admin bejelentkezés</h1>
+      <form #f="ngForm" (ngSubmit)="loginUser(f)" class="inputForm" novalidate>
         <div class="form-group">
-          <input type="text" name="userName" class="form-control" id="userName" placeholder="Username" [ngModel]="loginUser.userName"
+          <input type="text" name="userName" class="form-control" id="userName" placeholder="Felhasználónév" [ngModel]="loginUser.userName"
             #userName="ngModel">
         </div>
         <div class="form-group">
-          <input type="password" name="password" class="form-control" id="password" placeholder="Password" ngModel>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Jelszó" ngModel>
         </div>
         <div *ngIf='errors'>
           <p style="color: red; font-size: 12px">{{errors}}</p>
         </div>
-        <button type="submit" class="btn btn-primary logBtn">Log in</button>
+        <button type="submit" class="btn-primary logBtn">Bejelentkezés</button>
       </form>
     </div>
   </div>
 </body>
-
-</html>

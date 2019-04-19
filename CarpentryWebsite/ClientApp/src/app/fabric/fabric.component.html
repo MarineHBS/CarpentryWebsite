@@ -6,32 +6,15 @@
 </head>
 
 <body>
-  <a [routerLink]="[ '/add-fabric' ]">
-    <button>Új szövet felvétele</button></a>
-  <a [routerLink]="[ '/add-fabric-type' ]">
-    <button>Új szövettípus felvétele</button></a>
   <div *ngIf="fabrics && fabricTypes">
     <div *ngFor="let type of fabricTypes">
       <h2>{{type.name}}</h2>
       <div *ngFor="let fabric of getFabricsByTypeId(type)">
-        {{fabric.name}}
-        {{fabric.price}}
-        <img class="tn" src="{{getFabricUrlById(fabric.fabricId)}}" onerror="this.src='https://via.placeholder.com/300x210'" />
-        <!--
-        <div *ngIf="fabric.picture">
-          <div class="container">
-            <a [routerLink]="['/location/details/' + location.locationId]">
-              <img class="tn" src="{{location.picture}}" onerror="this.src='https://via.placeholder.com/300x210'" />
-            </a>
-            <div *ngIf="adminFlag">
-              <button class="btn btn-danger btnDelete" (click)="delete(location.locationId, location.name)"><span class="glyphicon glyphicon-remove"></span></button>
-              <a [routerLink]="['/location/edit/', location.locationId]">
-                <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
-              </a>
-            </div>
-          </div>
+        <div class="container">
+          {{fabric.name}}
+          <img class="tn" src="{{getFabricUrlById(fabric.fabricId)}}"
+            onerror="this.src='https://via.placeholder.com/300x210'" />
         </div>
-      -->
       </div>
     </div>
   </div>

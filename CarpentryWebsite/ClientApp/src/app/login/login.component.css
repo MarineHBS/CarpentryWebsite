@@ -1,0 +1,19 @@
+.main-div{
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.inputForm{
+    padding-top:50px;
+    padding-right:200px;
+    padding-left:80px;
+    padding-bottom: 50px;
+}
+
+.logBtn{
+    margin-left:25px;
+}

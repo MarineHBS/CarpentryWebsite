@@ -36,11 +36,11 @@ export class AddContactComponent implements OnInit {
       }
           this._contactService.createContact(this.addContactForm.value)
               .subscribe((data) => {
-                  this._router.navigate(['/contact-us']);
+                  this._router.navigate(['/admin-area']);
               }, error => this.errorMessage = error);
   }
   cancel() {
-      this._router.navigate(['/contact-us']);
+      this._router.navigate(['/admin-area']);
   }
   get name() { return this.addContactForm.get('name'); }
   get phone() { return this.addContactForm.get('phone'); }

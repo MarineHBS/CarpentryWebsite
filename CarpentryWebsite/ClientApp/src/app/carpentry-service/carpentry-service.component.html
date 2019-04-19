@@ -6,10 +6,6 @@
 </head>
 
 <body>
-  <a [routerLink]="[ '/add-carpentry-service' ]">
-    <button>Új szolgáltatás felvétele</button></a>
-  <a [routerLink]="[ '/add-carpentry-service-type' ]">
-    <button>Új szolgáltatáscsoport felvétele</button></a>
   <div *ngIf="carpentryServices && carpentryServiceTypes">
     <div *ngFor="let type of carpentryServiceTypes">
       <h2>{{type.name}}</h2>

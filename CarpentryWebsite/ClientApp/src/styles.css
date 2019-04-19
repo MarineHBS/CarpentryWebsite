@@ -18,6 +18,9 @@ body{
 .price-estimate-container .mat-dialog-container{
    background: #ffffff;
    width:600px;
+   height:400px;
+   overflow-y:hidden;
+   position:relative;
 }
 
 

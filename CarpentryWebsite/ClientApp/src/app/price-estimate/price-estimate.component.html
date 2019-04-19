@@ -1,6 +1,3 @@
-<h1 style="margin-top:100px">{{title}}</h1>
-<hr />
-
 <head>
   <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
   <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
@@ -11,8 +8,8 @@
   <div class="price-div">
     <div class='title-div'>
       <h1 class='title-span'>Árbecslés</h1>
-      <button type="button" class="close" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+      <button type="button" class="close" aria-label="Close" (click)="onClose()">
+        <span aria-hidden="true" class="closeButtonText">&times;</span>
       </button>
     </div>
     <div class='close-div'>
@@ -34,6 +31,7 @@
             {{service.name}}
           </option>
         </select>
+        <input type="number" class="form-control" [(ngModel)]="hour" placeholder="óra">
         {{currentCarpentryServicePrice}}
       </div>
     </div>
@@ -54,10 +52,19 @@
             {{fabric.name}}
           </option>
         </select>
+        <input type="number" class="form-control" [(ngModel)]="size" placeholder="méret">
         {{currentFabricPrice}}
       </div>
     </div>
-    <button class="btn btn-primary estimateButton" (click)="calculateEstimate()"
-      style="font-size:16px">Árbecslés</button>
+    <div class="estimateButton">
+      <button class="btn btn-primary" (click)="calculateEstimate()" style="font-size:16px">Mehet</button>
+    </div>
+    <div *ngIf="showEstimate" class="priceEstimate">
+        <output class="outputField" name="estimate" for="a b">
+          <span class="concreteFtField">{{priceEstimateResult}}</span>
+          <span class="ftField">HUF</span>
+        </output>
+
+      </div>
   </div>
 </body>

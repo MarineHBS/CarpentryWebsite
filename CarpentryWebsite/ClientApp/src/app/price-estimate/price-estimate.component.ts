@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { MatDialogRef, MatDialog } from '@angular/material';
 import { FabricType } from '../models/fabric-type';
 import { CarpentryServiceType } from '../models/carpentry-service-type';
 import { Fabric } from '../models/fabric';
@@ -25,10 +25,14 @@ export class PriceEstimateComponent implements OnInit {
   currentCarpentryServicePrice: number;
   carpentryServiceTypeId: string;
   carpentryServicesWithIds: Map<CarpentryServiceType, CarpentryService[]> = new Map();
+  showEstimate: boolean;
+  priceEstimateResult: number;
+  size: number;
+  hour: number;
 
   constructor(private _avRoute: ActivatedRoute, private _fabricTypeService: FabricTypeService,
     private _fabricService: FabricService, private _router: Router, private _carpentryServiceTypeService: CarpentryServiceTypeService,
-    private _carpentryServiceService: CarpentryServiceService) { }
+    private _carpentryServiceService: CarpentryServiceService, private dialogRef: MatDialog) { }
 
   ngOnInit() {
      this._fabricService.getFabrics().subscribe(
@@ -78,6 +82,12 @@ export class PriceEstimateComponent implements OnInit {
 
   calculateEstimate() {
     console.log('Calculating..');
+    this.showEstimate = true;
+    this.priceEstimateResult = this.currentCarpentryServicePrice * this.hour + this.currentFabricPrice * this.size;
+  }
+
+  onClose() {
+    this.dialogRef.closeAll();
   }
 
 }

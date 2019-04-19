@@ -51,7 +51,7 @@ export class AddFabricTypeComponent implements OnInit {
       }
   }
   cancel() {
-      this._router.navigate(['/fabrics']);
+      this._router.navigate(['/admin-area']);
   }
   get name() { return this.addFabricTypeForm.get('name'); }
 

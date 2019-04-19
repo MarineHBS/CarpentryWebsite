@@ -36,12 +36,12 @@ export class AddReferencePictureComponent implements OnInit {
       if (this.title === 'Referenciakép felvétele') {
           this._referencePictureService.createReferencePicture(this.addReferencePictureForm.value)
               .subscribe((data) => {
-                  this._router.navigate(['/about-us']);
+                  this._router.navigate(['/admin-area']);
               }, error => this.errorMessage = error);
       }
   }
   cancel() {
-      this._router.navigate(['/about-us']);
+      this._router.navigate(['/admin-area']);
   }
   get pictureUrl() { return this.addReferencePictureForm.get('pictureUrl');
 }

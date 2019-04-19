@@ -56,6 +56,7 @@ import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.compon
 import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
 import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AdminAreaComponent } from './admin-area/admin-area.component';
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AddContactComponent,
     AddFabricComponent,
     AddFabricTypeComponent,
-    PriceEstimateComponent
+    PriceEstimateComponent,
+    AdminAreaComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
