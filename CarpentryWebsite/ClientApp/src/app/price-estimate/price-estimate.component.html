@@ -24,10 +24,9 @@
         </select>
       </div>
       <div *ngIf="carpentryServiceTypeId">
-        {{getCarpentryServicesByTypeId(carpentryServiceTypeId)}}
         Szolgáltatás
         <select [(ngModel)]="currentCarpentryServicePrice">
-          <option *ngFor="let service of carpentryServices" [ngValue]="service.price">
+          <option *ngFor="let service of getCarpentryServicesByTypeId(carpentryServiceTypeId)" [ngValue]="service.price">
             {{service.name}}
           </option>
         </select>
@@ -45,10 +44,9 @@
         </select>
       </div>
       <div *ngIf="fabricTypeId">
-        {{getFabricsByTypeId(fabricTypeId)}}
         Szövet
         <select [(ngModel)]="currentFabricPrice">
-          <option *ngFor="let fabric of fabrics" [ngValue]="fabric.price">
+          <option *ngFor="let fabric of getFabricsByTypeId(fabricTypeId)" [ngValue]="fabric.price">
             {{fabric.name}}
           </option>
         </select>

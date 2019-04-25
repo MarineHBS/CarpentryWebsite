@@ -1,5 +1,5 @@
 <body>
-  <div class="login-form">
+  <div class="login-form" *ngIf="!isLoggedIn">
     <div class="main-div">
         <h1>Admin bejelentkezés</h1>
       <form #f="ngForm" (ngSubmit)="loginUser(f)" class="inputForm" novalidate>
@@ -16,5 +16,8 @@
         <button type="submit" class="btn-primary logBtn">Bejelentkezés</button>
       </form>
     </div>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <h1>Már be van jelentkezve</h1>  
   </div>
 </body>

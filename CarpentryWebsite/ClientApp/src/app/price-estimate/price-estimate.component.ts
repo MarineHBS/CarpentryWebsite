@@ -35,29 +35,28 @@ export class PriceEstimateComponent implements OnInit {
     private _carpentryServiceService: CarpentryServiceService, private dialogRef: MatDialog) { }
 
   ngOnInit() {
-     this._fabricService.getFabrics().subscribe(
-      fabrics => {
-        this.fabrics = fabrics;
-        this._fabricTypeService.getFabricTypes().subscribe(
-          types => {
-            this.fabricTypes = types;
-            for (const type of types) {
-              this.addFabricsToFabricsMap(type);
-            }
-          });
-      });
+    this._fabricTypeService.getFabricTypes().subscribe(
+    types => {
+      this.fabricTypes = types;
+      this._fabricService.getFabrics().subscribe(
+        fabrics => {
+          this.fabrics = fabrics;
+          for (const type of types) {
+            this.addFabricsToFabricsMap(type);
+          }
+        });
+    });
 
-    this._carpentryServiceService.getCarpentryServices().subscribe(
-      services => {
-        this.carpentryServices = services;
-        this._carpentryServiceTypeService.getCarpentryServiceTypes().subscribe(
-          types => {
-            this.carpentryServiceTypeList = types;
+    this._carpentryServiceTypeService.getCarpentryServiceTypes().subscribe(
+      types => {
+        this.carpentryServiceTypeList = types;
+        this._carpentryServiceService.getCarpentryServices().subscribe(
+          services => {
+            this.carpentryServices = services;
             for (const type of types) {
               this.addServicesToCarpentryServicesMap(type);
             }
           });
-
       });
   }
 
@@ -65,14 +64,9 @@ export class PriceEstimateComponent implements OnInit {
     this.fabricsWithIds.set(type, this.fabrics
       .filter(x => x.fabricTypeId === type.fabricTypeId));
   }
-  getFabricsByTypeId(type: number) {
-    this.fabrics = this.fabricsWithIds.get(this.fabricTypes.find(x => x.fabricTypeId === type));
-    // return this.fabricsWithIds.get(type);
-  }
 
-  getCarpentryServicesByTypeId(type: number) {
-    this.carpentryServices = this.carpentryServicesWithIds.get(this.carpentryServiceTypeList.find(x => x.carpentryServiceTypeId === type));
-    // return this.carpentryServices;
+  getFabricsByTypeId(type: number) {
+    return this.fabricsWithIds.get(this.fabricTypes.find(x => x.fabricTypeId === type));
   }
 
   addServicesToCarpentryServicesMap(type: CarpentryServiceType) {
@@ -80,8 +74,11 @@ export class PriceEstimateComponent implements OnInit {
       .filter(x => x.carpentryServiceTypeId === type.carpentryServiceTypeId));
   }
 
+  getCarpentryServicesByTypeId(type: number) {
+    return this.carpentryServicesWithIds.get(this.carpentryServiceTypeList.find(x => x.carpentryServiceTypeId === type));
+  }
+
   calculateEstimate() {
-    console.log('Calculating..');
     this.showEstimate = true;
     this.priceEstimateResult = this.currentCarpentryServicePrice * this.hour + this.currentFabricPrice * this.size;
   }

@@ -30,7 +30,7 @@
           <a class="nav-link" [routerLink]='["/contact-us"]'>Kapcsolat</a>
         </li>
       </ul>
-      <ul class="navbar-nav navbar-right mr-auto right-nav">
+      <ul class="navbar-nav navbar-right mr-auto right-nav" *ngIf="loggedIn">
         <li class="nav-item">
           <a class="nav-link" [routerLink]='["/admin-area"]'>Admin kezelőfelület</a>
         </li>
