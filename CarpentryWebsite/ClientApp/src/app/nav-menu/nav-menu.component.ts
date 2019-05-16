@@ -1,5 +1,5 @@
 import { UserService } from './../services/user.service';
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-nav-menu',
@@ -14,9 +14,14 @@ export class NavMenuComponent {
     this.loggedIn = this._userService.isLoggedIn();
     }
 
+  logout() {
+    this._userService.logout();
+    this.loggedIn = this._userService.isLoggedIn();
+    window.location.reload();
+  }
+
   collapse() {
     this.isExpanded = false;
-    window.location.reload();
   }
 
   refresh() {

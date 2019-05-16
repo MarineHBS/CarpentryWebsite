@@ -6,13 +6,18 @@
 </head>
 
 <body>
+  <h3> Szolgáltatásaink </h3>
   <div *ngIf="carpentryServices && carpentryServiceTypes">
-    <div *ngFor="let type of carpentryServiceTypes">
-      <h2>{{type.name}}</h2>
-      <div *ngFor="let service of getCarpentryServicesByTypeId(type)">
-        {{service.name}}
-        {{service.price}}
-      </div>
-    </div>
+    <ul *ngFor="let type of carpentryServiceTypes">
+      <h4 class="service-type text-capitalize">{{type.name}}</h4>
+      <hr>
+      <li *ngFor="let service of getCarpentryServicesByTypeId(type)" style="margin-left:20px;">
+        <div class="first-column">
+          <span class="text-capitalize service-name">{{service.name}}</span>
+          <span> - {{service.description}}</span>
+          <span class="service-price"> - {{service.price}} Ft/óra</span>
+        </div>
+      </li>
+    </ul>
   </div>
 </body>

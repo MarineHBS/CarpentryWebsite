@@ -28,6 +28,7 @@ export class AddCarpentryServiceComponent implements OnInit {
         this.addCarpentryServiceForm = this._fb.group({
             carpentryServiceId: 0,
             name: ['', [Validators.required]],
+            description: ['', [Validators.required]],
             price: ['', [Validators.required]],
             carpentryServiceTypeId: ['', [Validators.required]],
             // picture: ['']
@@ -69,6 +70,7 @@ export class AddCarpentryServiceComponent implements OnInit {
         this._router.navigate(['/admin-area']);
     }
     get name() { return this.addCarpentryServiceForm.get('name'); }
+    get description() { return this.addCarpentryServiceForm.get('description'); }
     get price() { return this.addCarpentryServiceForm.get('price'); }
     get picture() { return this.addCarpentryServiceForm.get('picture');
 }

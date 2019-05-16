@@ -10,6 +10,7 @@ namespace CarpentryWebsite.Models
         public int CarpentryServiceId { get; set; }
         public string Name { get; set; }
         public int Price { get; set; }
+        public string Description { get; set; }
         public int CarpentryServiceTypeId {get; set;}
         public CarpentryServiceType CarpentryServiceType { get; set; }
         public int? PictureId { get; set; }

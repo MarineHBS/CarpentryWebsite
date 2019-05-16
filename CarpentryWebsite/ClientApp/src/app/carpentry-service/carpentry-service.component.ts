@@ -9,7 +9,8 @@ import { CarpentryServiceTypeService } from '../services/carpentry-service-type.
 
 @Component({
   selector: 'app-carpentry-service-component',
-  templateUrl: './carpentry-service.component.html'
+  templateUrl: './carpentry-service.component.html',
+  styleUrls : ['./carpentry-service.component.css']
 })
 
 export class CarpentryServiceComponent implements OnInit {

@@ -1,18 +1,17 @@
 <head>
 
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-  </head>
-  
-<h1>Referenciák</h1>
-<div *ngIf="referencePictures">
-  <a *ngFor="let referencePicture of referencePictures">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<div class="referenceText">
+  Referenciák
+</div>
+<div class="row" style="margin:0px">
+  <div *ngFor="let referencePicture of referencePictures">
     <div class="container">
-      <a [routerLink]="['/about-us']">
-        <img class="tn" src="{{referencePicture.pictureUrl}}"
-          onerror="this.src='https://via.placeholder.com/300x210'" />
-      </a>
+      <img class="tn" src="{{referencePicture.pictureUrl}}" onerror="this.src='https://via.placeholder.com/300x210'" />
     </div>
-  </a>
+  </div>
 </div>

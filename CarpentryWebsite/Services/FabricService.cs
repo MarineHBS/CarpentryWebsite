@@ -26,9 +26,12 @@ namespace CarpentryWebsite.Models
 
         public IEnumerable<Fabric> GetAllFabrics()
         {
-            try{
+            try
+            {
                 return db.Fabric.ToList();
-            }catch{
+            }
+            catch
+            {
                 throw;
             }
         }

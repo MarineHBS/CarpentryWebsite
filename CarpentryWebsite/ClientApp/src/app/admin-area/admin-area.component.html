@@ -13,13 +13,13 @@
         </a>
       </td>
       <td>
-        <a [routerLink]="[ '/add-carpentry-service' ]">
-          <button>Új szolgáltatás felvétele</button>
+        <a [routerLink]="[ '/add-carpentry-service-type' ]">
+          <button>Új szolgáltatáscsoport felvétele</button>
         </a>
       </td>
       <td>
-        <a [routerLink]="[ '/add-fabric' ]">
-          <button>Új szövet felvétele</button>
+        <a [routerLink]="[ '/add-fabric-type' ]">
+          <button>Új szövettípus felvétele</button>
         </a>
       </td>
       <td>
@@ -31,18 +31,17 @@
     <tr>
       <td></td>
       <td>
-        <a [routerLink]="[ '/add-carpentry-service-type' ]">
-          <button>Új szolgáltatáscsoport felvétele</button>
+        <a [routerLink]="[ '/add-carpentry-service' ]">
+          <button>Új szolgáltatás felvétele</button>
         </a>
       </td>
       <td>
-        <a [routerLink]="[ '/add-fabric-type' ]">
-          <button>Új szövettípus felvétele</button>
+        <a [routerLink]="[ '/add-fabric' ]">
+          <button>Új szövet felvétele</button>
         </a>
       </td>
     </tr>
   </table>
-  <a href="/logout"><button class="btn btn-primary logoutBtn"> Kijelentkezés </button></a>
 </div>
 <div *ngIf="!isLoggedIn">
   <h1>Csak adminok számára elérhető</h1>

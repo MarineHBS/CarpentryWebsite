@@ -6,27 +6,25 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
-<div class="container">
-  <div class="row">
-    <div class="opinion-div">
-      <h1 class="opinion-header">Vélemények</h1>
-      <div class="list-group" *ngFor="let rating of ratings">
-        <div class="opinion-entry">
-          <div class="col-md-9">
-            <p class="list-group-item-text opinion-text"> {{rating.text}}
-            </p>
-          </div>
-          <div class="col-md-3 text-center">
-            <h2> {{rating.user}} </h2>
-            <div class="stars" *ngFor="let star of getStars(rating)" style="display: inline">
-              <span class="fa fa-star checked"></span>
-            </div>
-            <div class="stars" *ngFor="let star of getBlackStars()" style="display: inline">
-                <span class="fa fa-star"></span>
-            </div>
-          </div>
+<body class="opinions-div">
+  {{showSlides(1)}}
+  <div class="slideshow-container">
+    <div class="list-group" *ngFor="let rating of ratings">
+      <div class="mySlides">
+        <div class="stars" *ngFor="let star of getStars(rating)" style="display: inline">
+          <span class="fa fa-star checked"></span>
+        </div>
+        <div class="stars" *ngFor="let star of getBlackStars()" style="display: inline">
+          <span class="fa fa-star"></span>
+        </div>
+        <div>
+          <q class="rating-text">{{rating.text}}</q>
+          <p class="author">- {{rating.user}}</p>
         </div>
       </div>
     </div>
+
+    <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
+    <a class="next" (click)="plusSlides(1)">&#10095;</a>
   </div>
-</div>
+</body>

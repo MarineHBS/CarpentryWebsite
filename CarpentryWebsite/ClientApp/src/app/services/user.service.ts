@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, Inject, Output } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { UserRegistration } from '../models/user-registration';
 import { Observable } from 'rxjs/Observable';
@@ -6,11 +6,12 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { EventEmitter } from '@angular/core';
 
 @Injectable()
 
 export class UserService {
-    CarpentryWebsiteUrl: string ;
+    CarpentryWebsiteUrl: string;
 
     // Observable navItem source
     private _authNavStatusSource = new BehaviorSubject<boolean>(false);
@@ -18,14 +19,19 @@ export class UserService {
     authNavStatus$ = this._authNavStatusSource.asObservable();
 
     private loggedIn = false;
+    @Output() loggedInUpdated: EventEmitter<boolean> = new EventEmitter();
     private adminFlag = false;
+    @Output() adminFlagUpdated: EventEmitter<boolean> = new EventEmitter();
 
     constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) {
         this.loggedIn = !!localStorage.getItem('auth_token');
+        this.loggedInUpdated.emit(this.loggedIn);
         if (localStorage.getItem('isAdmin') === 'true') {
             this.adminFlag = true;
+            this.adminFlagUpdated.emit(this.adminFlag);
         } else {
             this.adminFlag = false;
+            this.adminFlagUpdated.emit(this.adminFlag);
         }
         console.log('constructor');
         this._authNavStatusSource.next(this.loggedIn);
@@ -54,7 +60,9 @@ export class UserService {
                 localStorage.setItem('userId', res.id);
                 localStorage.setItem('isAdmin', res.isAdmin);
                 this.adminFlag = res.isAdmin;
+                this.adminFlagUpdated.emit(this.adminFlag);
                 this.loggedIn = true;
+                this.loggedInUpdated.emit(this.loggedIn);
                 this._authNavStatusSource.next(true);
                 return true;
             })
@@ -66,7 +74,9 @@ export class UserService {
         localStorage.removeItem('userId');
         localStorage.removeItem('isAdmin');
         this.loggedIn = false;
+        this.loggedInUpdated.emit(this.loggedIn);
         this.adminFlag = false;
+        this.adminFlagUpdated.emit(this.adminFlag);
         this._authNavStatusSource.next(false);
     }
 

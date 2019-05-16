@@ -23,7 +23,7 @@ export class FabricComponent implements OnInit {
 
   constructor(public http: Http, private _router: Router, private _fabricTypeService: FabricTypeService,
     private _fabricService: FabricService, private _userService: UserService) {
-    this.adminFlag = this._userService.isAdmin();
+    this.adminFlag = this._userService.isLoggedIn();
   }
 
   ngOnInit() {
@@ -56,6 +56,20 @@ export class FabricComponent implements OnInit {
           });
 
       });
+  }
+
+  delete(fabricId, fabricName) {
+    const confirmation = confirm('Biztosan törölni szeretné ezt a szövetet?  ' + fabricName);
+    if (confirmation) {
+      this._fabricService.deleteFabric(fabricId).subscribe(data => this.initializeVariables());
+    }
+  }
+
+  deleteType(typeId, typeName) {
+    const confirmation = confirm('Biztosan törölni szeretné ezt a szövettípust?  ' + typeName);
+    if (confirmation) {
+      this._fabricTypeService.deleteFabricType(typeId).subscribe(data => this.initializeVariables());
+    }
   }
 
   getFabricUrlById(id: string) {
