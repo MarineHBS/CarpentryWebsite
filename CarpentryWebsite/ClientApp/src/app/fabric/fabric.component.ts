@@ -19,7 +19,7 @@ export class FabricComponent implements OnInit {
   fabricPictures: Picture[];
   fabricsWithIds: Map<FabricType, Fabric[]> = new Map();
   fabricsWithUrls: Map<string, string> = new Map();
-  public adminFlag: boolean;
+  adminFlag: boolean;
 
   constructor(public http: Http, private _router: Router, private _fabricTypeService: FabricTypeService,
     private _fabricService: FabricService, private _userService: UserService) {

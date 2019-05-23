@@ -57,7 +57,9 @@ namespace CarpentryWebsite.Models
         {
             try
             {
-                Picture exists = db.Picture.Where(p => p.PictureUrl == pictureUrl).FirstOrDefault();
+                Picture exists = db.Picture
+                    .Where(p => p.PictureUrl == pictureUrl)
+                    .FirstOrDefault();
 
                 if (exists == null)
                 {

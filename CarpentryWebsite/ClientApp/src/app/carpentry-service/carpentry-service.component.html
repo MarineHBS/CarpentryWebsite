@@ -13,9 +13,9 @@
       <hr>
       <li *ngFor="let service of getCarpentryServicesByTypeId(type)" style="margin-left:20px;">
         <div class="first-column">
-          <span class="text-capitalize service-name">{{service.name}}</span>
+          <span class="service-name">{{service.name}}</span>
           <span> - {{service.description}}</span>
-          <span class="service-price"> - {{service.price}} Ft/óra</span>
+          <span class="service-price"> - {{service.price}} Ft.-tól</span>
         </div>
       </li>
     </ul>

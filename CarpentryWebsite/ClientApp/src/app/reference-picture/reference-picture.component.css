@@ -32,3 +32,23 @@
   letter-spacing: 10px;
   margin-right:135px;
 }
+
+.container .btnDelete {
+  position: absolute;
+  top: 14%;
+  left: 90%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  background-color: #555;
+  opacity: 0.5;
+  color: white;
+  font-size: 16px;
+  padding: 6px 6px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.btnDelete:hover{
+  opacity: 0.1;
+}
