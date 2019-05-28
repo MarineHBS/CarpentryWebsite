@@ -49,7 +49,7 @@ export class AddCarpentryServiceTypeComponent implements OnInit {
         } else if (this.title === 'Edit') {
             this._carpentryServiceTypeService.updateCarpentryServiceType(this.addCarpentryServiceTypeForm.value)
                 .subscribe((data) => {
-                    this._router.navigate(['/admin-area']);
+                    this._router.navigate(['/carpentry-services']);
                 }, error => this.errorMessage = error);
         }
     }

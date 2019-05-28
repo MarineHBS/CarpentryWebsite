@@ -36,9 +36,6 @@ h3{
 
 }
 
-.btnDelete:hover{
-    opacity: 0.1;
-}
 
 .container:hover .fabric-name{
     opacity:1;
@@ -89,3 +86,7 @@ h3{
     cursor: pointer;
     border-radius: 5px;
   }
+  
+.btnDelete:hover{
+    opacity: 0.1;
+}

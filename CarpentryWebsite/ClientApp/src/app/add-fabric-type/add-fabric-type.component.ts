@@ -41,7 +41,7 @@ export class AddFabricTypeComponent implements OnInit {
       if (this.title === 'Szövettípus felvétele') {
           this._fabricTypeService.createFabricType(this.addFabricTypeForm.value)
               .subscribe((data) => {
-                  this._router.navigate(['/fabrics']);
+                  this._router.navigate(['/admin-area']);
               }, error => this.errorMessage = error);
       } else if (this.title === 'Edit') {
           this._fabricTypeService.updateFabricType(this.addFabricTypeForm.value)

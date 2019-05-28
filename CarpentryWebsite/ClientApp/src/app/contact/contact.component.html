@@ -1,5 +1,13 @@
 <h4 class="contact">Lépjen kapcsolatba velünk</h4>
 <div *ngFor="let contact of contacts">
+  <div *ngIf=adminFlag>
+    <button class="btn btn-danger btnDelete" (click)="deleteContact(contact.contactId, contact.name)">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+    <a [routerLink]="['/contact/edit/', contact.contactId]">
+      <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+    </a>
+  </div>
   <span class="nameText">Név:</span> {{contact.name}}<br>
   <span class="nameText">Telefonszám:</span> {{contact.phone}}<br>
   <span class="nameText">E-mail cím:</span> {{contact.emailAddress}}<br>

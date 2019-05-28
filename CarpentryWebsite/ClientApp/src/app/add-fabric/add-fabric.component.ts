@@ -63,12 +63,12 @@ export class AddFabricComponent implements OnInit {
       } else if (this.title === 'Edit') {
           this._fabricService.updateFabric(this.addFabricForm.value)
               .subscribe((data) => {
-                  this._router.navigate(['/admin-area']);
+                  this._router.navigate(['/fabrics']);
               }, error => this.errorMessage = error);
       }
   }
   cancel() {
-      this._router.navigate(['/admin-area']);
+      this._router.navigate(['/fabrics']);
   }
   get name() { return this.addFabricForm.get('name'); }
   get price() { return this.addFabricForm.get('price'); }

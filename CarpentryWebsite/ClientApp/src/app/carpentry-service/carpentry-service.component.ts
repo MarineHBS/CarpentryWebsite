@@ -17,11 +17,11 @@ export class CarpentryServiceComponent implements OnInit {
   carpentryServices: CarpentryService[];
   carpentryServiceTypes: CarpentryServiceType[];
   carpentryServicesWithIds: Map<CarpentryServiceType, CarpentryService[]> = new Map();
-  public adminFlag: boolean;
+  adminFlag: boolean;
 
   constructor(public http: Http, private _router: Router, private _carpentryServiceTypeService: CarpentryServiceTypeService,
     private _carpentryServiceService: CarpentryServiceService, private _userService: UserService) {
-    this.adminFlag = this._userService.isAdmin();
+    this.adminFlag = this._userService.isLoggedIn();
   }
 
   ngOnInit() {
@@ -65,6 +65,20 @@ export class CarpentryServiceComponent implements OnInit {
 
   getCarpentryServicesByTypeId(type: CarpentryServiceType) {
     return this.carpentryServicesWithIds.get(type);
+  }
+
+  deleteType(id: number, name: string ) {
+    const confirmation = confirm('Biztosan törölni szeretné ezt a szolgáltatástípust?  ' + name);
+    if (confirmation) {
+      this._carpentryServiceTypeService.deleteCarpentryServiceType(id).subscribe(data => this.initializeVariables());
+    }
+  }
+
+  deleteService(id: number, name: string) {
+    const confirmation = confirm('Biztosan törölni szeretné ezt a szolgáltatást?  ' + name);
+    if (confirmation) {
+      this._carpentryServiceService.deleteCarpentryService(id).subscribe(data => this.initializeVariables());
+    }
   }
 }
 

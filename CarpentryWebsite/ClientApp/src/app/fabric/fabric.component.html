@@ -14,8 +14,12 @@
           <h4 class="fabric-type text-capitalize">{{type.name}}</h4>
         </div>
         <div *ngIf=adminFlag style="display: inline-block; margin-left: 20px">
-          <button class="btn btn-danger btnDelete" (click)="deleteType(type.fabricTypeId, type.name)"><span
-              class="glyphicon glyphicon-remove"></span></button>
+          <button class="btn btn-danger btnDelete" (click)="deleteType(type.fabricTypeId, type.name)">
+            <span class="glyphicon glyphicon-remove"></span>
+            <a [routerLink]="['/fabric-type/edit/', type.fabricTypeId]">
+              <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+            </a>
+          </button>
         </div>
         <hr>
       </div>
@@ -25,10 +29,16 @@
             <img class="tn fabric-img" src="{{getFabricUrlById(fabric.fabricId)}}"
               onerror="this.src='https://via.placeholder.com/300x210'" />
             <div *ngIf=adminFlag>
-              <button class="btn btn-danger btnDelete" (click)="delete(fabric.fabricId, fabric.name)"><span
-                  class="glyphicon glyphicon-remove"></span></button>
+              <button class="btn btn-danger btnDelete" (click)="delete(fabric.fabricId, fabric.name)">
+                <span class="glyphicon glyphicon-remove"></span>
+              </button>
+              <a [routerLink]="['/fabric/edit/', fabric.fabricId]">
+                <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+              </a>
             </div>
-            <span class="fabric-name text-capitalize">{{fabric.name}}</span>
+            <div>
+              <span class="fabric-name text-capitalize">{{fabric.name}}</span>
+            </div>
           </div>
         </div>
       </div>

@@ -9,11 +9,11 @@
 
 .inputForm{
     padding-top:50px;
-    padding-right:200px;
-    padding-left:80px;
     padding-bottom: 50px;
+    width: 200px;
+    align-content: center;
 }
 
 .logBtn{
-    margin-left:25px;
+    margin-left:40px;
 }
