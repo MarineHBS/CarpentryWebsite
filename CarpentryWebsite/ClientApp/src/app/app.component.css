@@ -1,7 +1,7 @@
 @media (max-width: 1500px) {
   /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
   .body-content {
-    padding-top: 50px;
+	padding-top: 50px;
   }
 }
 .main-content{
@@ -9,8 +9,8 @@
 }
 
 .content{
-  padding-left:300px;
-  padding-right:300px;
+  margin-left:20%;
+  margin-right:20%;
 }
 
 .float {
@@ -47,6 +47,10 @@
 .ratingButton:hover{
 	opacity: 0.7;
 	transition-duration: 0.5s;
+}
+
+.container-fluid {
+	background: #eee;
 }
 
 .chat{

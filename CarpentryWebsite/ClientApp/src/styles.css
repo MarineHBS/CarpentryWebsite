@@ -19,7 +19,6 @@ app-chat-form{
    position:relative;
 }
 
-
 .tn {
   margin: 12px;
   max-height: 300px;
@@ -66,36 +65,10 @@ app-chat-form{
   border-radius: 5px;
 }
 
-.login-form{
-  border-color: #f0ad4e;
-  font-size: 24px;
-  height: 100%;
-  margin-left: -80px;
-  margin-top: 85px;
-  padding: 0;
-}
-
-.main-div{
-  border-radius: 2px;
-  max-width: 40%;
-  padding: 10px 0px 100px 70px;
-}
-
-.login-form .main-div .form-group .form-control{
-  font-size:16px;
-}
-
-.login-form .main-div .logBtn{
-  font-size:16px;
-}
-
 .descriptionDiv .descriptionPar{
   font-size:20px;
 }
 
-.form-group .form-control{
-  font-size:16px;
-}
 .form-group .text-danger{
   font-size:16px;
 }
@@ -144,6 +117,7 @@ app-chat-form{
 
 .row {
   margin-left: 500px;
+  background: #eee;
 }
 
 .addLocation .btn {
@@ -157,4 +131,4 @@ app-chat-form{
 }
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}

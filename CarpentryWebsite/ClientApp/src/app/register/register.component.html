@@ -1,37 +1,30 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head>
-
 <body>
   <div class="login-form">
     <div class="main-div">
-      
-        <h1>Register to the website</h1>
-      <form #f="ngForm" (ngSubmit)="registerUser(f)" novalidate>
+      <form #f="ngForm" (ngSubmit)="registerUser(f)" class="registerForm" novalidate>
+        <span class="login-span">Regisztráció</span>
+        <hr>
         <div class="form-group">
-          <input type="text" name="userName" class="form-control" id="name" placeholder="Username" [ngModel]="registerUser.userName" #name="ngModel">
+            <label>Felhasználónév</label>
+          <input type="text" name="userName" class="form-control" id="name" placeholder="Adja meg a felhasználónevét..." [ngModel]="registerUser.userName" #name="ngModel">
         </div>
         <div class="form-group">
-          <input type="email" name="email" class="form-control" id="email" placeholder="Email address" [ngModel]="registerUser.email" #email="ngModel">
+            <label>E-mail</label>
+          <input type="email" name="email" class="form-control" id="email" placeholder="Adja meg a e-mail címét..." [ngModel]="registerUser.email" #email="ngModel">
         </div>
         <div class="form-group">
-          <input type="password" name="password" class="form-control" id="password" placeholder="Password" ngModel>
+            <label>Jelszó</label>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Adja meg a jelszavát..." ngModel>
         </div>
         <div class="form-group">
-          <input type="password" class="form-control" id="passwordc" placeholder="Confirm password">
+            <label>Jelszó megerősítése</label>
+          <input type="password" class="form-control" id="passwordc" placeholder="Erősítse meg a jelszavát...">
         </div>
         <div *ngIf='errors'>
             <p style="color: red; font-size: 12px">{{errors}}</p>
         </div>
-        <button type="submit" class="btn btn-primary logBtn">Register</button>
+        <button type="submit" class="btn btn-primary logBtn"><span class="btnText">Regisztráció</span></button>
       </form>
     </div>
   </div>
 </body>
-
-</html>

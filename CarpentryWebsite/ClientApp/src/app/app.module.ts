@@ -58,6 +58,7 @@ import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule } f
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { PageBottomComponent } from './page-bottom/page-bottom.component';
+import { RatingsComponent } from './ratings/ratings.component';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import { PageBottomComponent } from './page-bottom/page-bottom.component';
     AddFabricTypeComponent,
     PriceEstimateComponent,
     AdminAreaComponent,
-    PageBottomComponent
+    PageBottomComponent,
+    RatingsComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

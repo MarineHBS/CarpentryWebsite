@@ -1,19 +1,60 @@
-.main-div{
-    position: absolute;
-    margin: auto;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+.main-div {
+    border-radius: 2px;
+    text-align: center;
 }
 
-.inputForm{
-    padding-top:50px;
-    padding-bottom: 50px;
-    width: 200px;
+body {
+    background: #eee;
+}
+
+.login-span {
+    text-align: left;
+    margin-bottom: 25px;
+    margin-top: 0px;
+    display: block;
+    font-size: 20px;
+}
+
+label {
+    color: #9BD4F5;
+    text-align: left;
+    font-weight: 100;
+    display: block;
+}
+
+.inputForm {
+    margin-top: 10%;
     align-content: center;
+    display: inline-block;
+    padding: 20px 20px 20px 20px;
+    background: #fff;
+    font-family: Roboto;
+    font-size: 14px;
+    width: 40%;
+    font-weight: 100;
+    box-shadow: 0 0 2px #888;
 }
 
-.logBtn{
-    margin-left:40px;
+.login-form {
+    height: 100%;
+}
+
+.logBtn {
+    border-radius: 4px;
+    font-size:16px;
+    background-color: #1f1f1f;
+    border-color: #1f1f1f;
+    text-transform: uppercase;
+    width: 100%;
+    height: 45px;
+}
+
+.logBtn:hover {
+    background-color: #57595D;
+    border-color: #57595D;
+    transition: 0.5s background-color;
+}
+
+.form-group {
+    margin-bottom: 35px;
 }

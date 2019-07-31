@@ -1,23 +1,26 @@
 <body>
   <div class="login-form" *ngIf="!isLoggedIn">
     <div class="main-div">
-        <h1>Admin bejelentkezés</h1>
       <form #f="ngForm" (ngSubmit)="loginUser(f)" class="inputForm" novalidate>
+        <span class="login-span">Bejelentkezés</span>
+        <hr>
         <div class="form-group">
-          <input type="text" name="userName" class="form-control" id="userName" placeholder="Felhasználónév" [ngModel]="loginUser.userName"
+          <label>Felhasználónév</label>
+          <input type="text" name="userName" class="form-control" id="userName" placeholder="Adja meg a felhasználónevét..." [ngModel]="loginUser.userName"
             #userName="ngModel">
         </div>
         <div class="form-group">
-          <input type="password" name="password" class="form-control" id="password" placeholder="Jelszó" ngModel>
+          <label>Jelszó</label>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Adja meg a jelszavát..." ngModel>
         </div>
         <div *ngIf='errors'>
           <p style="color: red; font-size: 12px">{{errors}}</p>
         </div>
-        <button type="submit" class="btn-primary logBtn">Bejelentkezés</button>
+        <button type="submit" class="btn-primary logBtn"><span class="btnText">Bejelentkezés</span></button>
       </form>
     </div>
   </div>
   <div *ngIf="isLoggedIn">
-    <h1>Már be van jelentkezve</h1>  
+    <h2>Már be van jelentkezve</h2>  
   </div>
 </body>

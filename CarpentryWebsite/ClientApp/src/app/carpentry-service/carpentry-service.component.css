@@ -12,6 +12,10 @@ h3{
   margin-bottom:50px;
 }
 
+body {
+  background: #eee;
+}
+
 a.list-group-item {
   height:auto;
   min-height:220px;
