@@ -1,36 +1,21 @@
 .row{
-  align-content: center;
-  text-align: center;
+  width: 100%;
+  overflow: hidden;
 }
 
 .container {
-  position: relative;
-  width: 100%;
-  padding:0px;
-}
-
-.container img {
-    width: 100%;
-    height: auto;
-    margin:10px;
-    width:260px;
-    height:200px;
+  display: flex;
+  float: left;
+  width: fit-content;
 }
 
 .referenceText{
   font-family: brandon-grotesque;
-  font-weight: 400;
-  font-style: normal;
   font-size: 18px;
-  letter-spacing: 4px;
   text-transform: uppercase;
-  line-height: 1em;
-  margin-top: 50px;
-  margin-bottom: 40px;
-  align-content: center;
+  margin: 50px 0 60px 0;
   text-align: center;
   letter-spacing: 10px;
-  margin-right:135px;
 }
 
 .container .btnDelete {

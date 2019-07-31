@@ -9,13 +9,11 @@
   Referenciák
 </div>
 <div class="row" style="margin:0px">
-  <div *ngFor="let referencePicture of referencePictures">
-    <div class="container">
+    <div class="container" *ngFor="let referencePicture of referencePictures">
       <img class="tn" src="{{referencePicture.pictureUrl}}" onerror="this.src='https://via.placeholder.com/300x210'" />
       <div *ngIf=adminFlag>
         <button class="btn btn-danger btnDelete" (click)="delete(referencePicture.pictureUrl)"><span
             class="glyphicon glyphicon-remove"></span></button>
       </div>
     </div>
-  </div>
 </div>

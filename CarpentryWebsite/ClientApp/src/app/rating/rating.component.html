@@ -9,20 +9,20 @@
 <body class="opinions-div">
   {{showSlides(1)}}
   <div class="slideshow-container">
-    <div class="list-group" *ngFor="let rating of ratings">
-      <div class="mySlides">
-        <div class="stars" *ngFor="let star of getStars(rating)" style="display: inline">
+      <div class="mySlides" *ngFor="let rating of ratings">
+        <div class="stars-container">
+        <div class="stars" *ngFor="let star of getStars(rating)">
           <span class="fa fa-star checked"></span>
         </div>
-        <div class="stars" *ngFor="let star of getBlackStars()" style="display: inline">
+        <div class="stars" *ngFor="let star of getBlackStars()">
           <span class="fa fa-star"></span>
         </div>
-        <div>
+      </div>
+        <div class="rating-div">
           <q class="rating-text">{{rating.text}}</q>
           <p class="author">- {{rating.user}}</p>
         </div>
       </div>
-    </div>
 
     <a class="prev" (click)="plusSlides(-1)">&#10094;</a>
     <a class="next" (click)="plusSlides(1)">&#10095;</a>
