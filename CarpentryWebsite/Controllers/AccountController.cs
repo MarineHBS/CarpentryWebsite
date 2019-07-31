@@ -9,7 +9,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using CarpentryWebsite.Models;
 using CarpentryWebsite.Helpers;
-using CarpentryWebsite.Models;
 
 namespace CarpentryWebsite.Controllers
 {

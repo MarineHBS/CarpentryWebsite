@@ -1,32 +1,23 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-    crossorigin="anonymous">
-</head>
-
 <body>
-  <div class="login-form">
+  <div class="login-form" *ngIf="!isLoggedIn">
     <div class="main-div">
-      <div class="panel">
-        <h1>Log on to the website</h1>
-      </div>
-      <form #f="ngForm" (ngSubmit)="loginUser(f)" novalidate>
+        <h1>Admin bejelentkezés</h1>
+      <form #f="ngForm" (ngSubmit)="loginUser(f)" class="inputForm" novalidate>
         <div class="form-group">
-          <input type="text" name="userName" class="form-control" id="userName" placeholder="Username" [ngModel]="loginUser.userName"
+          <input type="text" name="userName" class="form-control" id="userName" placeholder="Felhasználónév" [ngModel]="loginUser.userName"
             #userName="ngModel">
         </div>
         <div class="form-group">
-          <input type="password" name="password" class="form-control" id="password" placeholder="Password" ngModel>
+          <input type="password" name="password" class="form-control" id="password" placeholder="Jelszó" ngModel>
         </div>
         <div *ngIf='errors'>
           <p style="color: red; font-size: 12px">{{errors}}</p>
         </div>
-        <button type="submit" class="btn btn-primary logBtn">Log in</button>
+        <button type="submit" class="btn-primary logBtn">Bejelentkezés</button>
       </form>
     </div>
   </div>
+  <div *ngIf="isLoggedIn">
+    <h1>Már be van jelentkezve</h1>  
+  </div>
 </body>
-
-</html>

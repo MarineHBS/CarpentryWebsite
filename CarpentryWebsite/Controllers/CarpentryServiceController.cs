@@ -8,8 +8,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CarpentryWebsite.Models;
-using CarpentryWebsite.Models;
-
 namespace CarpentryWebsite.Controllers
 {
     //[Authorize(Policy = "ApiUser")]

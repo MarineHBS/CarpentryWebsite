@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CarpentryWebsite.Models;
-using CarpentryWebsite.Models;
+using Newtonsoft.Json.Linq;
 
 namespace CarpentryWebsite.Controllers
 {
@@ -27,16 +27,33 @@ namespace CarpentryWebsite.Controllers
 
         [HttpGet]
         [Route("/api/fabric/get")]
-        public IEnumerable<Fabric> GetAllLocations()
+        public IEnumerable<Fabric> GetAllFabrics()
         {
             return fabricService.GetAllFabrics();
         }
 
+
+        [HttpGet]
+        [Route("/api/fabric/get-type/{id}")]
+        public IEnumerable<Fabric> GetAllFabricsByTypeId(int id)
+        {
+            return fabricService.GetAllFabricsByTypeId(id);
+        }
+
+        [HttpGet]
+        [Route("/api/fabric/get-url")]
+        public IEnumerable<Picture> GetFabricPictureUrl()
+        {
+            return fabricService.GetFabricsPictureUrl();
+        }
+
         [HttpPost]
         [Route("/api/fabric/create")]
-        public int Create([FromBody] Fabric fabric)
+        public int Create([FromBody] JObject res)
         {
-            return fabricService.AddFabric(fabric);
+            Fabric fabric = res["fabric"].ToObject<Fabric>();
+            string url = res["picture"].ToObject<string>();
+            return fabricService.AddFabric(fabric, url);
         }
 
         [HttpGet]

@@ -1,9 +1,38 @@
 hr{
-    border: 0;
+  border: 0;
   clear:both;
   display:block;
   width: 100%;               
   background-color:black;
   height: 1px;
   size: 50px;
+}
+
+h3{
+  margin-bottom:50px;
+}
+
+a.list-group-item {
+  height:auto;
+  min-height:220px;
+}
+a.list-group-item.active small {
+  color:#fff;
+}
+
+.service-price{
+  font-weight: bold;
+}
+
+.service-type{
+  font-size: 20px;
+  color: #9A2F06;
+  line-height: 25px;
+  padding-top: 25px;
+  height: 25;
+}
+
+.service-name{
+  font-weight: bold;
+  color: #7E0000;
 }

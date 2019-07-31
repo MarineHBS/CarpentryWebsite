@@ -28,6 +28,7 @@ export class AddCarpentryServiceComponent implements OnInit {
         this.addCarpentryServiceForm = this._fb.group({
             carpentryServiceId: 0,
             name: ['', [Validators.required]],
+            description: ['', [Validators.required]],
             price: ['', [Validators.required]],
             carpentryServiceTypeId: ['', [Validators.required]],
             // picture: ['']
@@ -56,7 +57,7 @@ export class AddCarpentryServiceComponent implements OnInit {
         if (this.title === 'Szolgáltatás felvétele') {
             this._carpentryServiceService.createCarpentryService(this.addCarpentryServiceForm.value)
                 .subscribe((data) => {
-                    this._router.navigate(['/carpentry-services']);
+                    this._router.navigate(['/admin-area']);
                 }, error => this.errorMessage = error);
         } else if (this.title === 'Edit') {
             this._carpentryServiceService.updateCarpentryService(this.addCarpentryServiceForm.value)
@@ -66,10 +67,11 @@ export class AddCarpentryServiceComponent implements OnInit {
         }
     }
     cancel() {
-        this._router.navigate(['/carpentry-services']);
+        this._router.navigate(['/admin-area']);
     }
     get name() { return this.addCarpentryServiceForm.get('name'); }
     get description() { return this.addCarpentryServiceForm.get('description'); }
+    get price() { return this.addCarpentryServiceForm.get('price'); }
     get picture() { return this.addCarpentryServiceForm.get('picture');
 }
 

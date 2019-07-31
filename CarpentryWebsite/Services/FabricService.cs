@@ -26,17 +26,54 @@ namespace CarpentryWebsite.Models
 
         public IEnumerable<Fabric> GetAllFabrics()
         {
-            try{
+            try
+            {
                 return db.Fabric.ToList();
-            }catch{
+            }
+            catch
+            {
                 throw;
             }
         }
 
-        public int AddFabric(Fabric fabric)
+        public IEnumerable<Picture> GetFabricsPictureUrl()
         {
             try
             {
+                IEnumerable<Picture> query = (from p in db.Picture
+                                              from f in db.Fabric
+                                              where p.PictureId == f.PictureId
+                                              select p).ToList();
+
+                return query;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public int AddFabric(Fabric fabric, string pictureUrl)
+        {
+            try
+            {
+                Picture exists = db.Picture
+                    .Where(p => p.PictureUrl == pictureUrl)
+                    .FirstOrDefault();
+
+                if (exists == null)
+                {
+                    Picture p = new Picture();
+                    p.PictureUrl = pictureUrl;
+                    db.Picture.Add(p);
+                    fabric.PictureId = p.PictureId;
+                    fabric.Picture = p;
+                }
+                else
+                {
+                    fabric.PictureId = exists.PictureId;
+                    fabric.Picture = exists;
+                }
                 db.Fabric.Add(fabric);
                 db.SaveChanges();
                 return 1;
@@ -67,6 +104,19 @@ namespace CarpentryWebsite.Models
             {
                 Fabric fabric = db.Fabric.Find(id);
                 return fabric;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        public IEnumerable<Fabric> GetAllFabricsByTypeId(int fabricTypeId)
+        {
+            try
+            {
+                IEnumerable<Fabric> fabricsWithType = db.Fabric.ToList().Where(f => f.FabricTypeId == fabricTypeId);
+                return fabricsWithType;
             }
             catch
             {

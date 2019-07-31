@@ -1,3 +1,8 @@
+<head>
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+</head>
+
 <div class='container-fluid'>
   <div class='row'>
     <div class='col-sm-12'>
@@ -8,4 +13,15 @@
     <div class='col-sm-12 body-content'>
       <router-outlet></router-outlet>
     </div>
+    <button class="fa my-float float" (click)="openDialog()">Árajánlat kérése</button>
+    <a [routerLink]="[ '/add-rating' ]">
+      <button class="fa my-float ratingButton">Értékeljen minket!</button>
+    </a>
+    <button class="fa my-float chat open-button" (click)="openChat()">Chat</button>
+    <div *ngIf="isChatOpened">
+      <app-chatroom></app-chatroom>
+    </div>
+  </div>
+  <div>
+    <!--<app-page-bottom></app-page-bottom>-->
   </div>

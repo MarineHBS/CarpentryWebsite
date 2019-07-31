@@ -27,6 +27,8 @@ namespace CarpentryWebsite.Migrations
 
                     b.Property<int>("CarpentryServiceTypeId");
 
+                    b.Property<string>("Description");
+
                     b.Property<string>("Name");
 
                     b.Property<int?>("PictureId");
@@ -53,6 +55,23 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("CarpentryServiceTypeId");
 
                     b.ToTable("CarpentryServiceType");
+                });
+
+            modelBuilder.Entity("CarpentryWebsite.Models.Contact", b =>
+                {
+                    b.Property<int>("ContactId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("EmailAddress");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
+
+                    b.HasKey("ContactId");
+
+                    b.ToTable("Contact");
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.Fabric", b =>
@@ -197,6 +216,23 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("PictureId");
 
                     b.ToTable("Picture");
+                });
+
+            modelBuilder.Entity("CarpentryWebsite.Models.Rating", b =>
+                {
+                    b.Property<int>("RatingId")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Text");
+
+                    b.Property<string>("User");
+
+                    b.Property<string>("UserRating");
+
+                    b.HasKey("RatingId");
+
+                    b.ToTable("Rating");
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.ReferencePicture", b =>

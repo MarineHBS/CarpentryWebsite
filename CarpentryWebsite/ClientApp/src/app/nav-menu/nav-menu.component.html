@@ -11,14 +11,11 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-custom bg-dark">
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto" style="display:inline-block;">
-        <li class="nav-item active">
-          <a class="nav-link" [routerLink]='["/home"]'>Főoldal </a>
-        </li>
+      <ul class="navbar-nav mr-auto left-nav" style="display:inline-block;">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]='["/about-us"]' href="#">Rólunk</a>
+          <a class="nav-link" [routerLink]='["/home"]'>Főoldal </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" [routerLink]='["/carpentry-services"]'>Szolgáltatások</a>
@@ -30,12 +27,23 @@
           <a class="nav-link" [routerLink]='["/contact-us"]'>Kapcsolat</a>
         </li>
       </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-          <a class="nav-link" [routerLink]='["/registration"]'><span class="glyphicon glyphicon-user"></span> Regisztráció</a>
+      <ul class="navbar-nav navbar-right mr-auto right-nav" *ngIf="loggedIn">
+        <li class="nav-item">
+          <a class="nav-link" [routerLink]='["/admin-area"]'>Admin kezelőfelület</a>
         </li>
         <li>
-          <a class="nav-link" [routerLink]='["/login"]'><span class="glyphicon glyphicon-log-in"></span> Bejelentkezés</a>
+          <a class="nav-link" href="logout()" ><span class="glyphicon glyphicon-log-out"></span>
+            Kijelentkezés</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav navbar-right mr-auto right-nav" *ngIf="!loggedIn">
+        <li>
+          <a class="nav-link" [routerLink]='["/registration"]'><span class="glyphicon glyphicon-user"></span>
+            Regisztráció</a>
+        </li>
+        <li>
+          <a class="nav-link" [routerLink]='["/login"]'><span class="glyphicon glyphicon-log-in"></span>
+            Bejelentkezés</a>
         </li>
       </ul>
     </div>
@@ -43,55 +51,3 @@
 </body>
 
 </html>
-<!--
-  <div class='main-nav'>
-    <div class='navbar navbar-inverse'>
-      <div class='navbar-header'>
-        <button type='button' class='navbar-toggle' data-toggle='collapse' data-target='.navbar-collapse'
-          [attr.aria-expanded]='isExpanded' (click)='toggle()'>
-          <span class='sr-only'>Toggle navigation</span>
-          <span class='icon-bar'></span>
-          <span class='icon-bar'></span>
-          <span class='icon-bar'></span>
-        </button>
-      </div>
-      <div class='clearfix'></div>
-      <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
-        <ul class='nav navbar-nav'>
-          <li [routerLinkActive]='["link-active"]' style="position:absolute; top:0px">
-            <a [routerLink]='["/fetch-location"]' (click)='collapse()'>
-              <span class='glyphicon glyphicon glyphicon-map-marker'></span> Locations
-            </a>
-          </li>
-          <li [routerLinkActive]='["link-active"]' style="position:absolute; top:0px; margin-top: 55px">
-            <a [routerLink]='["/favorites"]' (click)='collapse()'>
-              <span class='glyphicon glyphicon-star'></span> Favorites
-            </a>
-          </li>
-
-          <li [routerLinkActive]='["link-active"]'>
-            <div *ngIf="!loggedIn">
-              <a [routerLink]='["/login"]' (click)='collapse()'>
-                Log in
-              </a>
-            </div>
-          </li>
-          <li [routerLinkActive]='["link-active"]'>
-            <div *ngIf="!loggedIn">
-              <a [routerLink]='["/register"]' (click)='collapse()'>
-                Register
-              </a>
-            </div>
-          </li>
-          <li [routerLinkActive]='["link-active"]'>
-              <div *ngIf="loggedIn">
-                <a [routerLink]='["/logout"]' (click)='refresh()'>
-                  Logout
-                </a>
-              </div>
-            </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  --->

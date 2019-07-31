@@ -3,6 +3,7 @@ import {Http, Response, Headers} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { Picture } from '../models/picture';
 
 @Injectable()
 export class ReferencePictureService {
@@ -20,14 +21,20 @@ export class ReferencePictureService {
         .catch(this.errorHandler);
     }
 
+    getReferencePicturesWithUrl() {
+        return this._http.get(this.CarpentryWebsiteUrl + 'api/reference-picture/get-pictures')
+        .map((res: Response) => res.json())
+        .catch(this.errorHandler);
+    }
+
     getReferencePictureDetails(id: number) {
         return this._http.get(this.CarpentryWebsiteUrl + 'api/reference-picture/details/' + id)
         .map((res: Response) => res.json())
         .catch(this.errorHandler);
     }
 
-    createReferencePicture(referencePicture) {
-        return this._http.post(this.CarpentryWebsiteUrl + 'api/reference-picture/create', referencePicture)
+    createReferencePicture(picture: Picture) {
+        return this._http.post(this.CarpentryWebsiteUrl + 'api/reference-picture/create', picture)
             .map((response: Response) => response.json())
             .catch(this.errorHandler);
     }

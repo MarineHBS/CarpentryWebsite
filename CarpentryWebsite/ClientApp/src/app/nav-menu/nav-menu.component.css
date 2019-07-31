@@ -2,22 +2,6 @@ li .glyphicon {
   margin-right: 10px;
 }
 
-/* Highlighting rules for nav menu items */
-li.link-active a,
-li.link-active a:hover,
-li.link-active a:focus {
-  background-color: #4189C7;
-  color: white;
-}
-
-/* Keep the nav menu independent of scrolling and on top of other items */
-.main-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1;
-}
 .nav-item{
   display:inline-block;
 }
@@ -28,6 +12,54 @@ li.link-active a:focus {
   position: fixed;
   top: 0;
 }
+
+.navbar-custom {
+  background-color:#229922;
+  color:#ffffff;
+  border-radius:0;
+}
+
+.navbar-custom .navbar-nav > li > a {
+  color:#fff;
+}
+
+.navbar-custom .navbar-nav > .active > a {
+  color: #aaa;
+  background-color:transparent;
+}
+
+.navbar-custom .navbar-nav > li > a:hover,
+.navbar-custom .navbar-nav > li > a:focus,
+.navbar-custom .navbar-nav > .active > a:hover,
+.navbar-custom .navbar-nav > .active > a:focus,
+.navbar-custom .navbar-nav > .open >a {
+  color: #aaa;
+  text-decoration: none;
+}
+
+.navbar-custom .navbar-brand {
+  color:#eeeeee;
+}
+.navbar-custom .navbar-toggle {
+  background-color:#ffffff;
+}
+.navbar-custom .icon-bar {
+  background-color:#33aa33;
+}
+
+.left-nav{
+  padding-left:300px;
+}
+
+.right-nav{
+  padding-right:50px;
+}
+
+.navbar{
+  margin-left: -30px;
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
 @media (min-width: 768px) {
   .navbar-header {
     float: none;
@@ -36,6 +68,11 @@ li.link-active a:focus {
   .navbar-collapse {
     border-top: 1px solid #444;
     padding: 0px;
+  }
+
+  .navbar-default{
+    background-color: #F8F8F8;
+    border-color: #E7E7E7;
   }
 
   .navbar ul {

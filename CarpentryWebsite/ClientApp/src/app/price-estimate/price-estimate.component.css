@@ -1,0 +1,64 @@
+body{
+    background: #ffffff;
+}
+
+.service-div{
+    width: 100px; 
+    float:left; 
+    height:100px;
+    margin:30px;
+}
+
+.title-div{
+    position:relative;
+}
+
+.close{
+    position:absolute;
+    right:-20px;
+    top: -45px;
+    font-size:20px;
+    padding: 15px 15px;
+}
+
+.closeButtonText{
+    font-size:30px;
+}
+
+.title-span{
+    padding-left: 30px;
+    width:50%;
+}
+
+.fabric-div{
+    width: 100px; 
+    float:left; 
+    height:100px;
+    margin:30px
+}
+
+.estimateButton{
+    position: absolute;
+    right: 50px;
+    bottom: 100px;
+}
+
+
+.priceEstimate{
+    position: absolute;
+    right: 50px;
+    bottom: 50px;
+}
+
+.concreteFtField{
+    font-style: italic;
+    font-size: 20px;
+}
+
+.ftField{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 30px;
+    padding-left: 40px;
+
+}

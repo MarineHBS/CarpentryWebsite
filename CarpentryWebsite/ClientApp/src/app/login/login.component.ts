@@ -9,13 +9,15 @@ import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'app-login-component',
-    templateUrl: './login.component.html'
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
 
 export class LoginComponent implements OnInit, OnDestroy {
     loginForm: FormGroup;
 
     private subscription: Subscription;
+    isLoggedIn: boolean;
 
     brandNew: boolean;
     errors: string;
@@ -25,6 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     constructor(private userService: UserService,
         private _fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
+        this.isLoggedIn = userService.isLoggedIn();
         this.loginForm = this._fb.group({
             name: ['', [Validators.required]],
             description: ['', [Validators.required]],
@@ -50,11 +53,10 @@ export class LoginComponent implements OnInit, OnDestroy {
         this.errors = '';
         if (valid) {
             this.userService.login(value.userName, value.password)
-                // .finally(() => this.isRequesting = false)
                 .subscribe(
                     result => {
                         if (result) {
-                            window.location.replace('/fetch-location');
+                            window.location.replace('/admin-area');
                         }
                     },
                     errors => this.errors = JSON.parse(errors._body).login_failure);

@@ -1,0 +1,33 @@
+.mainContent {
+  max-width: 300px;
+  max-height:300px;
+  overflow-y: scroll;
+  padding: 10px;  
+}
+
+.chatWindow{
+    position:fixed;
+	bottom:50px;
+    right:260px;
+    border: 1px solid blue;
+    background: #ffffff;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.chatWindowHeader{
+    background: #293239;
+    padding-top: 3px;
+    padding-bottom:5px;
+}
+
+.chatWindow h3{
+    text-align:center;
+    color:#ffffff;
+}
+
+.chatHeader{
+}
+
+.chatFormWrapper{
+    padding: 10px 10px 20px 10px;
+}

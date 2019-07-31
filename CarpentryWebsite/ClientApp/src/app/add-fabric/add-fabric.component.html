@@ -1,0 +1,40 @@
+<h1 style="margin-top:100px">{{title}}</h1>
+<hr />
+
+<head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+  <div class="add-div">
+    <form [formGroup]="addFabricForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+      <div class="form-group">
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="name" placeholder="Szövet neve">
+          <span class="text-danger" *ngIf="name.invalid && formDir.submitted">Kötelező nevet megadni</span>
+        </div>
+        <div class="form-group">
+          <input type="number" class="form-control" formControlName="price" placeholder="Szövet ára">
+          <span class="text-danger" *ngIf="price.invalid && formDir.submitted">Kötelező árat megadni</span>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="picture" placeholder="Szövethez tartozó kép">
+          <span class="text-danger" *ngIf="picture.invalid && formDir.submitted">Adjon meg egy kép URL-t</span>
+        </div>
+        <div>
+          Szövettípus:
+          <select formControlName="fabricTypeId">
+            <option value="" disabled>Válasszon ki egyet</option>
+            <option *ngFor="let type of fabricTypeList" [ngValue]="type.fabricTypeId">
+              {{type.name}}
+            </option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="font-size:16px">Szövet felvétele</button>
+        <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
+      </div>
+    </form>
+  </div>
+</body>

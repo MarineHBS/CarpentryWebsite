@@ -8,10 +8,72 @@
   padding-top:100px;
 }
 
-.container-fluid{
-  background-image: url(https://www.solidbackgrounds.com/images/1920x1080/1920x1080-linen-solid-color-background.jpg);
-}
 .content{
   padding-left:300px;
   padding-right:300px;
+}
+
+.float {
+	background: #16222A ;
+	position:fixed;
+	width:200px;
+	height:50px;
+	bottom:0px;
+	right:50px;
+	color: #D0D0D0;
+	font-family: 'Roboto', sans-serif;
+	font-size:18px;
+}
+
+.float:hover{
+	opacity: 0.7;
+	transition-duration: 0.5s;
+}
+
+.ratingButton{
+	background: #1FA2FF;
+	position:fixed;
+	width:200px;
+	height:50px;
+	top:200px;
+	left:-75px;
+	color: #D0D0D0;
+	font-family: 'Roboto', sans-serif;
+	font-size:18px;
+	transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+}
+
+.ratingButton:hover{
+	opacity: 0.7;
+	transition-duration: 0.5s;
+}
+
+.chat{
+	position:fixed;
+	width:80px;
+	height:50px;
+	bottom:0px;
+	right:260px;
+	
+	font-family: arial;
+  color: #fff;
+  text-decoration: none;
+  background: #1798F7;
+  display: block;
+  font-weight: bold;
+  font-size: 14px;
+  box-shadow: 0 0 0 1px #03b2ff inset;
+  border: 1px solid #144866;
+  border-radius: 2px;
+  transition: background 0.2s, right 0.2s;
+}
+
+.chat:hover{
+	opacity: 0.7;
+	transition-duration: 0.5s;
+}
+
+.my-float{
+	margin-top:22px;
 }

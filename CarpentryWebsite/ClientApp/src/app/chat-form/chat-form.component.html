@@ -1,0 +1,7 @@
+<input
+    class="chatInput"
+    [(ngModel)]="message"
+    (keydown)="handleSubmit($event)"
+    placeholder="Ide írja az üzenetet..."/>
+
+    <button class="chatButton" (click)=send()>Küldés</button>

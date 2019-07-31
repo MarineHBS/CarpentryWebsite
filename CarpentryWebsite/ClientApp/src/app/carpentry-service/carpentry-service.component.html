@@ -1,16 +1,39 @@
-<p>
-  carpentry-service works!
-  <a [routerLink]="[ '/add-carpentry-service' ]">
-    <button>Új szolgáltatás felvétele</button></a>
-  <a [routerLink]="[ '/add-carpentry-service-type' ]">
-    <button>Új szolgáltatáscsoport felvétele</button></a>
-  </p>
-<div *ngFor="let type of carpentryServiceTypeList">
-  <h2>{{type.name}}</h2>
-  <!--{{'yes' | message}}
-  {{getCarpentryServicesByTypeId(2)}}-->
-  <div *ngFor="let service of carpentryServiceList">
-    {{service.name}}
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+
+<body>
+  <h3> Szolgáltatásaink </h3>
+  <div *ngIf="carpentryServices && carpentryServiceTypes">
+    <ul *ngFor="let type of carpentryServiceTypes">
+      <div *ngIf=adminFlag>
+        <button class="btn btn-danger btnDelete" (click)="deleteType(type.carpentryServiceTypeId, type.name)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <a [routerLink]="['/carpentry-service-type/edit/', type.carpentryServiceTypeId]">
+          <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+        </a>
+      </div>
+      <h4 class="service-type text-capitalize">{{type.name}}</h4>
+      <hr>
+      <li *ngFor="let service of getCarpentryServicesByTypeId(type)" style="margin-left:20px;">
+        <div class="first-column">
+          <div *ngIf=adminFlag>
+            <button class="btn btn-danger btnDelete" (click)="deleteService(service.carpentryServiceId, service.name)">
+              <span class="glyphicon glyphicon-remove"></span>
+            </button>
+            <a [routerLink]="['/carpentry-service/edit/', service.carpentryServiceId]">
+              <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+            </a>
+          </div>
+          <span class="service-name">{{service.name}}</span>
+          <span> - {{service.description}}</span>
+          <span class="service-price"> - {{service.price}} Ft.-tól</span>
+        </div>
+      </li>
+    </ul>
   </div>
-  <hr>
-</div>
+</body>

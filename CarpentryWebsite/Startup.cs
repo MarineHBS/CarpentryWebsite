@@ -15,7 +15,6 @@ using System.Text;
 using CarpentryWebsite.Models;
 using CarpentryWebsite.Auth;
 using CarpentryWebsite.Helpers;
-using CarpentryWebsite.Models;
 
 namespace CarpentryWebsite
 {
