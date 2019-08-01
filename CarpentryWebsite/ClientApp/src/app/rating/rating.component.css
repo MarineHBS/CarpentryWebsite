@@ -29,7 +29,7 @@ body {
   .prev {
     cursor: pointer;
     position: absolute;
-    top: 35%;
+    top: 50%;
     margin-top: -30px;
     padding: 16px;
     font-weight: bold;
@@ -41,7 +41,7 @@ body {
   .next {
     cursor: pointer;
     position: absolute;
-    top: 35%;
+    top: 50%;
     margin-top: -30px;
     padding: 16px;
     font-weight: bold;

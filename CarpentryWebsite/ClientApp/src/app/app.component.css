@@ -23,6 +23,7 @@
 	color: #D0D0D0;
 	font-family: 'Roboto', sans-serif;
 	font-size:18px;
+	border-radius: 8px 8px 0 0;
 }
 
 .float:hover{
@@ -42,6 +43,7 @@
 	font-size:18px;
 	transform: rotate(90deg);
 	-webkit-transform: rotate(90deg);
+	border-radius: 8px 8px 0 0;
 }
 
 .ratingButton:hover{
@@ -53,31 +55,31 @@
 	background: #eee;
 }
 
-.chat{
+.chat {
 	position:fixed;
 	width:80px;
 	height:50px;
 	bottom:0px;
 	right:260px;
-	
 	font-family: arial;
-  color: #fff;
-  text-decoration: none;
-  background: #1798F7;
-  display: block;
-  font-weight: bold;
-  font-size: 14px;
-  box-shadow: 0 0 0 1px #03b2ff inset;
-  border: 1px solid #144866;
-  border-radius: 2px;
-  transition: background 0.2s, right 0.2s;
+  	color: #fff;
+  	text-decoration: none;
+	background: #1798F7;
+	display: block;
+	font-weight: bold;
+	font-size: 14px;
+	box-shadow: 0 0 0 1px #03b2ff inset;
+	border: 1px solid #144866;
+	border-radius: 2px;
+	transition: background 0.2s, right 0.2s;
+	border-radius: 8px 8px 0 0;
 }
 
-.chat:hover{
+.chat:hover {
 	opacity: 0.7;
 	transition-duration: 0.5s;
 }
 
-.my-float{
+.my-float {
 	margin-top:22px;
 }
