@@ -1,12 +1,13 @@
 import { Injectable, Inject, Output } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { UserRegistration } from '../models/user-registration';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { EventEmitter } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable()
 
@@ -23,7 +24,7 @@ export class UserService {
     private adminFlag = false;
     @Output() adminFlagUpdated: EventEmitter<boolean> = new EventEmitter();
 
-    constructor(private http: Http, @Inject('BASE_URL') baseUrl: string) {
+    constructor(private http: Http, @Inject('BASE_URL') baseUrl: string, private dialog: MatDialog) {
         this.loggedIn = !!localStorage.getItem('auth_token');
         this.loggedInUpdated.emit(this.loggedIn);
         if (localStorage.getItem('isAdmin') === 'true') {
@@ -48,14 +49,14 @@ export class UserService {
             .catch(this.errorHandler);
     }
 
-    login(userName, password) {
-        console.log('login');
+    login(userName: string, password: string) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
 
         return this.http.post(this.CarpentryWebsiteUrl + 'api/auth/login', JSON.stringify({ userName, password }), { headers })
             .map(res => res.json())
             .map(res => {
+                res.json();
                 localStorage.setItem('auth_token', res.auth_token);
                 localStorage.setItem('userId', res.id);
                 localStorage.setItem('isAdmin', res.isAdmin);
@@ -87,8 +88,10 @@ export class UserService {
     isLoggedIn() {
         return this.loggedIn;
     }
-    errorHandler(error: Response) {
-        console.log(error);
-        return Observable.throw(error);
+    errorHandler(error: HttpErrorResponse) {
+        const errorBody = error['_body'];
+        const errorValue = JSON.parse(errorBody)['login_failure'];
+        console.log('error is: ' + errorValue);
+        return Observable.create(errorValue);
     }
 }

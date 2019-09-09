@@ -4,6 +4,10 @@
       <form #f="ngForm" (ngSubmit)="loginUser(f)" class="inputForm" novalidate>
         <span class="login-span">Bejelentkezés</span>
         <hr>
+        <div class="login-error" *ngIf="showError">
+          <span class="error-message">{{errors}}</span>
+          <button class="btn-danger close-btn" (click)="closeErrorDiv()">X</button>
+        </div>
         <div class="form-group">
           <label>Felhasználónév</label>
           <input type="text" name="userName" class="form-control" id="userName" placeholder="Adja meg a felhasználónevét..." [ngModel]="loginUser.userName"

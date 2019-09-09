@@ -6,6 +6,7 @@ import { UserRegistration } from './../models/user-registration';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { MatDialogConfig, MatDialog } from '@angular/material';
 
 @Component({
     selector: 'app-login-component',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     private subscription: Subscription;
     isLoggedIn: boolean;
+    showError: boolean;
 
     brandNew: boolean;
     errors: string;
@@ -26,7 +28,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     login: UserLogin = { userName: '', password: '' };
 
     constructor(private userService: UserService,
-        private _fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute) {
+        private _fb: FormBuilder, private router: Router, private activatedRoute: ActivatedRoute,
+        private dialog: MatDialog) {
         this.isLoggedIn = userService.isLoggedIn();
         this.loginForm = this._fb.group({
             name: ['', [Validators.required]],
@@ -59,8 +62,15 @@ export class LoginComponent implements OnInit, OnDestroy {
                             window.location.replace('/admin-area');
                         }
                     },
-                    errors => this.errors = JSON.parse(errors._body).login_failure);
+                    error => {
+                        this.showError = true;
+                        this.errors = error;
+                    });
         }
+    }
+
+    closeErrorDiv() {
+        this.showError = false;
     }
 
 }

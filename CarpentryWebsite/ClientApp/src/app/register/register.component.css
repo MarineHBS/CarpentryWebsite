@@ -16,7 +16,7 @@ body {
 }
 
 label {
-    color: #9BD4F5;
+    color: rgb(94, 185, 238);
     text-align: left;
     font-weight: 100;
     display: block;
@@ -33,6 +33,7 @@ label {
     width: 40%;
     font-weight: 100;
     box-shadow: 0 0 2px #888;
+    min-width: 400px;
 }
 
 .login-form {
