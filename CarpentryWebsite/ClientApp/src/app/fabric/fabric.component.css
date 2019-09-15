@@ -1,9 +1,14 @@
+body {
+    background-color: #EEE;
+}
+
 .container {
     position: relative;
     width: 100%;
     padding:0px;
 }
-hr{
+
+hr {
     border: 0;
     clear:both;
     display:block;
@@ -12,16 +17,16 @@ hr{
     height: 1px;
     size: 50px;
 }
-h3{
+h3 {
     margin-bottom:50px;
 }
 
-.fabric-container{
+.fabric-container {
     margin-left:40px;
     margin-top:-10px;
 }
 
-.fabric-name{
+.fabric-name {
     position: relative;
     visibility: visible;
     opacity: 0;
@@ -37,24 +42,24 @@ h3{
 }
 
 
-.container:hover .fabric-name{
+.container:hover .fabric-name {
     opacity:1;
     visibility: visible;
     transition-duration: 1s;
 }
 
-.container:hover img{
+.container:hover img {
     opacity: 0.9;
     transform: translate(0, -30px);
     transition-duration: 1s;
 }
 
-.row{
+.row {
     margin-left: 20px;
     margin-top:40px;
 }
 
-.fabric-type{
+.fabric-type {
     font-size: 20px;
     color: #9A2F06;
     line-height: 25px;
@@ -68,7 +73,7 @@ h3{
       margin:5px;
 }
 
-.fabricName{
+.fabricName {
     text-align: center;
 }
 
@@ -88,6 +93,6 @@ h3{
     border-radius: 5px;
   }
   
-.btnDelete:hover{
+.btnDelete:hover {
     opacity: 0.1;
 }
