@@ -2,20 +2,22 @@
 <hr />
 
 <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
-  <form [formGroup]="addCarpentryServiceTypeForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
-    <div class="form-group">
+  <div class="add-div">
+    <form [formGroup]="addCarpentryServiceTypeForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
       <div class="form-group">
-        <input type="text" class="form-control" formControlName="name" placeholder="Szolgáltatáscsoport neve">
-        <span class="text-danger" *ngIf="name.invalid && formDir.submitted" >Kötelező nevet megadni</span>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="name" placeholder="Szolgáltatáscsoport neve">
+          <span class="text-danger" *ngIf="name.invalid && formDir.submitted">Kötelező nevet megadni</span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="font-size:16px">Szolgáltatáscsoport felvétele</button>
+        <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
       </div>
-      <button type="submit" class="btn btn-primary" style="font-size:16px">Szolgáltatáscsoport felvétele</button>
-      <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
-    </div>
-  </form>
+    </form>
+  </div>
 </body>

@@ -8,22 +8,25 @@
 </head>
 
 <body>
-  <form [formGroup]="addContactForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
-    <div class="form-group">
+  <div class="add-div">
+    <form [formGroup]="addContactForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
       <div class="form-group">
-        <input type="text" class="form-control" formControlName="name" placeholder="Kapcsolat neve">
-        <span class="text-danger" *ngIf="name.invalid && formDir.submitted">Kötelező nevet megadi</span>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="name" placeholder="Kapcsolat neve">
+          <span class="text-danger" *ngIf="name.invalid && formDir.submitted">Kötelező nevet megadi</span>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="phone" placeholder="Kapcsolat telefonszáma">
+          <span class="text-danger" *ngIf="phone.invalid && formDir.submitted">Kötelező telefonszámot megadni</span>
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" formControlName="emailAddress" placeholder="Kapcsolat email-címe">
+          <span class="text-danger" *ngIf="emailAddress.invalid && formDir.submitted">Kötelező email-címet
+            megadni</span>
+        </div>
+        <button type="submit" class="btn btn-primary" style="font-size:16px">Kapcsolat felvétele</button>
+        <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
       </div>
-      <div class="form-group">
-        <input type="text" class="form-control" formControlName="phone" placeholder="Kapcsolat telefonszáma">
-        <span class="text-danger" *ngIf="phone.invalid && formDir.submitted">Kötelező telefonszámot megadni</span>
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" formControlName="emailAddress" placeholder="Kapcsolat email-címe">
-        <span class="text-danger" *ngIf="emailAddress.invalid && formDir.submitted">Kötelező email-címet megadni</span>
-      </div>
-      <button type="submit" class="btn btn-primary" style="font-size:16px">Kapcsolat felvétele</button>
-      <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
-    </div>
-  </form>
+    </form>
+  </div>
 </body>

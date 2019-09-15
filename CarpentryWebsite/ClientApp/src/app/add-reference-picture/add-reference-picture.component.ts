@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
     selector: 'app-add-reference-picture',
     templateUrl: './add-reference-picture.component.html',
-    styleUrls: ['./add-reference-picture.component.css']
+    styleUrls: ['../add-components.css']
 })
 export class AddReferencePictureComponent implements OnInit {
     addReferencePictureForm: FormGroup;

@@ -8,7 +8,7 @@ import { FabricService } from '../services/fabric.service';
 @Component({
   selector: 'app-add-fabric',
   templateUrl: './add-fabric.component.html',
-  styleUrls: ['./add-fabric.component.css']
+  styleUrls: ['../add-components.css']
 })
 export class AddFabricComponent implements OnInit {
   addFabricForm: FormGroup;
@@ -68,7 +68,7 @@ export class AddFabricComponent implements OnInit {
       }
   }
   cancel() {
-      this._router.navigate(['/fabrics']);
+      this._router.navigate(['/admin-area']);
   }
   get name() { return this.addFabricForm.get('name'); }
   get price() { return this.addFabricForm.get('price'); }

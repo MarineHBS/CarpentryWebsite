@@ -8,7 +8,8 @@ import { CarpentryServiceType } from '../models/carpentry-service-type';
 
 @Component({
     selector: 'app-add-carpentry-service-component',
-    templateUrl: './add-carpentry-service.component.html'
+    templateUrl: './add-carpentry-service.component.html',
+    styleUrls: ['./add-carpentry-service.component.css', '../add-components.css']
 })
 
 export class AddCarpentryServiceComponent implements OnInit {

@@ -6,7 +6,7 @@ import { FabricTypeService } from '../services/fabric-type.service';
 @Component({
   selector: 'app-add-fabric-type',
   templateUrl: './add-fabric-type.component.html',
-  styleUrls: ['./add-fabric-type.component.css']
+  styleUrls: ['../add-components.css']
 })
 export class AddFabricTypeComponent implements OnInit {
   addFabricTypeForm: FormGroup;

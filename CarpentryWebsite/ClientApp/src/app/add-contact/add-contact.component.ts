@@ -6,7 +6,7 @@ import { ContactService } from '../services/contact.service';
 @Component({
     selector: 'app-add-contact',
     templateUrl: './add-contact.component.html',
-    styleUrls: ['./add-contact.component.css']
+    styleUrls: ['../add-components.css']
 })
 export class AddContactComponent implements OnInit {
     addContactForm: FormGroup;
