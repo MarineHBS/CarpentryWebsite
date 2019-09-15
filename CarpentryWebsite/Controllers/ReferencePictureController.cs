@@ -39,6 +39,13 @@ namespace CarpentryWebsite.Controllers
             return referencePictureService.AddReferencePicture(picture);
         }
 
+        [HttpPost]
+        [Route("/api/reference-picture/upload")]
+        public int Upload([FromBody] Picture picture)
+        {
+            return referencePictureService.AddReferencePicture(picture);
+        }
+
         [HttpGet]
         [Route("/api/reference-picture/details/{id}")]
         public ReferencePicture GetReferencePicture(int id)

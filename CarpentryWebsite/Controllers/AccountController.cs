@@ -39,7 +39,9 @@ namespace CarpentryWebsite.Controllers
                 }
                 else
                 {
-                    return BadRequest(Errors.AddErrorToModelState("Registerfailure", "" + result, ModelState));
+                    ResultMapper resultMapper = new ResultMapper();
+                    string beautifiedErrorMessage = resultMapper.BeautifyErrorMessage(result.ToString());
+                    return BadRequest(Errors.AddErrorToModelState("register_failure", beautifiedErrorMessage, ModelState));
                 }
             }
             return new BadRequestObjectResult("Model state error: " + ModelState);
