@@ -7,6 +7,38 @@ body {
     background: #eee;
 }
 
+.register-error {
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    font-size: 13px;
+    margin: 0 auto 10px;
+    padding: 15px 20px; 
+    background-color: #ffdce0;
+    color: #86181d;
+    height: 55px;
+}
+
+.error-message {
+    float: left;
+    margin-top: 1%;
+}
+
+.close-btn {
+    background-color: #ffdce0;
+    border-color: #ffdce0;
+    color:#86181d;
+    border-style: none;
+    margin-top: 1%;
+    float: right;
+}
+
+.close-btn:hover {
+    background-color: #ffc690;
+    border-color: #ffdce0;
+    color:#86181d;
+}
+
 .login-span {
     text-align: left;
     margin-bottom: 25px;

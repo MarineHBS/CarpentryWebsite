@@ -1,27 +1,38 @@
 <body>
   <div class="login-form">
     <div class="main-div">
-      <form #f="ngForm" (ngSubmit)="registerUser(f)" class="registerForm" novalidate>
+      <form #f="ngForm" (ngSubmit)="registerUser(f)" class="registerForm" [formGroup]="registerForm" novalidate>
         <span class="login-span">Regisztráció</span>
         <hr>
-        <div class="form-group">
-            <label>Felhasználónév</label>
-          <input type="text" name="userName" class="form-control" id="name" placeholder="Adja meg a felhasználónevét..." [ngModel]="registerUser.userName" #name="ngModel">
+        <div class="register-error" *ngIf="showError">
+          <span class="error-message">{{errors}}</span>
+          <button class="btn-danger close-btn" (click)="closeErrorDiv()">X</button>
         </div>
+        <span class="text-danger" *ngIf="userName.invalid && f.submitted">Kötelező nevet megadni</span>
         <div class="form-group">
-            <label>E-mail</label>
-          <input type="email" name="email" class="form-control" id="email" placeholder="Adja meg a e-mail címét..." [ngModel]="registerUser.email" #email="ngModel">
+          <label>Felhasználónév</label>
+          <input type="text" name="userName" formControlName="userName" class="form-control" id="name"
+            placeholder="Adja meg a felhasználónevét..." [ngModel]="registerUser.userName">
         </div>
+        <span class="text-danger" *ngIf="email.invalid && f.submitted">Kérjük adjon meg egy valós email címet</span>
         <div class="form-group">
-            <label>Jelszó</label>
-          <input type="password" name="password" class="form-control" id="password" placeholder="Adja meg a jelszavát..." ngModel>
+          <label>E-mail</label>
+          <input type="email" name="email" formControlName="email" class="form-control" id="email"
+            placeholder="Adja meg a e-mail címét..." [ngModel]="registerUser.email">
         </div>
+        <span class="text-danger" *ngIf="password.invalid && f.submitted">A jelszónak legalább 6 karakterből kell
+          állnia</span>
         <div class="form-group">
-            <label>Jelszó megerősítése</label>
-          <input type="password" class="form-control" id="passwordc" placeholder="Erősítse meg a jelszavát...">
+          <label>Jelszó</label>
+          <input type="password" formControlName="password" required minlength="6" name="password" class="form-control"
+            id="password" placeholder="Adja meg a jelszavát..." ngModel>
         </div>
-        <div *ngIf='errors'>
-            <p style="color: red; font-size: 12px">{{errors}}</p>
+        <span class="text-danger" *ngIf="passwordConfirmation.invalid && f.submitted">Kérjük erősítse meg
+          jelszavát</span>
+        <div class="form-group">
+          <label>Jelszó megerősítése</label>
+          <input type="password" formControlName="passwordConfirmation" name="passwordConfirmation" id="passwordc"
+            class="form-control" placeholder="Erősítse meg a jelszavát...">
         </div>
         <button type="submit" class="btn btn-primary logBtn"><span class="btnText">Regisztráció</span></button>
       </form>

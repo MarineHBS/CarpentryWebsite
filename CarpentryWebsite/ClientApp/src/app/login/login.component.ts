@@ -58,8 +58,14 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.userService.login(value.userName, value.password)
                 .subscribe(
                     result => {
-                        if (result) {
-                            window.location.replace('/admin-area');
+                        if (result['error']) {
+                            const errorValue = JSON.parse(result['error']);
+                            this.showError = true;
+                            this.errors = errorValue['login_failure'][0];
+                        }
+                        if (!result['error']) {
+                            this.showError = false;
+                            this.router.navigate(['/admin-area']);
                         }
                     },
                     error => {

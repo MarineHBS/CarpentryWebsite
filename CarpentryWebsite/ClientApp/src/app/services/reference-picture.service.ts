@@ -39,6 +39,10 @@ export class ReferencePictureService {
             .catch(this.errorHandler);
     }
 
+    uploadReferencePicture(formData: FormData) {
+        return this._http.post(this.CarpentryWebsiteUrl + 'api/reference-picture/upload', formData);
+    }
+
     updateReferencePicture(referencePicture) {
         return this._http.put(this.CarpentryWebsiteUrl + 'api/reference-picture/edit', referencePicture)
         .map((res: Response) => res.json())

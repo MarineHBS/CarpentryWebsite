@@ -8,16 +8,15 @@ import { Component, AfterViewInit } from '@angular/core';
 })
 export class NavMenuComponent {
   isExpanded = false;
-  public loggedIn: boolean;
+  loggedIn: boolean;
 
   constructor(private _userService: UserService) {
-    this.loggedIn = this._userService.isLoggedIn();
-    }
+    this.loggedIn = _userService.isLoggedIn();
+    this._userService.loggedInUpdated.subscribe(loggedIn => this.loggedIn = loggedIn);
+  }
 
   logout() {
     this._userService.logout();
-    this.loggedIn = this._userService.isLoggedIn();
-    window.location.reload();
   }
 
   collapse() {
