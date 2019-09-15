@@ -12,20 +12,20 @@
         <div class="form-group">
           <label>Felhasználónév</label>
           <input type="text" name="userName" formControlName="userName" class="form-control" id="name"
-            placeholder="Adja meg a felhasználónevét..." [ngModel]="registerUser.userName">
+            placeholder="Adja meg a felhasználónevét...">
         </div>
         <span class="text-danger" *ngIf="email.invalid && f.submitted">Kérjük adjon meg egy valós email címet</span>
         <div class="form-group">
           <label>E-mail</label>
           <input type="email" name="email" formControlName="email" class="form-control" id="email"
-            placeholder="Adja meg a e-mail címét..." [ngModel]="registerUser.email">
+            placeholder="Adja meg a e-mail címét...">
         </div>
         <span class="text-danger" *ngIf="password.invalid && f.submitted">A jelszónak legalább 6 karakterből kell
           állnia</span>
         <div class="form-group">
           <label>Jelszó</label>
           <input type="password" formControlName="password" required minlength="6" name="password" class="form-control"
-            id="password" placeholder="Adja meg a jelszavát..." ngModel>
+            id="password" placeholder="Adja meg a jelszavát...">
         </div>
         <div class="text-danger" *ngIf="passwordConfirmation.invalid && f.submitted">Kérjük erősítse meg
           jelszavát</div>
