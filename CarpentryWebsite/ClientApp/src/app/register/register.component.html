@@ -27,8 +27,11 @@
           <input type="password" formControlName="password" required minlength="6" name="password" class="form-control"
             id="password" placeholder="Adja meg a jelszavát..." ngModel>
         </div>
-        <span class="text-danger" *ngIf="passwordConfirmation.invalid && f.submitted">Kérjük erősítse meg
-          jelszavát</span>
+        <div class="text-danger" *ngIf="passwordConfirmation.invalid && f.submitted">Kérjük erősítse meg
+          jelszavát</div>
+        <div class="text-danger"
+          *ngIf="registerForm.get('password').value != registerForm.get('passwordConfirmation').value && registerForm.get('passwordConfirmation').value != null">
+          A jelszó megerősítése nem egyezik meg a jelszóval</div>
         <div class="form-group">
           <label>Jelszó megerősítése</label>
           <input type="password" formControlName="passwordConfirmation" name="passwordConfirmation" id="passwordc"

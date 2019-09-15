@@ -2,7 +2,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { UserRegistration } from './../models/user-registration';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, AbstractControl } from '@angular/forms';
 
 
 @Component({
@@ -24,18 +24,18 @@ export class RegisterComponent implements OnInit {
             userName: ['', [Validators.required]],
             email: ['', [Validators.required]],
             password: ['', [Validators.minLength(6)]],
-            passwordConfirmation: ['', {Validator: this.checkPasswords }]
-        });
+            passwordConfirmation: ['', Validators.compose([Validators.required])]
+        },
+        {validators: this.passwordConfirming});
     }
 
     ngOnInit() {
     }
 
-    checkPasswords(group: FormGroup) {
-    const password = this.registerForm.get('password').value;
-    const passwordConfirmation = this.registerForm.get('passwordConfirmation').value;
-
-    return password === passwordConfirmation ? null : { notSame: true };
+    passwordConfirming(c: AbstractControl): { invalid: boolean } {
+        if (c.get('password').value !== c.get('passwordConfirmation').value) {
+            return {invalid: true};
+        }
     }
 
     registerUser({ value, valid }: { value: UserRegistration, valid: boolean }) {
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
         this.submitted = true;
         this.isRequesting = true;
         this.errors = '';
-        if (valid) {
+        if (this.registerForm.valid) {
             this.userService.register(value.userName, value.email, value.password)
                       .subscribe(
                         result  => {

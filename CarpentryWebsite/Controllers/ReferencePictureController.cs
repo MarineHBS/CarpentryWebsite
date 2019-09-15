@@ -2,6 +2,10 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CarpentryWebsite.Models;
+using System.Web;
+using System.Web.Http;
+using System.IO;
+using System;
 
 namespace CarpentryWebsite.Controllers
 {
@@ -43,6 +47,18 @@ namespace CarpentryWebsite.Controllers
         [Route("/api/reference-picture/upload")]
         public int Upload([FromBody] Picture picture)
         {
+            string imageName = null;
+
+            // TODO: Save uploaded image to assets
+            /*
+            var httpRequest = HttpContext.Current.Request;
+        
+            var postedFile = httpRequest.Files["image"];
+
+            var filePath = HttpContext.Current.Server.MapPath("~/assets/reference-pictures/" + imageName);
+            postedFile.SaveAs(filePath);
+            */
+
             return referencePictureService.AddReferencePicture(picture);
         }
 
