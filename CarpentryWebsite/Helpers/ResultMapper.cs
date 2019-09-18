@@ -19,8 +19,12 @@ namespace CarpentryWebsite.Helpers
             {
                 case "DuplicateUserName":
                     return "This username already exists";
+                case "DuplicateEmail":
+                    return "This email already exists";
                 case "PasswordTooShort":
                     return "Password is too short";
+                case "InvalidUserName":
+                    return "The username you specified is invalid";
                 default:
                     return "Server error";
             }

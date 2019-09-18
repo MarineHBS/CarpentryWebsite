@@ -98,3 +98,8 @@ li .glyphicon {
     text-overflow: ellipsis;
   }
 }
+
+.user-nav {
+  display: flex;
+  align-items: center;
+}

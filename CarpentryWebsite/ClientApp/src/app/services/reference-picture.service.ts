@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { Picture } from '../models/picture';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class ReferencePictureService {
@@ -40,7 +41,9 @@ export class ReferencePictureService {
     }
 
     uploadReferencePicture(formData: FormData) {
-        return this._http.post(this.CarpentryWebsiteUrl + 'api/reference-picture/upload', formData);
+        return this._http.post(this.CarpentryWebsiteUrl + 'api/reference-picture/upload', formData)
+        .map((res: Response) => res.json())
+        .catch(this.errorHandler);
     }
 
     updateReferencePicture(referencePicture) {

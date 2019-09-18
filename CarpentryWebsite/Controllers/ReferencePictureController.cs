@@ -45,9 +45,11 @@ namespace CarpentryWebsite.Controllers
 
         [HttpPost]
         [Route("/api/reference-picture/upload")]
-        public int Upload([FromBody] Picture picture)
+        public int Upload()
         {
             string imageName = null;
+
+            Console.WriteLine("ITTVAGYUNK HEEEEEEEEEEEEEEEEEEEE");
 
             // TODO: Save uploaded image to assets
             /*
@@ -59,7 +61,7 @@ namespace CarpentryWebsite.Controllers
             postedFile.SaveAs(filePath);
             */
 
-            return referencePictureService.AddReferencePicture(picture);
+            return -1;
         }
 
         [HttpGet]

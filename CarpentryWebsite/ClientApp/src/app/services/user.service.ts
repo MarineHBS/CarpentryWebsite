@@ -27,6 +27,8 @@ export class UserService {
     @Output() adminFlagUpdated: EventEmitter<boolean> = new EventEmitter();
 
     private expiresIn: number;
+    private username: string;
+    @Output() usernameUpdated: EventEmitter<string> = new EventEmitter();
 
     constructor(private http: HttpClient, @Inject('BASE_URL') baseUrl: string, private dialog: MatDialog,
                 private router: Router) {
@@ -34,6 +36,11 @@ export class UserService {
         const now = new Date().getTime();
         const logoutDate = parseInt(localStorage.getItem('leftUntilLogout'), 10);
         const leftUntilLogout = logoutDate - now;
+
+        this.username = localStorage.getItem('userName');
+        if (localStorage.getItem('userName')) {
+            this.usernameUpdated.emit(this.username);
+        }
 
         if (localStorage.getItem('userId')) {
             this.loggedIn = true;
@@ -47,7 +54,7 @@ export class UserService {
             this.adminFlagUpdated.emit(this.adminFlag);
         }
         if (now < logoutDate) {
-            console.log('Time left until logging out automatically ' + leftUntilLogout);
+            console.log('Time left until logging out automatically: ' + leftUntilLogout / 1000 + ' seconds');
             setTimeout(() => {
                 this.logout();
                 this.router.navigate(['/login']);
@@ -82,12 +89,14 @@ export class UserService {
                 localStorage.setItem('isAdmin', resJson.isAdmin);
                 localStorage.setItem('expiresIn', resJson.expires_in);
                 localStorage.setItem('leftUntilLogout', ((new Date().getTime()) + resJson.expires_in * 1000).toString());
+                localStorage.setItem('userName', userName);
                 this.adminFlag = resJson.isAdmin;
                 this.adminFlagUpdated.emit(this.adminFlag);
                 this.loggedIn = true;
                 this.loggedInUpdated.emit(true);
                 this.expiresIn = resJson.expiresIn;
                 this._authNavStatusSource.next(true);
+                this.username = userName;
                 return true;
             })
             .catch(this.errorHandler);
@@ -110,11 +119,16 @@ export class UserService {
         localStorage.removeItem('isAdmin');
         localStorage.removeItem('expiresIn');
         localStorage.removeItem('leftUntilLogout');
+        localStorage.removeItem('userName');
         this.loggedIn = false;
         this.loggedInUpdated.emit(false);
         this.adminFlag = false;
         this.adminFlagUpdated.emit(this.adminFlag);
         this._authNavStatusSource.next(false);
+    }
+
+    getUsername(): string {
+        return this.username;
     }
 
     isAdmin() {

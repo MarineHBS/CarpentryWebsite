@@ -28,12 +28,12 @@
         </li>
       </ul>
       <ul class="navbar-nav navbar-right mr-auto right-nav" *ngIf="loggedIn">
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]='["/admin-area"]'>Admin kezelőfelület</a>
+        <li class="nav-item user-nav">
+          <div><span class="glyphicon glyphicon-user"></span><span>{{userName}}</span></div>
         </li>
         <li>
           <a class="nav-link" [routerLink]='["logout"]' ><span class="glyphicon glyphicon-log-out"></span>
-            Kijelentkezés</a>
+            </a>
         </li>
       </ul>
       <ul class="navbar-nav navbar-right mr-auto right-nav" *ngIf="!loggedIn">

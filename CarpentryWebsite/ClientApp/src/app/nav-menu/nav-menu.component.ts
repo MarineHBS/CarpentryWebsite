@@ -9,10 +9,13 @@ import { Component, AfterViewInit } from '@angular/core';
 export class NavMenuComponent {
   isExpanded = false;
   loggedIn: boolean;
+  userName: string;
 
   constructor(private _userService: UserService) {
     this.loggedIn = _userService.isLoggedIn();
     this._userService.loggedInUpdated.subscribe(loggedIn => this.loggedIn = loggedIn);
+    this.userName = _userService.getUsername();
+    this._userService.usernameUpdated.subscribe(userName => this.userName = userName);
   }
 
   logout() {

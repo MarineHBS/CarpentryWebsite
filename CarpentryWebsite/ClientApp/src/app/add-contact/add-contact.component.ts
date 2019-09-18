@@ -40,7 +40,7 @@ export class AddContactComponent implements OnInit {
         if (!this.addContactForm.valid) {
             return;
         }
-        if (this.title === 'Szolgáltatás felvétele') {
+        if (this.title === 'Kapcsolat felvétele') {
             this._contactService.createContact(this.addContactForm.value)
                 .subscribe((data) => {
                     this._router.navigate(['/admin-area']);
