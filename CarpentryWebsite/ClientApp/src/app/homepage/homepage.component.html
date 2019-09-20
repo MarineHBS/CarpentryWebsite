@@ -1,5 +1,26 @@
-<img src="../../assets/myimages/homepage_picture.jpg" alt="placehold.it/350x250" class="main-image" >
+<slideshow 
+[imageUrls]="homepageImages"
+[height]="'800px'"
+[autoPlay]="true"
+></slideshow>
 <app-reference-picture></app-reference-picture>
+<hr style="margin-top: 40px">
+<div class="opinion-text">
+    Korábbi megrendelők véleményei
+  </div>
+  <hr>
 <div class='row content'>
   <app-rating style="width: 100%;"></app-rating>
+</div>
+
+<div class="offer-div" style="position: relative">
+  <div style="overflow: hidden">
+</div>
+  <div class="offer-content" style="margin-top: 7%">
+    <app-offer-form></app-offer-form>
+  </div>
+</div>
+
+<div class="footer-div">
+    <img class="logo-image" src="../../assets/homepage_images/logo.png" alt="Carpentry ">
 </div>

@@ -13,7 +13,7 @@
     <div class='col-sm-12 body-content'>
       <router-outlet></router-outlet>
     </div>
-    <button class="fa my-float float" (click)="openDialog()">Árajánlat kérése</button>
+    <button class="fa my-float float" [routerLink]="[ '/price-estimate' ]">Árajánlat kérése</button>
     <a [routerLink]="[ '/add-rating' ]">
       <button class="fa my-float ratingButton">Értékeljen minket!</button>
     </a>

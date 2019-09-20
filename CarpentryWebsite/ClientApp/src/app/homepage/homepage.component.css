@@ -2,3 +2,45 @@
     margin: 50px 0 50px 0;
     width: 100%;
 }
+
+hr {
+    border-top: 1px solid #bbb;
+    width: 70%;
+    margin-left: 15%;
+}
+
+.opinion-text{
+    font-family: brandon-grotesque;
+    font-size: 18px;
+    text-transform: uppercase;
+    margin: 50px 0 50px 0;
+    text-align: center;
+    letter-spacing: 10px;
+  }
+
+  .offer-div {
+    margin-top:50px;
+    height: 800px;
+    background: url(../../assets/ajanlat/hatterkep.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 800px;
+    margin-bottom: 150px;
+  }
+
+  .offer-content {
+      width: 70%;
+      margin-left: 15%;
+  }
+
+  .footer-div {
+      background-color: #000;
+      height: 250px;
+      text-align: center;
+  }
+
+  .logo-image {
+    width: 150px;
+      max-width: 300px;
+      height: auto;
+      margin: 50px;
+  }

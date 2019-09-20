@@ -25,6 +25,7 @@
       </div>
       <div class="row">
         <div class="fabricName" *ngFor="let fabric of getFabricsByTypeId(type)">
+          <mat-card>
           <div class="container">
             <img class="tn fabric-img" src="{{getFabricUrlById(fabric.fabricId)}}"
               onerror="this.src='https://via.placeholder.com/300x210'" />
@@ -40,6 +41,7 @@
               <span class="fabric-name text-capitalize">{{fabric.name}}</span>
             </div>
           </div>
+        </mat-card>
         </div>
       </div>
     </div>

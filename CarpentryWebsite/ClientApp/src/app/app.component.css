@@ -1,7 +1,6 @@
-@media (max-width: 1500px) {
+@media (max-width: 2000px) {
   /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
   .body-content {
-	padding-top: 50px;
   }
 }
 .main-content{
@@ -9,8 +8,6 @@
 }
 
 .content{
-  margin-left:20%;
-  margin-right:20%;
 }
 
 .float {
@@ -53,6 +50,8 @@
 
 .container-fluid {
 	background: #eee;
+	padding-left: 0;
+	padding-right: 0;
 }
 
 .chat {

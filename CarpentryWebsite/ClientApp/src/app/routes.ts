@@ -16,6 +16,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AddFabricComponent } from './add-fabric/add-fabric.component';
 import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
+import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -37,6 +38,7 @@ export const appRoutes: Routes = [
   { path: 'fabrics', component: FabricComponent },
   { path: 'contact-us', component: ContactComponent },
   { path: 'chat', component: ChatroomComponent },
+  { path: 'price-estimate', component: PriceEstimateComponent },
 
   { path: 'admin-area', component: AdminAreaComponent },
   { path: 'registration', component: RegisterComponent },

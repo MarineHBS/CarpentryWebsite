@@ -10,41 +10,57 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 </head>
 
-<body>
-  <nav class="navbar navbar-expand-lg navbar-custom bg-dark">
+<body >
+  <nav class="navbar navbar-expand-lg navbar-custom top-bar fixed">
     <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto left-nav" style="display:inline-block;">
+      <ul class="navbar-nav left-nav">
         <li class="nav-item">
-          <a class="nav-link" [routerLink]='["/home"]'>Főoldal </a>
+          <div class="collection">
+            <a class="nav-link" [routerLink]='["/home"]'>Főoldal </a>
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]='["/carpentry-services"]'>Szolgáltatások</a>
+          <div class="collection">
+            <a class="nav-link" [routerLink]='["/carpentry-services"]'>Szolgáltatások</a>
+          </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]='["/fabrics"]'>Szövetek</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" [routerLink]='["/contact-us"]'>Kapcsolat</a>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-right mr-auto right-nav" *ngIf="loggedIn">
-        <li class="nav-item user-nav">
-          <div><span class="glyphicon glyphicon-user"></span><span>{{userName}}</span></div>
+          <div class="collection" style="margin-right: 40px;">
+            <a class="nav-link" [routerLink]='["/fabrics"]'>Szövetek</a>
+          </div>
         </li>
         <li>
-          <a class="nav-link" [routerLink]='["logout"]' ><span class="glyphicon glyphicon-log-out"></span>
+          <div class="collection">
+            <img class="logo-image" src="../../assets/homepage_images/logo.png" alt="Carpentry ">
+          </div>
+        </li>
+        <li class="nav-item">
+          <div class="collection" style="margin-left: 40px;">
+            <a class="nav-link" [routerLink]='["/contact-us"]'>Kapcsolat</a>
+          </div>
+        </li>
+        <div style="display: flex;" *ngIf="!loggedIn">
+          <li>
+              <div class="collection">
+            <a class="nav-link" [routerLink]='["/registration"]'><span class="glyphicon glyphicon-user"></span>
+              Regisztráció</a>
+            </div>
+          </li>
+          <li>
+              <div class="collection">
+            <a class="nav-link" [routerLink]='["/login"]'><span class="glyphicon glyphicon-log-in"></span>
+              Bejelentkezés</a>
+            </div>
+          </li>
+        </div>
+        <div style="display: flex;" *ngIf="loggedIn">
+          <li>
+              <div class="collection">
+            <a class="nav-link" [routerLink]='["logout"]'>Kijelentkezés<span class="glyphicon glyphicon-log-out"></span>
             </a>
-        </li>
-      </ul>
-      <ul class="navbar-nav navbar-right mr-auto right-nav" *ngIf="!loggedIn">
-        <li>
-          <a class="nav-link" [routerLink]='["/registration"]'><span class="glyphicon glyphicon-user"></span>
-            Regisztráció</a>
-        </li>
-        <li>
-          <a class="nav-link" [routerLink]='["/login"]'><span class="glyphicon glyphicon-log-in"></span>
-            Bejelentkezés</a>
-        </li>
+          </div>
+          </li>
+        </div>
       </ul>
     </div>
   </nav>

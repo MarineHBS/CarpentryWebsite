@@ -1,8 +1,47 @@
+.container {
+    width: 70%;
+    margin-left: 15%;
+    overflow: hidden;
+}
+
+.offer-div {
+    width: 60%;
+    float: left;
+}
+
+
+.contacts, .placeholder {
+    float:left
+}
+
+.main-div {
+    border-radius: 2px;
+}
+
+.login-form {
+    height: 100%;
+    display: flex;
+}
+
+.container-div {
+    margin-bottom: 5%;
+    align-content: center;
+    display: inline-block;
+    padding: 20px 20px 20px 20px;
+    background: #fff;
+    font-family: Roboto;
+    font-size: 14px;
+    width: 40%;
+    font-weight: 100;
+    box-shadow: 0 0 2px #888;
+    min-width: 300px;
+}
+
 .contact{
-    font-size: 18px;
+    font-size: 20px;
     font-weight: 700;
     line-height: 120%;
-    margin: 10px 0px 10px 0px;
+    margin: 20px 0 0 0;
     color: #555555;
 }
 
@@ -12,4 +51,9 @@
     font-weight: bold; 
     line-height: normal; 
     background-color: transparent;
+}
+
+.placeholder {
+    margin-bottom: 40px;
+    margin-top: 40px;
 }

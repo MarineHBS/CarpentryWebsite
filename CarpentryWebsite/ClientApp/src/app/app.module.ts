@@ -54,11 +54,15 @@ import { ContactService } from './services/contact.service';
 import { AddFabricComponent } from './add-fabric/add-fabric.component';
 import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
 import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
-import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule, MatCardModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { PageBottomComponent } from './page-bottom/page-bottom.component';
 import { RatingsComponent } from './ratings/ratings.component';
+import { MapComponent } from './map/map.component';
+import { AgmCoreModule } from '@agm/core';
+import {SlideshowModule} from 'ng-simple-slideshow';
+import { OfferFormComponent } from './offer-form/offer-form.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +101,9 @@ import { RatingsComponent } from './ratings/ratings.component';
     PriceEstimateComponent,
     AdminAreaComponent,
     PageBottomComponent,
-    RatingsComponent
+    RatingsComponent,
+    MapComponent,
+    OfferFormComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -113,10 +119,14 @@ import { RatingsComponent } from './ratings/ratings.component';
     RouterModule.forRoot(appRoutes),
     AngularFireModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBrskK5WRN_tcO3tMM6k1QpIwoSzbOMnwY'
+    }),
+    SlideshowModule,
+    MatCardModule
   ],
   entryComponents: [
-    PriceEstimateComponent
   ],
   providers: [LocationService, CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,

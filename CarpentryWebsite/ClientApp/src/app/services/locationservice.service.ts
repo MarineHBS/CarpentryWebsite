@@ -41,7 +41,8 @@ export class LocationService {
     addFavorite(id: number) {
         const headers = new Headers();
         headers.append('Content-Type', 'application/json');
-        return this._http.post(this.CarpentryWebsiteUrl + 'api/location/addFavorite/' + id, JSON.stringify({userId: this.userId}), { headers })
+        return this._http.post(this.CarpentryWebsiteUrl + 'api/location/addFavorite/' + id,
+         JSON.stringify({userId: this.userId}), { headers })
             .map((response: Response) => response.json())
             .catch(this.errorHandler);
     }

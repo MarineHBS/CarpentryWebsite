@@ -15,12 +15,6 @@ export class AppComponent {
   constructor(public dialog: MatDialog) {
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(PriceEstimateComponent, {
-      panelClass: 'price-estimate-container'
-    });
-  }
-
   openChat() {
     if (this.isChatOpened) {
       this.isChatOpened = false;

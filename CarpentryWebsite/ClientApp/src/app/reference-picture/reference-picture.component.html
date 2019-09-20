@@ -8,7 +8,7 @@
 <div class="referenceText">
   Referenciák
 </div>
-<div class="row" style="margin:0px">
+<div class="row">
     <div class="container" *ngFor="let referencePicture of referencePictures">
       <img class="tn" src="{{referencePicture.pictureUrl}}" onerror="this.src='https://via.placeholder.com/300x210'" />
       <div *ngIf=adminFlag>

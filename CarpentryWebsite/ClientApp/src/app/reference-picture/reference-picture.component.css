@@ -1,6 +1,7 @@
 .row{
-  width: 100%;
+  width: 70%;
   overflow: hidden;
+  margin-left: 15%;
 }
 
 .container {

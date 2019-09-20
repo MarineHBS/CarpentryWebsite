@@ -1,0 +1,36 @@
+<div class="asd">
+    <div class="main-div">
+      <form #f="ngForm" (ngSubmit)="save()" class="registerForm" [formGroup]="offerForm" novalidate>
+        <span class="login-span">Ha kérdése van, keressen minket bátran!</span>
+        <hr>
+        <div class="register-error" *ngIf="showError">
+          <span class="error-message">{{errors}}</span>
+          <button class="btn-danger close-btn" (click)="closeErrorDiv()">X</button>
+        </div>
+        <span class="text-danger" *ngIf="userName.invalid && f.submitted">Kötelező nevet megadni</span>
+        <div class="form-group">
+          <label>Név (kötelező)</label>
+          <input type="text" name="userName" formControlName="userName" class="form-control" id="name"
+            placeholder="Adja meg a felhasználónevét...">
+        </div>
+        <span class="text-danger" *ngIf="email.invalid && f.submitted">Kérjük adjon meg egy valós email címet</span>
+        <div class="form-group">
+          <label>E-mail (kötelező)</label>
+          <input type="email" name="email" formControlName="email" class="form-control" id="email"
+            placeholder="Adja meg a e-mail címét...">
+        </div>
+        <span class="text-danger" *ngIf="password.invalid && f.submitted">A jelszónak legalább 6 karakterből kell
+          állnia</span>
+        <div class="form-group">
+          <label>Üzenet</label>
+          <textarea cols="40" rows="5" formControlName="message" name="message" class="form-control"
+            id="password" placeholder="Adja meg a jelszavát..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Kép feltöltése (opcionális)</label>
+          <input type="file" formControlName="offerPicture" name="passwordConfirmation">
+        </div>
+        <button type="submit" class="btn btn-primary logBtn"><span class="btnText">Küldés</span></button>
+      </form>
+    </div>
+  </div>

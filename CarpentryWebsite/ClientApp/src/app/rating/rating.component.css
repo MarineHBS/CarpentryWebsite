@@ -12,13 +12,15 @@ body {
 }
 
 .slideshow-container {
-    margin: 100px 0 0 0;
+    margin: 30px 0 0 0;
     position: relative;
     background: #eee;
     height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 70%;
+    margin-left: 15%;
   }
   
   .mySlides {
