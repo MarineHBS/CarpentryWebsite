@@ -58,7 +58,7 @@ export class AddCarpentryServiceComponent implements OnInit {
         if (this.title === 'Szolgáltatás felvétele') {
             this._carpentryServiceService.createCarpentryService(this.addCarpentryServiceForm.value)
                 .subscribe((data) => {
-                    this._router.navigate(['/admin-area']);
+                    this._router.navigate(['/carpentry-services']);
                 }, error => this.errorMessage = error);
         } else if (this.title === 'Edit') {
             this._carpentryServiceService.updateCarpentryService(this.addCarpentryServiceForm.value)

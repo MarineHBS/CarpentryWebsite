@@ -6,44 +6,54 @@
 </head>
 
 <body>
-  <h3> Szövetek </h3>
-  <div class="fabric-container" *ngIf="fabrics && fabricTypes">
-    <div *ngFor="let type of fabricTypes">
-      <div>
-        <div style="display: inline-block">
-          <h4 class="fabric-type text-capitalize">{{type.name}}</h4>
-        </div>
-        <div *ngIf=adminFlag style="display: inline-block; margin-left: 20px">
-          <button class="btn btn-danger btnDelete" (click)="deleteType(type.fabricTypeId, type.name)">
-            <span class="glyphicon glyphicon-remove"></span>
-            <a [routerLink]="['/fabric-type/edit/', type.fabricTypeId]">
-              <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
-            </a>
-          </button>
-        </div>
-        <hr>
+  <div style="display: flex;" *ngIf="adminFlag">
+    <div class="add-div">
+      <a class="add-button" [routerLink]="['/add-fabric-type']">Új szövettípus</a>
+    </div>
+
+    <div class="add-div">
+      <a class="add-button" [routerLink]="['/add-fabric']">Új szövet</a>
+    </div>
+  </div>
+  <div *ngFor="let type of fabricTypes">
+    <div class="type-container">
+      <div *ngIf=adminFlag style="display: inline-block; margin-left: 20px">
+        <button class="btn btn-danger btnDelete" (click)="deleteType(type.fabricTypeId, type.name)">
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <a [routerLink]="['/fabric-type/edit/', type.fabricTypeId]">
+          <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+        </a>
       </div>
-      <div class="row">
-        <div class="fabricName" *ngFor="let fabric of getFabricsByTypeId(type)">
-          <mat-card>
-          <div class="container">
-            <img class="tn fabric-img" src="{{getFabricUrlById(fabric.fabricId)}}"
-              onerror="this.src='https://via.placeholder.com/300x210'" />
-            <div *ngIf=adminFlag>
-              <button class="btn btn-danger btnDelete" (click)="delete(fabric.fabricId, fabric.name)">
-                <span class="glyphicon glyphicon-remove"></span>
-              </button>
-              <a [routerLink]="['/fabric/edit/', fabric.fabricId]">
-                <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
-              </a>
+      <h4 class="fabric-type text-capitalize">{{type.name}}</h4>
+    </div>
+    <hr>
+    <div class="fabric-container">
+      <div class="column medium-4 small-6 end" *ngFor="let fabric of getFabricsByTypeId(type)">
+        <div class="card card-bordered card-offer">
+          <div class="row hero medium-collapse">
+            <div class="fabric-div">
+              <p class="fabric-p">{{fabric.name}}</p>
+              <div *ngIf=adminFlag>
+                  <button class="btn btn-danger btnDelete" (click)="delete(fabric.fabricId, fabric.name)">
+                    <span class="glyphicon glyphicon-remove"></span>
+                  </button>
+                  <a [routerLink]="['/fabric/edit/', fabric.fabricId]">
+                    <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+                  </a>
+                </div>
             </div>
-            <div>
-              <span class="fabric-name text-capitalize">{{fabric.name}}</span>
+            <div class="fabric-type-div">
+              <p>{{type.name}}</p>
             </div>
           </div>
-        </mat-card>
+          <img class="fabric-image" src="{{getFabricUrlById(fabric.fabricId)}}" alt="Carpentry ">
+          
         </div>
       </div>
     </div>
+  </div>
+  <div class="estimate-div">
+    <a class="estimate-button" [routerLink]="['/request-offer']">Ajánlatkérés</a>
   </div>
 </body>

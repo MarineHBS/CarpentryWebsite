@@ -1,3 +1,8 @@
+<div style="display: flex;" *ngIf="adminFlag">
+  <div class="add-div">
+    <a class="add-button" [routerLink]="['/add-contact']">Új kapcsolat</a>
+  </div>
+</div>
 <div class="container">
   <div class="offer-div">
     <app-offer-form></app-offer-form>

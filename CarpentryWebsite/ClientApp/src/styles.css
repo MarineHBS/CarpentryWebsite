@@ -73,37 +73,6 @@ app-chat-form{
   font-size:16px;
 }
 
-.container .btnDelete {
-  position: absolute;
-  top: 20%;
-  left: 15%;
-  transform: translate(-50%, -50%);
-  -ms-transform: translate(-50%, -50%);
-  background-color: #555;
-  opacity: 0.5;
-  color: white;
-  font-size: 16px;
-  padding: 6px 6px;
-  border: none;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.container .btnEdit {
-    position: absolute;
-    top: 20%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    background-color: #D25C5C;
-    opacity:0.5;
-    color: white;
-    font-size: 16px;
-    padding: 6px 6px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
 
 .container img {
   width: 100%;

@@ -5,15 +5,16 @@
   <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
-<div class="referenceText">
-  Referenciák
+<div style="text-align: center;">
+  <p class="referenceText">Referenciák</p>
+  <a *ngIf="adminFlag" class="add-button" [routerLink]="['/add-reference-picture']">Új referenciakép</a>
 </div>
 <div class="row">
-    <div class="container" *ngFor="let referencePicture of referencePictures">
-      <img class="tn" src="{{referencePicture.pictureUrl}}" onerror="this.src='https://via.placeholder.com/300x210'" />
-      <div *ngIf=adminFlag>
-        <button class="btn btn-danger btnDelete" (click)="delete(referencePicture.pictureUrl)"><span
-            class="glyphicon glyphicon-remove"></span></button>
-      </div>
+  <div class="container" *ngFor="let referencePicture of referencePictures">
+    <img class="tn" src="{{referencePicture.pictureUrl}}" onerror="this.src='https://via.placeholder.com/300x210'" />
+    <div *ngIf=adminFlag>
+      <button class="btn btn-danger btnDelete" (click)="delete(referencePicture.pictureUrl)"><span
+          class="glyphicon glyphicon-remove"></span></button>
     </div>
+  </div>
 </div>

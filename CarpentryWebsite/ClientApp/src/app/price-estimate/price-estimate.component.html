@@ -1,68 +1,71 @@
-<head>
-  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-</head>
+  <!--
+  <div class="combobox">
+    <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()" class="combobox-input"
+      (keyup)="onKeyPress($event)" (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
+      placeholder="Select one..." [ngClass]="{'error': showError}">
+    <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
+    <div class="combobox-options" *ngIf="!listHidden">
+      <mat-list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+        [ngClass]="{'selected': i===selectedIndex}">{{item.name}}</mat-list-item>
+    </div>
+  </div>
+  <div class="combobox" style="margin-top: 50px;">
+    <input type="text" [(ngModel)]="inputItem" (ngModelChange)="getFilteredList()" class="combobox-input"
+      (keyup)="onKeyPress($event)" (blur)="toggleListDisplay(0)" (focus)="toggleListDisplay(1)"
+      placeholder="Select one..." [ngClass]="{'error': showError}">
+    <span *ngIf="showError" class="error-text"><i>Invalid Selection.</i></span>
+    <div class="combobox-options" *ngIf="!listHidden">
+      <mat-list-item *ngFor="let item of filteredList;let i = index" (click)="selectItem(i)"
+        [ngClass]="{'selected': i===selectedIndex}">{{item.name}}</mat-list-item>
+    </div>
+  </div>-->
 
-<body>
+
   <div class="price-div">
-    <div class='title-div'>
-      <h1 class='title-span'>Árajánlat kérése</h1>
-      <button type="button" class="close" aria-label="Close" (click)="onClose()">
-        <span aria-hidden="true" class="closeButtonText">&times;</span>
-      </button>
+    <div *ngIf="!showInputData">
+      <button class="show-input-button" (click)="showInput()">+</button>
     </div>
-    <div class='close-div'>
-    </div>
-    <div class='service-div'>
-      <div>
-        Szolgáltatáscsoport
+    <div class='service-div' *ngIf="showInputData">
+      <span>Szolgáltatáscsoport</span>
+      <div class="select-div">
         <select [(ngModel)]="carpentryServiceTypeId">
           <option *ngFor="let type of carpentryServiceTypeList" [ngValue]="type.carpentryServiceTypeId">
             {{type.name}}
           </option>
         </select>
       </div>
-      <div *ngIf="carpentryServiceTypeId">
-        Szolgáltatás
+      <span *ngIf="carpentryServiceTypeId">Szolgáltatás</span>
+      <div class="select-div" *ngIf="carpentryServiceTypeId">
         <select [(ngModel)]="currentCarpentryServicePrice">
-          <option *ngFor="let service of getCarpentryServicesByTypeId(carpentryServiceTypeId)" [ngValue]="service.price">
+          <option *ngFor="let service of getCarpentryServicesByTypeId(carpentryServiceTypeId)"
+            [ngValue]="service.price">
             {{service.name}}
           </option>
         </select>
-        <input type="number" class="form-control" [(ngModel)]="hour" placeholder="óra">
-        {{currentCarpentryServicePrice}}
       </div>
     </div>
     <div class='fabric-div'>
-      <div>
-        Szövettípus
+      <span class="right-span" *ngIf="currentCarpentryServicePrice"> Szövettípus </span>
+      <div class="select-div right-div" *ngIf="currentCarpentryServicePrice">
         <select [(ngModel)]="fabricTypeId">
           <option *ngFor="let type of fabricTypes" [ngValue]="type.fabricTypeId">
             {{type.name}}
           </option>
         </select>
       </div>
-      <div *ngIf="fabricTypeId">
-        Szövet
+      <span class="right-span" *ngIf="fabricTypeId">Szövet</span>
+      <div class="select-div right-div" *ngIf="fabricTypeId">
         <select [(ngModel)]="currentFabricPrice">
           <option *ngFor="let fabric of getFabricsByTypeId(fabricTypeId)" [ngValue]="fabric.price">
             {{fabric.name}}
           </option>
         </select>
-        <input type="number" class="form-control" [(ngModel)]="size" placeholder="méret">
-        {{currentFabricPrice}}
       </div>
     </div>
-    <div class="estimateButton">
-      <button class="btn btn-primary" (click)="calculateEstimate()" style="font-size:16px">Mehet</button>
+    <span *ngIf="currentFabricPrice">Szövet mérete (négyzetcentiméterben)</span>
+    <input  *ngIf="currentFabricPrice" type="number" class="form-control" [(ngModel)]="size" placeholder="méret">
+    <div class="estimateButton" *ngIf="currentFabricPrice">
+      <button class="btn btn-primary" [disabled]="!size" (click)="calculateEstimate()" style="font-size:16px">Számol</button>
     </div>
-    <div *ngIf="showEstimate" class="priceEstimate">
-        <output class="outputField" name="estimate" for="a b">
-          <span class="concreteFtField">{{priceEstimateResult}}</span>
-          <span class="ftField">HUF</span>
-        </output>
-
-      </div>
   </div>
-</body>
+  <hr>

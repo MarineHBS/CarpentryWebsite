@@ -34,11 +34,65 @@ a.list-group-item.active small {
   font-size: 20px;
   color: #9A2F06;
   line-height: 25px;
-  padding-top: 25px;
   height: 25;
 }
 
 .service-name{
   font-weight: bold;
   color: #7E0000;
+}
+
+.estimate-div {
+  margin-top: 100px;
+  text-align: center;
+}
+
+.estimate-button {
+  padding: 10px 80px 10px 80px;
+  border: 2px solid #000;
+  text-decoration: none;
+  color: #000;
+}
+
+.estimate-button:hover {
+  color:#fff;
+  background: #000;
+  transition-duration: 0.5s;
+}
+
+.add-button {
+  padding: 10px;
+  border: 2px solid #000;
+  text-decoration: none;
+  color: #000;
+}
+
+.add-button:hover {
+  color:#fff;
+  background: #000;
+  transition-duration: 0.5s;
+}
+
+.add-div {
+  margin-right: 30px;
+}
+
+.first-column{ 
+  display: flex;
+  align-items: center;
+}
+
+.btnEdit {
+  background: orange;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.btnEdit:hover {
+  background: darkgoldenrod;
+}
+
+.type-container {
+  display: flex;
+  align-items: center;
 }

@@ -6,7 +6,7 @@ import { FabricTypeService } from '../services/fabric-type.service';
 @Component({
   selector: 'app-add-fabric-type',
   templateUrl: './add-fabric-type.component.html',
-  styleUrls: ['../add-components.css']
+  styleUrls: ['./add-fabric-type.component.css', '../add-components.css']
 })
 export class AddFabricTypeComponent implements OnInit {
   addFabricTypeForm: FormGroup;
@@ -41,7 +41,7 @@ export class AddFabricTypeComponent implements OnInit {
       if (this.title === 'Szövettípus felvétele') {
           this._fabricTypeService.createFabricType(this.addFabricTypeForm.value)
               .subscribe((data) => {
-                  this._router.navigate(['/admin-area']);
+                  this._router.navigate(['/fabrics']);
               }, error => this.errorMessage = error);
       } else if (this.title === 'Edit') {
           this._fabricTypeService.updateFabricType(this.addFabricTypeForm.value)

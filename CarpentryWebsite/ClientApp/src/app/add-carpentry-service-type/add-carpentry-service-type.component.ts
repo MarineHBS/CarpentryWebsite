@@ -9,7 +9,7 @@ import { CarpentryServiceType } from '../models/carpentry-service-type';
 @Component({
     selector: 'app-add-carpentry-service-type-component',
     templateUrl: './add-carpentry-service-type.component.html',
-    styleUrls: ['../add-components.css']
+    styleUrls: ['./add-carpentry-service-type.component.css', '../add-components.css']
 })
 
 export class AddCarpentryServiceTypeComponent implements OnInit {
@@ -45,7 +45,7 @@ export class AddCarpentryServiceTypeComponent implements OnInit {
         if (this.title === 'Szolgáltatáscsoport felvétele') {
             this._carpentryServiceTypeService.createCarpentryServiceType(this.addCarpentryServiceTypeForm.value)
                 .subscribe((data) => {
-                    this._router.navigate(['/admin-area']);
+                    this._router.navigate(['/carpentry-services']);
                 }, error => this.errorMessage = error);
         } else if (this.title === 'Edit') {
             this._carpentryServiceTypeService.updateCarpentryServiceType(this.addCarpentryServiceTypeForm.value)

@@ -6,18 +6,29 @@
 </head>
 
 <body>
+  <div style="display: flex;" *ngIf="adminFlag">
+    <div class="add-div">
+      <a class="add-button" [routerLink]="['/add-carpentry-service-type']">Új szolgáltatástípus</a>
+    </div>
+
+    <div class="add-div">
+      <a class="add-button" [routerLink]="['/add-carpentry-service']">Új szolgáltatás</a>
+    </div>
+  </div>
   <h3> Szolgáltatásaink </h3>
   <div *ngIf="carpentryServices && carpentryServiceTypes">
     <ul *ngFor="let type of carpentryServiceTypes">
-      <div *ngIf=adminFlag>
-        <button class="btn btn-danger btnDelete" (click)="deleteType(type.carpentryServiceTypeId, type.name)">
-          <span class="glyphicon glyphicon-remove"></span>
-        </button>
-        <a [routerLink]="['/carpentry-service-type/edit/', type.carpentryServiceTypeId]">
-          <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
-        </a>
+      <div class="type-container">
+        <div *ngIf=adminFlag>
+          <button class="btn btn-danger btnDelete" (click)="deleteType(type.carpentryServiceTypeId, type.name)">
+            <span class="glyphicon glyphicon-remove"></span>
+          </button>
+          <a [routerLink]="['/carpentry-service-type/edit/', type.carpentryServiceTypeId]">
+            <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+          </a>
+        </div>
+        <h4 class="service-type text-capitalize">{{type.name}}</h4>
       </div>
-      <h4 class="service-type text-capitalize">{{type.name}}</h4>
       <hr>
       <li *ngFor="let service of getCarpentryServicesByTypeId(type)" style="margin-left:20px;">
         <div class="first-column">
@@ -35,5 +46,8 @@
         </div>
       </li>
     </ul>
+  </div>
+  <div class="estimate-div">
+    <a class="estimate-button" [routerLink]="['/request-offer']">Ajánlatkérés</a>
   </div>
 </body>

@@ -6,7 +6,7 @@ import { ContactService } from '../services/contact.service';
 @Component({
     selector: 'app-add-contact',
     templateUrl: './add-contact.component.html',
-    styleUrls: ['../add-components.css']
+    styleUrls: ['./add-contact.component.css', '../add-components.css']
 })
 export class AddContactComponent implements OnInit {
     addContactForm: FormGroup;
@@ -43,7 +43,7 @@ export class AddContactComponent implements OnInit {
         if (this.title === 'Kapcsolat felvétele') {
             this._contactService.createContact(this.addContactForm.value)
                 .subscribe((data) => {
-                    this._router.navigate(['/admin-area']);
+                    this._router.navigate(['/contact-us']);
                 }, error => this.errorMessage = error);
         } else if (this.title === 'Edit') {
             this._contactService.updateContact(this.addContactForm.value)

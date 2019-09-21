@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 @Component({
     selector: 'app-add-reference-picture',
     templateUrl: './add-reference-picture.component.html',
-    styleUrls: ['../add-components.css']
+    styleUrls: ['./add-reference-picture.component.css', '../add-components.css']
 })
 export class AddReferencePictureComponent implements OnInit {
     addReferencePictureForm: FormGroup;
@@ -51,7 +51,7 @@ export class AddReferencePictureComponent implements OnInit {
         }, error => this.errorMessage = error);
     }
     cancel() {
-        this._router.navigate(['/admin-area']);
+        this._router.navigate(['/home']);
     }
 
     onFileSelected(event) {

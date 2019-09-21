@@ -8,7 +8,7 @@ import { FabricService } from '../services/fabric.service';
 @Component({
   selector: 'app-add-fabric',
   templateUrl: './add-fabric.component.html',
-  styleUrls: ['../add-components.css']
+  styleUrls: ['./add-fabric.component.css', '../add-components.css']
 })
 export class AddFabricComponent implements OnInit {
   addFabricForm: FormGroup;
@@ -58,7 +58,7 @@ export class AddFabricComponent implements OnInit {
             name: this.addFabricForm.value.name,
             price: this.addFabricForm.value.price}, this.addFabricForm.value.picture)
               .subscribe((data) => {
-                  this._router.navigate(['/admin-area']);
+                  this._router.navigate(['/fabrics']);
               }, error => this.errorMessage = error);
       } else if (this.title === 'Edit') {
           this._fabricService.updateFabric(this.addFabricForm.value)

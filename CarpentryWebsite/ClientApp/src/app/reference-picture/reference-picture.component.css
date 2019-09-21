@@ -1,13 +1,14 @@
 .row{
   width: 70%;
   overflow: hidden;
-  margin-left: 15%;
+  margin-left: 20%;
 }
 
 .container {
   display: flex;
   float: left;
   width: fit-content;
+  margin: 5px;
 }
 
 .referenceText{
@@ -21,8 +22,8 @@
 
 .container .btnDelete {
   position: absolute;
-  top: 14%;
-  left: 90%;
+  top: 16%;
+  left: 85%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   background-color: #555;
@@ -37,4 +38,17 @@
 
 .btnDelete:hover{
   opacity: 0.1;
+}
+
+.add-button {
+  padding: 10px;
+  border: 2px solid #000;
+  text-decoration: none;
+  color: #000;
+}
+
+.add-button:hover {
+  color:#fff;
+  background: #000;
+  transition-duration: 0.5s;
 }

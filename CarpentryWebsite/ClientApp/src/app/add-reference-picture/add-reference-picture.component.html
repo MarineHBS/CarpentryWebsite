@@ -1,17 +1,16 @@
-<h1 style="margin-top:100px">{{title}}</h1>
-<hr />
-
 <head>
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 </head>
 
 <body>
+  <h1 style="margin-top:100px">{{title}}</h1>
+  <hr />
   <div class="add-div">
     <form [formGroup]="addReferencePictureForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
-      <img [src]="pictureLocation"  style="width:300px;height:200px">
-          <input type="file" #Image accept="image/*" (change)="onFileSelected($event)">
+      <img [src]="pictureLocation" style="width:300px;height:200px">
+      <input type="file" #Image accept="image/*" (change)="onFileSelected($event)">
       <button type="submit" class="btn btn-primary" style="font-size:16px">Referenciakép felvétele</button>
       <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
     </form>

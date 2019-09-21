@@ -54,7 +54,8 @@ import { ContactService } from './services/contact.service';
 import { AddFabricComponent } from './add-fabric/add-fabric.component';
 import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
 import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
-import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule, MatCardModule } from '@angular/material';
+import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule,
+   MatCardModule, MatSelectModule, MatAutocompleteModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { PageBottomComponent } from './page-bottom/page-bottom.component';
@@ -63,6 +64,7 @@ import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { OfferFormComponent } from './offer-form/offer-form.component';
+import { RequestOfferComponent } from './request-offer/request-offer.component';
 
 @NgModule({
   declarations: [
@@ -103,7 +105,8 @@ import { OfferFormComponent } from './offer-form/offer-form.component';
     PageBottomComponent,
     RatingsComponent,
     MapComponent,
-    OfferFormComponent
+    OfferFormComponent,
+    RequestOfferComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -124,9 +127,13 @@ import { OfferFormComponent } from './offer-form/offer-form.component';
       apiKey: 'AIzaSyBrskK5WRN_tcO3tMM6k1QpIwoSzbOMnwY'
     }),
     SlideshowModule,
-    MatCardModule
+    MatCardModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatListModule
   ],
   entryComponents: [
+    PriceEstimateComponent
   ],
   providers: [LocationService, CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,

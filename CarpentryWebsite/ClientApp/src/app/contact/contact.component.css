@@ -57,3 +57,32 @@
     margin-bottom: 40px;
     margin-top: 40px;
 }
+
+.add-button {
+    padding: 10px;
+    border: 2px solid #000;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .add-button:hover {
+    color:#fff;
+    background: #000;
+    transition-duration: 0.5s;
+  }
+  
+  .add-div {
+    margin-left:20%;
+    margin-bottom: 30px;
+    width:70%;
+  }
+
+  .btnEdit {
+    background: orange;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  .btnEdit:hover {
+    background: darkgoldenrod;
+  }
