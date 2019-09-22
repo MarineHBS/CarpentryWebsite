@@ -44,8 +44,8 @@ export class FabricService {
             .catch(this.errorHandler);
     }
 
-    updateFabric(fabric) {
-        return this._http.put(this.CarpentryWebsiteUrl + 'api/fabric/edit', fabric)
+    updateFabric(fabric, picture: string) {
+        return this._http.put(this.CarpentryWebsiteUrl + 'api/fabric/edit', {fabric, picture})
         .map((res: Response) => res.json())
         .catch(this.errorHandler);
     }

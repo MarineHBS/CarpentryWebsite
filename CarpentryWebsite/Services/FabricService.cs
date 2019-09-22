@@ -84,11 +84,29 @@ namespace CarpentryWebsite.Models
             }
         }
 
-        public int UpdateFabric(Fabric fabric)
+        public int UpdateFabric(Fabric fabric, string pictureUrl)
         {
             try
             {
+                Picture exists = db.Picture
+                    .Where(p => p.PictureUrl == pictureUrl)
+                    .FirstOrDefault();
+
+                if (exists == null)
+                {
+                    Picture p = new Picture();
+                    p.PictureUrl = pictureUrl;
+                    db.Picture.Add(p);
+                    fabric.PictureId = p.PictureId;
+                    fabric.Picture = p;
+                }
+                else
+                {
+                    fabric.PictureId = exists.PictureId;
+                    fabric.Picture = exists;
+                }
                 db.Entry(fabric).State = EntityState.Modified;
+                
                 db.SaveChanges();
                 return 1;
             }

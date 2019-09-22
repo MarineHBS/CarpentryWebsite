@@ -61,7 +61,10 @@ export class AddFabricComponent implements OnInit {
                   this._router.navigate(['/fabrics']);
               }, error => this.errorMessage = error);
       } else if (this.title === 'Edit') {
-          this._fabricService.updateFabric(this.addFabricForm.value)
+          this._fabricService.updateFabric({fabricId: this.addFabricForm.value.fabricId,
+            fabricTypeId: this.addFabricForm.value.fabricTypeId,
+            name: this.addFabricForm.value.name,
+            price: this.addFabricForm.value.price}, this.addFabricForm.value.picture)
               .subscribe((data) => {
                   this._router.navigate(['/fabrics']);
               }, error => this.errorMessage = error);
@@ -73,4 +76,5 @@ export class AddFabricComponent implements OnInit {
   get name() { return this.addFabricForm.get('name'); }
   get price() { return this.addFabricForm.get('price'); }
   get picture() { return this.addFabricForm.get('picture'); }
+  get fabricTypeId() { return this.addFabricForm.get('fabricTypeId'); }
 }

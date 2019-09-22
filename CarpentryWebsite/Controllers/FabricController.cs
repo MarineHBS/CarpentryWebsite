@@ -65,9 +65,11 @@ namespace CarpentryWebsite.Controllers
 
         [HttpPut]
         [Route("/api/fabric/edit")]
-        public int Edit([FromBody]Fabric fabric)
+        public int Edit([FromBody]JObject res)
         {
-            return fabricService.UpdateFabric(fabric);
+            Fabric fabric = res["fabric"].ToObject<Fabric>();
+            string url = res["picture"].ToObject<string>();
+            return fabricService.UpdateFabric(fabric, url);
         }
 
         [HttpDelete]

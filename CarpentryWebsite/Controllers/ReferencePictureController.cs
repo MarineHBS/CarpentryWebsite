@@ -49,7 +49,7 @@ namespace CarpentryWebsite.Controllers
         {
             string imageName = null;
 
-            Console.WriteLine("ITTVAGYUNK HEEEEEEEEEEEEEEEEEEEE");
+            Console.WriteLine("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
 
             // TODO: Save uploaded image to assets
             /*
