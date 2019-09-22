@@ -55,7 +55,7 @@ import { AddFabricComponent } from './add-fabric/add-fabric.component';
 import { AddFabricTypeComponent } from './add-fabric-type/add-fabric-type.component';
 import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
 import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule,
-   MatCardModule, MatSelectModule, MatAutocompleteModule, MatListModule } from '@angular/material';
+ MatCardModule, MatSelectModule, MatAutocompleteModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
 import { PageBottomComponent } from './page-bottom/page-bottom.component';
@@ -65,6 +65,8 @@ import { AgmCoreModule } from '@agm/core';
 import {SlideshowModule} from 'ng-simple-slideshow';
 import { OfferFormComponent } from './offer-form/offer-form.component';
 import { RequestOfferComponent } from './request-offer/request-offer.component';
+import { OfferRequestService } from './services/offer-request.service';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -130,7 +132,8 @@ import { RequestOfferComponent } from './request-offer/request-offer.component';
     MatCardModule,
     MatSelectModule,
     MatAutocompleteModule,
-    MatListModule
+    MatListModule,
+    AgGridModule.withComponents([])
   ],
   entryComponents: [
     PriceEstimateComponent
@@ -138,7 +141,7 @@ import { RequestOfferComponent } from './request-offer/request-offer.component';
   providers: [LocationService, CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,
     ReferencePictureService, RatingService, UserService, AuthGuard, ChatService,
-    AngularFireAuth],
+    AngularFireAuth, OfferRequestService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

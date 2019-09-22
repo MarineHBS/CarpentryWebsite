@@ -11,6 +11,7 @@ export class LogoutComponent implements OnInit {
 
     constructor(private userService: UserService, private router: Router) {
         this.userService.logout();
+        window.alert('Sikeresen kijelentkezett');
         this.router.navigate(['/home']);
      }
 

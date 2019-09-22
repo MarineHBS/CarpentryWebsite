@@ -19,7 +19,7 @@ namespace CarpentryWebsite.Controllers
         private readonly UserManager<MyUser> _userManager;
         private readonly IJwtFactory _jwtFactory;
         private readonly JwtIssuerOptions _jwtOptions;
-        LocationService locationService = new LocationService();
+        private readonly CarpentryServiceService carpentryServiceService = new CarpentryServiceService();
 
         public AuthController(UserManager<MyUser> userManager, IJwtFactory jwtFactory, IOptions<JwtIssuerOptions> jwtOptions)
         {
@@ -42,7 +42,7 @@ namespace CarpentryWebsite.Controllers
                 return BadRequest(Errors.AddErrorToModelState("login_failure", "Invalid username or password.", ModelState));
             }
             var id = identity.Claims.Single(c => c.Type == "id").Value;
-            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented }, locationService.adminFlag(id));
+            var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented }, carpentryServiceService.adminFlag(id));
             return new OkObjectResult(jwt);
         }
 

@@ -9,6 +9,5 @@ namespace CarpentryWebsite.Models
     {
         public MyUser() : base() { }
         public bool isAdmin { get; set; }
-        public IEnumerable<Favorite> Favorites { get; set; }
     }
 }

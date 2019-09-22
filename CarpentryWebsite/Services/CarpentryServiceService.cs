@@ -24,6 +24,18 @@ namespace CarpentryWebsite.Models
         {
         }
 
+        public bool adminFlag(string userId)
+        {
+            try
+            {
+                return db.Users.Find(userId).isAdmin;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
         public IEnumerable<CarpentryService> GetAllCarpentryServices()
         {
             try{

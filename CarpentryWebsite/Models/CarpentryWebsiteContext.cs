@@ -16,9 +16,6 @@ namespace CarpentryWebsite.Models
             : base(options)
         {
         }
-
-        public virtual DbSet<Location> Location { get; set; }
-        public virtual DbSet<Favorite> Favorite { get; set; }
   
         public virtual DbSet<CarpentryService> CarpentryService { get; set; }
         public virtual DbSet<CarpentryServiceType> CarpentryServiceType { get; set; }
@@ -28,6 +25,7 @@ namespace CarpentryWebsite.Models
         public virtual DbSet<Picture> Picture { get; set; }
         public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<Rating> Rating { get; set; }
+        public virtual DbSet<OfferRequest> OfferRequest { get; set; }
 
 
 
@@ -44,19 +42,6 @@ namespace CarpentryWebsite.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Location>(entity =>
-            {
-                entity.Property(e => e.LocationId).HasColumnName("LocationID");
-
-                entity.Property(e => e.Description)
-                    .IsRequired()
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Name)
-                    .IsRequired()
-                    .HasMaxLength(20)
-                    .IsUnicode(false);
-            });
         }
     }
 }

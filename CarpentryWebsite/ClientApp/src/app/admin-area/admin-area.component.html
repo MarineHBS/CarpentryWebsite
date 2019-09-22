@@ -1,48 +1,17 @@
 <body>
   <div *ngIf="isLoggedIn">
-    <table style="width:100%">
-      <tr class="title">
-        <th>Referenciaképek</th>
-        <th>Szolgáltatások</th>
-        <th>Szövetek</th>
-        <th>Kapcsolat</th>
-      </tr>
-      <tr>
-        <td>
-          <a [routerLink]="[ '/add-reference-picture' ]">
-            <button>Új referenciakép felvétele</button>
-          </a>
-        </td>
-        <td>
-          <a [routerLink]="[ '/add-carpentry-service-type' ]">
-            <button>Új szolgáltatáscsoport felvétele</button>
-          </a>
-        </td>
-        <td>
-          <a [routerLink]="[ '/add-fabric-type' ]">
-            <button>Új szövettípus felvétele</button>
-          </a>
-        </td>
-        <td>
-          <a [routerLink]="[ '/add-contact' ]">
-            <button>Új kapcsolat felvétele</button>
-          </a>
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <a [routerLink]="[ '/add-carpentry-service' ]">
-            <button>Új szolgáltatás felvétele</button>
-          </a>
-        </td>
-        <td>
-          <a [routerLink]="[ '/add-fabric' ]">
-            <button>Új szövet felvétele</button>
-          </a>
-        </td>
-      </tr>
-    </table>
+    <h3>Ajánlatkérések</h3>
+    <ag-grid-angular 
+    #agGrid
+      style="width: 900px; height: 300px;" 
+      class="ag-theme-balham"
+      [rowData]="rowData | async" 
+      [columnDefs]="columnDefs"
+      [defaultColDef]="defaultColDef"
+      [rowSelection]="rowSelection"
+      (rowSelected)="onRowSelected($event)"
+      >
+    </ag-grid-angular>
   </div>
   <div *ngIf="!isLoggedIn">
     <h1>Csak adminok számára elérhető</h1>

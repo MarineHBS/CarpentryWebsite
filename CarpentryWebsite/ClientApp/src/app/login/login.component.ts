@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
                         }
                         if (!result['error']) {
                             this.showError = false;
+                            window.alert('Sikeres bejelentkezés');
                             this.router.navigate(['/home']);
                         }
                     },

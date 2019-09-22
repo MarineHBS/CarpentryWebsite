@@ -30,7 +30,7 @@ export class ContactComponent implements OnInit {
       });
   }
 
-  deleteContact(id: number, name: string){
+  deleteContact(id: number, name: string) {
     const confirmation = confirm('Biztosan törölni szeretné ezt a kapcsolatot?  ' + name);
     if (confirmation) {
       this._contactService.deleteContact(id).subscribe(data => this.getContacts());

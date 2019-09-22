@@ -56,6 +56,7 @@ export class UserService {
         if (now < logoutDate) {
             console.log('Time left until logging out automatically: ' + leftUntilLogout / 1000 + ' seconds');
             setTimeout(() => {
+                window.alert('5 perc lejárt, automatikus kijelentkeztetés, kérjük lépjen be újra');
                 this.logout();
                 this.router.navigate(['/login']);
             }, leftUntilLogout);

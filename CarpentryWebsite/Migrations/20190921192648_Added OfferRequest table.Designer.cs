@@ -4,14 +4,16 @@ using CarpentryWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarpentryWebsite.Migrations
 {
     [DbContext(typeof(CarpentryWebsiteContext))]
-    partial class CarpentryWebsiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190921192648_Added OfferRequest table")]
+    partial class AddedOfferRequesttable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -108,6 +110,48 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("FabricTypeId");
 
                     b.ToTable("FabricType");
+                });
+
+            modelBuilder.Entity("CarpentryWebsite.Models.Favorite", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("LocationID");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("LocationID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Favorite");
+                });
+
+            modelBuilder.Entity("CarpentryWebsite.Models.Location", b =>
+                {
+                    b.Property<int>("LocationId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("LocationID")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .IsUnicode(false);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .IsUnicode(false);
+
+                    b.Property<string>("Picture");
+
+                    b.HasKey("LocationId");
+
+                    b.ToTable("Location");
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.MyUser", b =>
@@ -364,6 +408,18 @@ namespace CarpentryWebsite.Migrations
                         .WithMany("Fabrics")
                         .HasForeignKey("PictureId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CarpentryWebsite.Models.Favorite", b =>
+                {
+                    b.HasOne("CarpentryWebsite.Models.Location", "Location")
+                        .WithMany("FavoritedBy")
+                        .HasForeignKey("LocationID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("CarpentryWebsite.Models.MyUser", "User")
+                        .WithMany("Favorites")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.ReferencePicture", b =>

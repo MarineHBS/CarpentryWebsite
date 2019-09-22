@@ -56,6 +56,7 @@ export class RegisterComponent implements OnInit {
                             }
                             if (!result['error']) {
                             this.showError = false;
+                            window.alert('Sikeres regisztráció');
                             this.router.navigate(['/login']);
                         }
                     },
