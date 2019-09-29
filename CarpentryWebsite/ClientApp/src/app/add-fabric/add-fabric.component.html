@@ -19,8 +19,8 @@
           <span class="text-danger" *ngIf="price.invalid && formDir.submitted">Kötelező árat megadni</span>
         </div>
         <div class="form-group">
-          <input type="text" class="form-control" formControlName="picture" placeholder="Szövethez tartozó kép">
-          <span class="text-danger" *ngIf="picture.invalid && formDir.submitted">Adjon meg egy kép URL-t</span>
+          <img [src]="pictureLocation" style="width:300px;height:200px">
+          <input type="file" #Image accept="image/*" (change)="onFileSelected($event)">
         </div>
         <div style="margin-bottom: 20px;">
           Szövettípus:
@@ -31,8 +31,8 @@
             </option>
           </select>
         </div>
-        <button type="submit" class="btn btn-primary" style="font-size:16px">Szövet felvétele</button>
-        <button class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
+        <button type="button" (click)="save()" class="btn btn-primary" style="font-size:16px">Szövet felvétele</button>
+        <button type="button" class=btn (click)="cancel()" style="font-size:16px">Mégse</button>
       </div>
     </form>
   </div>

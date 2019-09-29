@@ -28,7 +28,7 @@ export class AddFabricTypeComponent implements OnInit {
 
   ngOnInit() {
       if (this.fabricTypeId > 0) {
-          this.title = 'Edit';
+          this.title = 'Szövettípus módosítása';
           this._fabricTypeService.getFabricTypeDetails(this.fabricTypeId)
               .subscribe(resp => this.addFabricTypeForm.setValue(resp),
                   error => this.errorMessage = error);
@@ -43,7 +43,7 @@ export class AddFabricTypeComponent implements OnInit {
               .subscribe((data) => {
                   this._router.navigate(['/fabrics']);
               }, error => this.errorMessage = error);
-      } else if (this.title === 'Edit') {
+      } else if (this.title === 'Szövettípus módosítása') {
           this._fabricTypeService.updateFabricType(this.addFabricTypeForm.value)
               .subscribe((data) => {
                   this._router.navigate(['/fabrics']);
@@ -51,7 +51,7 @@ export class AddFabricTypeComponent implements OnInit {
       }
   }
   cancel() {
-      this._router.navigate(['/admin-area']);
+      this._router.navigate(['/fabrics']);
   }
   get name() { return this.addFabricTypeForm.get('name'); }
 

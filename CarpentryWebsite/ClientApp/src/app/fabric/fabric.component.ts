@@ -50,7 +50,7 @@ export class FabricComponent implements OnInit {
                 this.fabricPictures = pictures;
                 for (const fabric of fabrics) {
                   this.fabricsWithUrls.set(fabric.fabricId, this.fabricPictures
-                    .filter(pic => pic.pictureId === fabric.pictureId)[0].pictureUrl);
+                    .filter(pic => pic.pictureId === fabric.pictureId)[0].pictureName);
                 }
               });
           });

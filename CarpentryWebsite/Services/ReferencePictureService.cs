@@ -6,6 +6,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CarpentryWebsite.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace CarpentryWebsite.Models
 {
@@ -15,9 +18,12 @@ namespace CarpentryWebsite.Models
 
         private readonly UserManager<MyUser> _userManager;
 
-        public ReferencePictureService(UserManager<MyUser> userManager)
+        private IHostingEnvironment _env;
+
+        public ReferencePictureService(UserManager<MyUser> userManager, IHostingEnvironment env)
         {
             _userManager = userManager;
+            _env = env;
         }
 
         public ReferencePictureService()
@@ -50,29 +56,59 @@ namespace CarpentryWebsite.Models
             }
         }
 
-        public int AddReferencePicture(Picture picture)
+        public int AddReferencePicture(IFormFile image)
         {
             try
             {
-                ReferencePicture referencePicture = new ReferencePicture();
-                Picture exists = db.Picture.Where(p => p.PictureUrl == picture.PictureUrl).FirstOrDefault();
+                var dir = _env.ContentRootPath;
 
-                if (exists == null)
-                {
-                    db.Picture.Add(picture);
-                    referencePicture.PictureId = picture.PictureId;
-                    referencePicture.Picture = picture;
-                }
-                else
-                {
-                    referencePicture.PictureId = exists.PictureId;
-                    referencePicture.Picture = exists;
-                }
-                
+                string pathToReferencePictures = "/ClientApp/src/assets/reference_pictures";
 
-                db.ReferencePicture.Add(referencePicture);
-                db.SaveChanges();
-                return 1;
+                string fullPath = dir + pathToReferencePictures;
+
+                if (!Directory.Exists(fullPath))
+                {
+                    Directory.CreateDirectory(fullPath);
+                }
+
+                int fileSuffix = 1;
+
+                string fullFileName = "reference_picture_" + fileSuffix + ".png";
+
+                bool exists = System.IO.File.Exists(Path.Combine(fullPath, fullFileName));
+
+                while (exists)
+                {
+                    fileSuffix++;
+                    fullFileName = "reference_picture_" + fileSuffix + ".png";
+                    exists = System.IO.File.Exists(Path.Combine(fullPath, fullFileName));
+                }
+
+                using (var fileStream = new FileStream(Path.Combine(fullPath, fullFileName), FileMode.Create, FileAccess.Write))
+                {
+                    image.CopyTo(fileStream);
+
+                    ReferencePicture referencePicture = new ReferencePicture();
+                    Picture pictureExists = db.Picture.Where(p => p.PictureName == fullFileName).FirstOrDefault();
+
+                    if (pictureExists == null)
+                    {
+                        Picture picture = new Picture(0, fullFileName);
+                        db.Picture.Add(picture);
+                        referencePicture.PictureId = picture.PictureId;
+                        referencePicture.Picture = picture;
+                    }
+                    else
+                    {
+                        referencePicture.PictureId = pictureExists.PictureId;
+                        referencePicture.Picture = pictureExists;
+                    }
+
+
+                    db.ReferencePicture.Add(referencePicture);
+                    db.SaveChanges();
+                    return 1;
+                }
             }
             catch
             {
@@ -111,8 +147,15 @@ namespace CarpentryWebsite.Models
         {
             try
             {
-                ReferencePicture referencePicture = db.ReferencePicture.Find(id);
-                db.ReferencePicture.Remove(referencePicture);
+                var dir = _env.ContentRootPath;
+
+                string pathToReferencePictures = "/ClientApp/src/assets/reference_pictures";
+
+                string fullPath = dir + pathToReferencePictures;
+               
+                Picture picture = db.Picture.Find(id);
+                db.Picture.Remove(picture);
+                File.Delete(Path.Combine(fullPath, picture.PictureName));
                 db.SaveChanges();
                 return 1;
             }

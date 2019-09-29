@@ -24,7 +24,7 @@ namespace CarpentryWebsite.Helpers
                 case "PasswordTooShort":
                     return "Password is too short";
                 case "InvalidUserName":
-                    return "The username you specified is invalid";
+                    return "Please enter only characters A-Z and 0-9";
                 default:
                     return "Server error";
             }

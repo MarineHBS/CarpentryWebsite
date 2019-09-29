@@ -38,16 +38,11 @@ export class AddReferencePictureComponent implements OnInit {
             return;
         }
         const formData: FormData = new FormData();
-        console.log('iamge is', this.selectedFile);
+
         formData.append('image', this.selectedFile, this.selectedFile.name);
-        console.log('formdata', formData);
-        /*this._referencePictureService.createReferencePicture(this.addReferencePictureForm.value)
-            .subscribe((data) => {
-                this._router.navigate(['/admin-area']);
-            }, error => this.errorMessage = error);*/
         this._referencePictureService.uploadReferencePicture(formData)
         .subscribe((data) => {
-            console.log('data');
+            this._router.navigate(['/home']);
         }, error => this.errorMessage = error);
     }
     cancel() {

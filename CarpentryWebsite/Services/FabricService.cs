@@ -6,6 +6,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using CarpentryWebsite.Models;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using Microsoft.AspNetCore.Http;
 
 namespace CarpentryWebsite.Models
 {
@@ -15,9 +18,12 @@ namespace CarpentryWebsite.Models
 
         private readonly UserManager<MyUser> _userManager;
 
-        public FabricService(UserManager<MyUser> userManager)
+        private IHostingEnvironment _env;
+
+        public FabricService(UserManager<MyUser> userManager, IHostingEnvironment env)
         {
             _userManager = userManager;
+            _env = env;
         }
 
         public FabricService()
@@ -53,30 +59,59 @@ namespace CarpentryWebsite.Models
             }
         }
 
-        public int AddFabric(Fabric fabric, string pictureUrl)
+        public int AddFabric(Fabric fabric, IFormFile image)
         {
             try
             {
-                Picture exists = db.Picture
-                    .Where(p => p.PictureUrl == pictureUrl)
+                var dir = _env.ContentRootPath;
+
+                string pathToFabricPictures = "/ClientApp/src/assets/fabric_pictures";
+
+                string fullPath = dir + pathToFabricPictures;
+
+                if (!Directory.Exists(fullPath))
+                {
+                    Directory.CreateDirectory(fullPath);
+                }
+
+                int fileSuffix = 1;
+
+                string fullFileName = "fabric_picture_" + fileSuffix + ".png";
+
+                bool exists = System.IO.File.Exists(Path.Combine(fullPath, fullFileName));
+
+                while (exists)
+                {
+                    fileSuffix++;
+                    fullFileName = "fabric_picture_" + fileSuffix + ".png";
+                    exists = System.IO.File.Exists(Path.Combine(fullPath, fullFileName));
+                }
+
+                using (var fileStream = new FileStream(Path.Combine(fullPath, fullFileName), FileMode.Create, FileAccess.Write))
+                {
+                    image.CopyTo(fileStream);
+
+                    Fabric fabricToCreate = new Fabric();
+                    Picture pictureExists = db.Picture
+                    .Where(p => p.PictureName == fullFileName)
                     .FirstOrDefault();
 
-                if (exists == null)
-                {
-                    Picture p = new Picture();
-                    p.PictureUrl = pictureUrl;
-                    db.Picture.Add(p);
-                    fabric.PictureId = p.PictureId;
-                    fabric.Picture = p;
+                    if (pictureExists == null)
+                    {
+                        Picture picture = new Picture(0, fullFileName);
+                        db.Picture.Add(picture);
+                        fabric.PictureId = picture.PictureId;
+                        fabric.Picture = picture;
+                    }
+                    else
+                    {
+                        fabric.PictureId = pictureExists.PictureId;
+                        fabric.Picture = pictureExists;
+                    }
+                    db.Fabric.Add(fabric);
+                    db.SaveChanges();
+                    return 1;
                 }
-                else
-                {
-                    fabric.PictureId = exists.PictureId;
-                    fabric.Picture = exists;
-                }
-                db.Fabric.Add(fabric);
-                db.SaveChanges();
-                return 1;
             }
             catch
             {
@@ -84,31 +119,72 @@ namespace CarpentryWebsite.Models
             }
         }
 
-        public int UpdateFabric(Fabric fabric, string pictureUrl)
+        public int UpdateFabric(Fabric fabric, IFormFile image, string imageChanged)
         {
             try
             {
-                Picture exists = db.Picture
-                    .Where(p => p.PictureUrl == pictureUrl)
-                    .FirstOrDefault();
-
-                if (exists == null)
+                if (imageChanged.Equals("false"))
                 {
-                    Picture p = new Picture();
-                    p.PictureUrl = pictureUrl;
-                    db.Picture.Add(p);
-                    fabric.PictureId = p.PictureId;
-                    fabric.Picture = p;
+                    Fabric oldFabric = db.Fabric.Find(fabric.FabricId);
+                    fabric.PictureId = oldFabric.PictureId;
+                    db.Entry(oldFabric).State = EntityState.Detached;
+                    db.Entry(fabric).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return 1;
                 }
                 else
                 {
-                    fabric.PictureId = exists.PictureId;
-                    fabric.Picture = exists;
+
+                    var dir = _env.ContentRootPath;
+
+                    string pathToReferencePictures = "/ClientApp/src/assets/fabric_pictures";
+
+                    string fullPath = dir + pathToReferencePictures;
+
+                    if (!Directory.Exists(fullPath))
+                    {
+                        Directory.CreateDirectory(fullPath);
+                    }
+
+                    int fileSuffix = 1;
+
+                    string fullFileName = "fabric_picture_" + fileSuffix + ".png";
+
+                    bool exists = File.Exists(Path.Combine(fullPath, fullFileName));
+
+                    while (exists)
+                    {
+                        fileSuffix++;
+                        fullFileName = "fabric_picture_" + fileSuffix + ".png";
+                        exists = System.IO.File.Exists(Path.Combine(fullPath, fullFileName));
+                    }
+
+                    using (var fileStream = new FileStream(Path.Combine(fullPath, fullFileName), FileMode.Create, FileAccess.Write))
+                    {
+                        image.CopyTo(fileStream);
+                        Picture pictureExists = db.Picture
+                        .Where(p => p.PictureName == fullFileName)
+                        .FirstOrDefault();
+
+                        if (pictureExists == null)
+                        {
+                            Picture picture = new Picture(0, fullFileName);
+                            db.Picture.Add(picture);
+                            fabric.PictureId = picture.PictureId;
+                            fabric.Picture = picture;
+                        }
+                        else
+                        {
+                            fabric.PictureId = pictureExists.PictureId;
+                            fabric.Picture = pictureExists;
+                        }
+                        db.Entry(fabric).State = EntityState.Modified;
+
+                        db.SaveChanges();
+                        return 1;
+                    }
                 }
-                db.Entry(fabric).State = EntityState.Modified;
-                
-                db.SaveChanges();
-                return 1;
+
             }
             catch
             {
@@ -146,8 +222,15 @@ namespace CarpentryWebsite.Models
         {
             try
             {
-                Fabric fabric = db.Fabric.Find(id);
-                db.Fabric.Remove(fabric);
+                var dir = _env.ContentRootPath;
+
+                string pathToFabricPictures = "/ClientApp/src/assets/fabric_pictures";
+
+                string fullPath = dir + pathToFabricPictures;
+
+                Picture picture = db.Picture.Find(db.Fabric.Find(id).PictureId);
+                db.Picture.Remove(picture);
+                File.Delete(Path.Combine(fullPath, picture.PictureName));
                 db.SaveChanges();
                 return 1;
             }

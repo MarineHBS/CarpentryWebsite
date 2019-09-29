@@ -1,3 +1,10 @@
+<head>
+
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  </head>
+
 <div style="display: flex;" *ngIf="adminFlag">
   <div class="add-div">
     <a class="add-button" [routerLink]="['/add-contact']">Új kapcsolat</a>
@@ -17,7 +24,9 @@
                 <span class="glyphicon glyphicon-remove"></span>
               </button>
               <a [routerLink]="['/contact/edit/', contact.contactId]">
-                <button class="btn btn-danger btnEdit"><span class="glyphicon glyphicon-pencil"></span></button>
+                <button class="btn btn-danger btnEdit">
+                    <span class="glyphicon glyphicon-pencil"></span>
+                </button>
               </a>
             </div>
             <span class="nameText">Név:</span> {{contact.name}}<br>

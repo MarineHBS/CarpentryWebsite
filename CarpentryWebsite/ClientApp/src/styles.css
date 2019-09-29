@@ -13,6 +13,12 @@ app-chat-form{
   height: auto;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 
 .price-estimate-container .mat-dialog-container{
    background: #ffffff;

@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CarpentryWebsite.Models;
 using Newtonsoft.Json.Linq;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace CarpentryWebsite.Controllers
 {
@@ -16,13 +18,17 @@ namespace CarpentryWebsite.Controllers
     [Route("api/[controller]")]
     public class FabricController : Controller
     {
-        FabricService fabricService = new FabricService();
+        FabricService fabricService;
+
+        private IHostingEnvironment _env;
 
         private readonly UserManager<MyUser> _userManager;
 
-        public FabricController(UserManager<MyUser> userManager)
+        public FabricController(UserManager<MyUser> userManager, IHostingEnvironment env)
         {
             _userManager = userManager;
+            _env = env;
+            fabricService = new FabricService(_userManager, _env);
         }
 
         [HttpGet]
@@ -49,11 +55,11 @@ namespace CarpentryWebsite.Controllers
 
         [HttpPost]
         [Route("/api/fabric/create")]
-        public int Create([FromBody] JObject res)
+        public int Create(IFormFile image, string fabricId, string fabricTypeId, string fabricName, string price)
         {
-            Fabric fabric = res["fabric"].ToObject<Fabric>();
-            string url = res["picture"].ToObject<string>();
-            return fabricService.AddFabric(fabric, url);
+            Fabric fabric = new Fabric(int.Parse(fabricId), fabricName, int.Parse(price), int.Parse(fabricTypeId));
+            
+            return fabricService.AddFabric(fabric, image);
         }
 
         [HttpGet]
@@ -65,11 +71,12 @@ namespace CarpentryWebsite.Controllers
 
         [HttpPut]
         [Route("/api/fabric/edit")]
-        public int Edit([FromBody]JObject res)
+        public int Edit(IFormFile image, string imageChanged, string fabricId, string fabricTypeId, string fabricName, string price)
         {
-            Fabric fabric = res["fabric"].ToObject<Fabric>();
-            string url = res["picture"].ToObject<string>();
-            return fabricService.UpdateFabric(fabric, url);
+
+            Fabric fabric = new Fabric(int.Parse(fabricId), fabricName, int.Parse(price), int.Parse(fabricTypeId));
+
+            return fabricService.UpdateFabric(fabric, image, imageChanged);
         }
 
         [HttpDelete]

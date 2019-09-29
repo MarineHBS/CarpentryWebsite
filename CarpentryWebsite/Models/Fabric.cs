@@ -14,5 +14,15 @@ namespace CarpentryWebsite.Models
         public FabricType FabricType { get; set; }
         public int PictureId { get; set; }
         public Picture Picture { get; set; }
+
+        public Fabric() { }
+
+        public Fabric(int fabricId, string name, int price, int fabricTypeId)
+        {
+            FabricId = fabricId;
+            Name = name;
+            Price = price;
+            FabricTypeId = fabricTypeId;
+        }
     }
 }

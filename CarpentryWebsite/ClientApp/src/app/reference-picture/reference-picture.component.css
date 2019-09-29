@@ -52,3 +52,8 @@
   background: #000;
   transition-duration: 0.5s;
 }
+
+.tn {
+  width: 300px;
+  height: 210px;
+}

@@ -38,14 +38,14 @@ export class FabricService {
         .catch(this.errorHandler);
     }
 
-    createFabric(fabric, picture: string) {
-        return this._http.post(this.CarpentryWebsiteUrl + 'api/fabric/create', {fabric, picture})
+    createFabric(formData: FormData) {
+        return this._http.post(this.CarpentryWebsiteUrl + 'api/fabric/create', formData)
             .map((response: Response) => response.json())
             .catch(this.errorHandler);
     }
 
-    updateFabric(fabric, picture: string) {
-        return this._http.put(this.CarpentryWebsiteUrl + 'api/fabric/edit', {fabric, picture})
+    updateFabric(formData: FormData) {
+        return this._http.put(this.CarpentryWebsiteUrl + 'api/fabric/edit', formData)
         .map((res: Response) => res.json())
         .catch(this.errorHandler);
     }

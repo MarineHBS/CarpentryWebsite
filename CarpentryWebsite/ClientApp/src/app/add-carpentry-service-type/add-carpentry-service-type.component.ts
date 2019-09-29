@@ -32,7 +32,7 @@ export class AddCarpentryServiceTypeComponent implements OnInit {
 
     ngOnInit() {
         if (this.carpentryServiceTypeId > 0) {
-            this.title = 'Edit';
+            this.title = 'Szolgáltatáscsoport módosítása';
             this._carpentryServiceTypeService.getCarpentryServiceTypeDetails(this.carpentryServiceTypeId)
                 .subscribe(resp => this.addCarpentryServiceTypeForm.setValue(resp),
                     error => this.errorMessage = error);
@@ -47,7 +47,7 @@ export class AddCarpentryServiceTypeComponent implements OnInit {
                 .subscribe((data) => {
                     this._router.navigate(['/carpentry-services']);
                 }, error => this.errorMessage = error);
-        } else if (this.title === 'Edit') {
+        } else if (this.title === 'Szolgáltatáscsoport módosítása') {
             this._carpentryServiceTypeService.updateCarpentryServiceType(this.addCarpentryServiceTypeForm.value)
                 .subscribe((data) => {
                     this._router.navigate(['/carpentry-services']);
@@ -55,7 +55,7 @@ export class AddCarpentryServiceTypeComponent implements OnInit {
         }
     }
     cancel() {
-        this._router.navigate(['/admin-area']);
+        this._router.navigate(['/carpentry-services']);
     }
     get name() { return this.addCarpentryServiceTypeForm.get('name'); }
 }

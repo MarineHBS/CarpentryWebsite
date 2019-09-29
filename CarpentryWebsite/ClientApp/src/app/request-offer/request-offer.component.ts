@@ -19,7 +19,6 @@ export class RequestOfferComponent implements OnInit, AfterContentInit {
 
   getPriceEstimateValue(value: number) {
     this.priceEstimateValue += value;
-    console.log('valehaoekoepthkaeth' + this.priceEstimateValue);
   }
 
   ngAfterContentInit(): void {

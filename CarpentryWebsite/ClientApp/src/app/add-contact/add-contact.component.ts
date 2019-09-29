@@ -29,7 +29,7 @@ export class AddContactComponent implements OnInit {
 
     ngOnInit() {
         if (this.contactId > 0) {
-            this.title = 'Edit';
+            this.title = 'Kapcsolat módosítása';
             this._contactService.getContactDetails(this.contactId)
                 .subscribe(resp => this.addContactForm.setValue(resp),
                     error => this.errorMessage = error);
@@ -45,7 +45,7 @@ export class AddContactComponent implements OnInit {
                 .subscribe((data) => {
                     this._router.navigate(['/contact-us']);
                 }, error => this.errorMessage = error);
-        } else if (this.title === 'Edit') {
+        } else if (this.title === 'Kapcsolat módosítása') {
             this._contactService.updateContact(this.addContactForm.value)
                 .subscribe((data) => {
                     this._router.navigate(['/contact-us']);
@@ -53,7 +53,7 @@ export class AddContactComponent implements OnInit {
         }
     }
     cancel() {
-        this._router.navigate(['/admin-area']);
+        this._router.navigate(['/contact-us']);
     }
     get name() { return this.addContactForm.get('name'); }
     get phone() { return this.addContactForm.get('phone'); }

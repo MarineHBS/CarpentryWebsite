@@ -76,8 +76,11 @@ a {
 }
 
 .navbar{
-    width: 70%;
-    margin-left: 15%;
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media (min-width: 768px) {
@@ -97,11 +100,12 @@ a {
   .navbar ul {
     float: none;
     display: flex;
+    justify-content: center;
   }
 
   .navbar li {
     float: none;
-    font-size: 15px;
+    font-size: 12px;
     margin: 6px;
     align-items: center;
     display: flex;

@@ -12,6 +12,8 @@ export class AdminAreaComponent implements OnInit {
   isLoggedIn: boolean;
   defaultColDef: any;
   rowSelection;
+  message: string;
+  showModal = false;
 
   columnDefs = [
     { headerName: 'Név', field: 'name', sortable: true, filter: true },
@@ -35,7 +37,10 @@ export class AdminAreaComponent implements OnInit {
 
   onRowSelected(event) {
     if (event.node.selected) {
-      window.alert('Az üzenet: ' + event.node.data.message);
+      this.showModal = true;
+      console.log('showmodal changed ' + this.showModal);
+      this.message = event.node.data.message;
+      // window.alert('Az üzenet: ' + event.node.data.message);
     }
   }
 

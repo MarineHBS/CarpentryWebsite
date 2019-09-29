@@ -6,20 +6,28 @@ using System.Web;
 using System.Web.Http;
 using System.IO;
 using System;
+using Microsoft.AspNetCore.Http;
+using System.Diagnostics;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CarpentryWebsite.Controllers
 {
     //[Authorize(Policy = "ApiUser")]
     [Route("api/[controller]")]
     public class ReferencePictureController : Controller
-    {
-        ReferencePictureService referencePictureService = new ReferencePictureService();
-
+    { 
         private readonly UserManager<MyUser> _userManager;
 
-        public ReferencePictureController(UserManager<MyUser> userManager)
+        private IHostingEnvironment _env;
+
+        ReferencePictureService referencePictureService;
+
+        public ReferencePictureController(UserManager<MyUser> userManager, IHostingEnvironment env)
         {
+            
             _userManager = userManager;
+            _env = env;
+            referencePictureService = new ReferencePictureService(_userManager, _env);
         }
 
         [HttpGet]
@@ -40,28 +48,15 @@ namespace CarpentryWebsite.Controllers
         [Route("/api/reference-picture/create")]
         public int Create([FromBody] Picture picture)
         {
-            return referencePictureService.AddReferencePicture(picture);
+            //return referencePictureService.AddReferencePicture(picture);
+            return -1;
         }
 
         [HttpPost]
         [Route("/api/reference-picture/upload")]
-        public int Upload()
+        public int Upload(IFormFile image)
         {
-            string imageName = null;
-
-            Console.WriteLine("EEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
-
-            // TODO: Save uploaded image to assets
-            /*
-            var httpRequest = HttpContext.Current.Request;
-        
-            var postedFile = httpRequest.Files["image"];
-
-            var filePath = HttpContext.Current.Server.MapPath("~/assets/reference-pictures/" + imageName);
-            postedFile.SaveAs(filePath);
-            */
-
-            return -1;
+            return referencePictureService.AddReferencePicture(image);
         }
 
         [HttpGet]
