@@ -11,6 +11,16 @@ namespace CarpentryWebsite.Models
         public string Name { get; set; }
         public string EmailAddress { get; set; }
         public string Message { get; set; }
-        public string Picture { get; set; }
+        public int? PictureId { get; set; }
+        public Picture Picture { get; set; }
+
+        public OfferRequest() { }
+
+        public OfferRequest(string name, string emailAddress, string message)
+        {
+            Name = name;
+            EmailAddress = emailAddress;
+            Message = message;
+        }
     }
 }

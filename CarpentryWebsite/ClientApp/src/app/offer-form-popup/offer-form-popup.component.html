@@ -1,0 +1,29 @@
+<body>
+  <div class="login-form">
+    <div class="main-div">
+      <div class="inputForm">
+        <span class="login-span">Kért ajánlat</span>
+        <hr>
+        <div class="form-group">
+          <label>Név</label>
+          <p class="form-control">{{name}}</p>
+        </div>
+        <div class="form-group">
+          <label>E-mail cím</label>
+          <p class="form-control">{{emailAddress}}</p>
+        </div>
+        <div class="form-group">
+          <label>Üzenet</label>
+          <textarea rows="3" disabled class="form-control message">{{message}}</textarea>
+        </div>
+        <div class="img-container">
+          <img *ngIf="imageExists" class="offer-image" src="{{imageUrl}}">
+        </div>
+        <button type="button" (click)="close()" class="btn-primary logBtn"><span class="btnText">Bezárás</span></button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isLoggedIn">
+    <h2>Már be van jelentkezve</h2>
+  </div>
+</body>

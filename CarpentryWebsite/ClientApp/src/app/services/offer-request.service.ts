@@ -26,7 +26,7 @@ export class OfferRequestService {
         .catch(this.errorHandler);
     }
 
-    createOfferRequest(offerRequest) {
+    createOfferRequest(offerRequest: FormData) {
         return this._http.post(this.CarpentryWebsiteUrl + 'api/offer-request/create', offerRequest)
             .map((response: Response) => response.json())
             .catch(this.errorHandler);

@@ -13,6 +13,7 @@ namespace CarpentryWebsite.Models
         public ICollection<CarpentryService> CarpentryServices { get; set; }
         public ICollection<Fabric> Fabrics { get; set; }
         public ICollection<ReferencePicture> ReferencePictures { get; set; }
+        public ICollection<OfferRequest> OfferRequests { get; set; }
 
         public Picture(int pictureId, string pictureName)
         {

@@ -1,8 +1,11 @@
 ﻿using CarpentryWebsite.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -14,9 +17,12 @@ namespace CarpentryWebsite.Services
 
         private readonly UserManager<MyUser> _userManager;
 
-        public OfferRequestService(UserManager<MyUser> userManager)
+        private IHostingEnvironment _env;
+
+        public OfferRequestService(UserManager<MyUser> userManager, IHostingEnvironment env)
         {
             _userManager = userManager;
+            _env = env;
         }
 
         public OfferRequestService()
@@ -35,13 +41,66 @@ namespace CarpentryWebsite.Services
             }
         }
 
-        public int AddOfferRequest(OfferRequest offerRequest)
+        public int AddOfferRequest(OfferRequest offerRequest, IFormFile image, string imageAdded)
         {
             try
             {
-                db.OfferRequest.Add(offerRequest);
-                db.SaveChanges();
-                return 1;
+                if(imageAdded.Equals("false"))
+                {
+                    db.OfferRequest.Add(offerRequest);
+                    db.SaveChanges();
+                    return 1;
+                }
+                var dir = _env.ContentRootPath;
+
+                string pathToFabricPictures = "/ClientApp/src/assets/offer_pictures";
+
+                string fullPath = dir + pathToFabricPictures;
+
+                if (!Directory.Exists(fullPath))
+                {
+                    Directory.CreateDirectory(fullPath);
+                }
+
+                int fileSuffix = 1;
+
+                string fullFileName = "offer_picture_" + fileSuffix + ".png";
+
+                bool exists = File.Exists(Path.Combine(fullPath, fullFileName));
+
+                while (exists)
+                {
+                    fileSuffix++;
+                    fullFileName = "offer_picture_" + fileSuffix + ".png";
+                    exists = File.Exists(Path.Combine(fullPath, fullFileName));
+                }
+
+                using (var fileStream = new FileStream(Path.Combine(fullPath, fullFileName), FileMode.Create, FileAccess.Write))
+                {
+                    image.CopyTo(fileStream);
+
+                    OfferRequest offerRequestToCreate = new OfferRequest();
+                    Picture pictureExists = db.Picture
+                    .Where(p => p.PictureName == fullFileName)
+                    .FirstOrDefault();
+
+                    if (pictureExists == null)
+                    {
+                        Picture picture = new Picture(0, fullFileName);
+                        db.Picture.Add(picture);
+                        offerRequest.PictureId = picture.PictureId;
+                        offerRequest.Picture = picture;
+                    }
+                    else
+                    {
+                        offerRequest.PictureId = pictureExists.PictureId;
+                        offerRequest.Picture = pictureExists;
+                    }
+
+                    db.OfferRequest.Add(offerRequest);
+                    db.SaveChanges();
+                    return 1;
+                }
             }
             catch
             {

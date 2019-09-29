@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { OfferRequestService } from '../services/offer-request.service';
+import { MatDialog } from '@angular/material';
+import { OfferFormPopupComponent } from '../offer-form-popup/offer-form-popup.component';
+import { PictureService } from '../services/picture.service';
 
 @Component({
   selector: 'app-admin-area',
@@ -22,8 +25,10 @@ export class AdminAreaComponent implements OnInit {
   ];
 
   rowData: any;
+  pictureName: string;
 
-  constructor(userService: UserService, private offerRequestService: OfferRequestService) {
+  constructor(userService: UserService, private offerRequestService: OfferRequestService,
+     private dialog: MatDialog, private pictureService: PictureService) {
     this.isLoggedIn = userService.isLoggedIn();
     this.defaultColDef = {
       width: 300,
@@ -37,10 +42,28 @@ export class AdminAreaComponent implements OnInit {
 
   onRowSelected(event) {
     if (event.node.selected) {
-      this.showModal = true;
-      console.log('showmodal changed ' + this.showModal);
+      if (event.node.data.pictureId === null) {
+        this.dialog.open(OfferFormPopupComponent, {
+          panelClass: 'offer-form-popup-container',
+          maxHeight: '90vh',
+          data: {
+            offerDetails: event.node.data
+          }
+        });
+        return;
+      }
       this.message = event.node.data.message;
-      // window.alert('Az üzenet: ' + event.node.data.message);
+      this.pictureService.getPictureDetails(event.node.data.pictureId).subscribe(res => {
+        this.pictureName = res.pictureName;
+        this.dialog.open(OfferFormPopupComponent, {
+          panelClass: 'offer-form-popup-container',
+          maxHeight: '90vh',
+          data: {
+            offerDetails: event.node.data,
+            pictureName: this.pictureName
+          }
+        });
+      });
     }
   }
 

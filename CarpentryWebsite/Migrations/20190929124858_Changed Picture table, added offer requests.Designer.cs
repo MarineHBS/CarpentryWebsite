@@ -4,14 +4,16 @@ using CarpentryWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarpentryWebsite.Migrations
 {
     [DbContext(typeof(CarpentryWebsiteContext))]
-    partial class CarpentryWebsiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190929124858_Changed Picture table, added offer requests")]
+    partial class ChangedPicturetableaddedofferrequests
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -175,7 +177,7 @@ namespace CarpentryWebsite.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("PictureId");
+                    b.Property<int>("PictureId");
 
                     b.HasKey("OfferRequestId");
 
@@ -374,7 +376,8 @@ namespace CarpentryWebsite.Migrations
                 {
                     b.HasOne("CarpentryWebsite.Models.Picture", "Picture")
                         .WithMany("OfferRequests")
-                        .HasForeignKey("PictureId");
+                        .HasForeignKey("PictureId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.ReferencePicture", b =>

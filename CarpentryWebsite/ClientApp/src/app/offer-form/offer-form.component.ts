@@ -17,14 +17,14 @@ export class OfferFormComponent implements OnInit {
   offerRequestForm: FormGroup;
   showError: boolean;
   successFulSubmit: boolean;
+  selectedFile: File = null;
 
   constructor(private offerRequestService: OfferRequestService, private router: Router, private _fb: FormBuilder) {
     this.successFulSubmit = false;
     this.offerRequestForm = this._fb.group({
       name: ['', [Validators.required]],
       emailAddress: ['', [Validators.required]],
-      message: ['', [Validators.required]],
-      offerPicture: ['']
+      message: ['', [Validators.required]]
     });
   }
 
@@ -40,7 +40,17 @@ export class OfferFormComponent implements OnInit {
     this.isRequesting = true;
     this.errors = '';
     if (this.offerRequestForm.valid) {
-      this.offerRequestService.createOfferRequest(this.offerRequestForm.value)
+      const formData: FormData = new FormData();
+      if (this.selectedFile !== null) {
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+        formData.append('imageAdded', 'true');
+      } else {
+        formData.append('imageAdded', 'false');
+      }
+      formData.append('name', this.offerRequestForm.value.name);
+      formData.append('emailAddress', this.offerRequestForm.value.emailAddress);
+      formData.append('message', this.offerRequestForm.value.message);
+      this.offerRequestService.createOfferRequest(formData)
         .subscribe(
           result => {
             if (result['error']) {
@@ -58,9 +68,12 @@ export class OfferFormComponent implements OnInit {
     }
   }
 
+  onFileSelected(event) {
+    this.selectedFile = <File>event.target.files[0];
+  }
+
   get name() { return this.offerRequestForm.get('name'); }
   get emailAddress() { return this.offerRequestForm.get('emailAddress'); }
   get message() { return this.offerRequestForm.get('message'); }
-  get offerPicture() { return this.offerRequestForm.get('offerPicture'); }
 
 }

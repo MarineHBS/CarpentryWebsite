@@ -45,6 +45,8 @@
     <Compile Remove="Migrations\20181127182011_FavoriteTableAdded.Designer.cs" />
     <Compile Remove="Migrations\20181127182251_FavoriteTableAdded.cs" />
     <Compile Remove="Migrations\20181127182251_FavoriteTableAdded.Designer.cs" />
+    <Compile Remove="Migrations\20190929124549_Changed OfferRequest table, added pictureId column.cs" />
+    <Compile Remove="Migrations\20190929124549_Changed OfferRequest table, added pictureId column.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

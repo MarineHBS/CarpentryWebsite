@@ -57,7 +57,6 @@ export class AddFabricComponent implements OnInit {
 
     save() {
         if (!this.addFabricForm.valid) {
-            console.log(this.addFabricForm, this.addFabricForm.value.name);
             return;
         }
         const formData: FormData = new FormData();

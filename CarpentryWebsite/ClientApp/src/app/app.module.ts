@@ -1,6 +1,5 @@
 import { AuthGuard } from './authguard';
 import { LoginComponent } from './login/login.component';
-import { FetchLocationDetailsComponent } from './fetchlocation-details/fetchlocation-details.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,9 +10,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { FetchLocationComponent } from './fetchlocations/fetchlocation.component';
 import { LocationService } from './services/locationservice.service';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
@@ -68,15 +64,12 @@ import { RequestOfferComponent } from './request-offer/request-offer.component';
 import { OfferRequestService } from './services/offer-request.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { PictureService } from './services/picture.service';
+import { OfferFormPopupComponent } from './offer-form-popup/offer-form-popup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    CounterComponent,
-    FetchDataComponent,
-    FetchLocationComponent,
-    FetchLocationDetailsComponent,
     RegisterComponent,
     LoginComponent,
     LogoutComponent,
@@ -109,7 +102,8 @@ import { PictureService } from './services/picture.service';
     RatingsComponent,
     MapComponent,
     OfferFormComponent,
-    RequestOfferComponent
+    RequestOfferComponent,
+    OfferFormPopupComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -137,7 +131,8 @@ import { PictureService } from './services/picture.service';
     AgGridModule.withComponents([])
   ],
   entryComponents: [
-    PriceEstimateComponent
+    PriceEstimateComponent,
+    OfferFormPopupComponent
   ],
   providers: [LocationService, CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,

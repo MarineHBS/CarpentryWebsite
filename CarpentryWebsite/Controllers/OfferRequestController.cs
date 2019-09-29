@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using CarpentryWebsite.Models;
 using CarpentryWebsite.Services;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace CarpentryWebsite.Controllers
 {
@@ -20,9 +22,13 @@ namespace CarpentryWebsite.Controllers
 
             private readonly UserManager<MyUser> _userManager;
 
-            public OfferRequestController(UserManager<MyUser> userManager)
+            private IHostingEnvironment _env;
+
+        public OfferRequestController(UserManager<MyUser> userManager, IHostingEnvironment env)
             {
                 _userManager = userManager;
+                _env = env;
+                offerRequestService = new OfferRequestService(_userManager, _env);
             }
 
             [HttpGet]
@@ -34,9 +40,10 @@ namespace CarpentryWebsite.Controllers
 
             [HttpPost]
             [Route("/api/offer-request/create")]
-            public int Create([FromBody] OfferRequest offerRequest)
+            public int Create(IFormFile image, string imageAdded, string name, string emailAddress, string message)
             {
-                return offerRequestService.AddOfferRequest(offerRequest);
+            OfferRequest offerRequest = new OfferRequest(name, emailAddress, message);
+                return offerRequestService.AddOfferRequest(offerRequest, image, imageAdded);
             }
 
             [HttpGet]
