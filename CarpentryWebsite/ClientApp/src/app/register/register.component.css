@@ -55,7 +55,8 @@ label {
 }
 
 .registerForm {
-    margin-top: 10%;
+    margin-top: 5%;
+    margin-bottom: 5%;
     align-content: center;
     display: inline-block;
     padding: 20px 20px 20px 20px;
