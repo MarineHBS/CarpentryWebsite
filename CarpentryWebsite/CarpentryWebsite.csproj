@@ -47,6 +47,12 @@
     <Compile Remove="Migrations\20181127182251_FavoriteTableAdded.Designer.cs" />
     <Compile Remove="Migrations\20190929124549_Changed OfferRequest table, added pictureId column.cs" />
     <Compile Remove="Migrations\20190929124549_Changed OfferRequest table, added pictureId column.Designer.cs" />
+    <Compile Remove="Migrations\20190929205742_Added fabric and services.cs" />
+    <Compile Remove="Migrations\20190929205742_Added fabric and services.Designer.cs" />
+    <Compile Remove="Migrations\20190929210840_Added fabric and services.cs" />
+    <Compile Remove="Migrations\20190929210840_Added fabric and services.Designer.cs" />
+    <Compile Remove="Migrations\20191002164514_fully seeded database.cs" />
+    <Compile Remove="Migrations\20191002164514_fully seeded database.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

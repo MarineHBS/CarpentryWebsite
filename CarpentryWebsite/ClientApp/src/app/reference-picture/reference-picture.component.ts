@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ReferencePicture } from '../models/reference-picture';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
@@ -16,10 +16,11 @@ export class ReferencePictureComponent implements OnInit {
   referencePictures: Picture[];
   adminFlag: boolean;
 
-  constructor(public http: Http, private _router: Router,
+  constructor(public http: Http, private _router: Router, @Inject('BASE_URL') baseUrl: string,
     private _referencePictureService: ReferencePictureService, private _userService: UserService) {
     this.getReferencePictures();
     this.adminFlag = this._userService.isLoggedIn();
+    console.log('BASEURLLLLLLLLLLLLLLLLLL' + baseUrl);
   }
 
   ngOnInit() {

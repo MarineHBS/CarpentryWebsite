@@ -4,14 +4,16 @@ using CarpentryWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CarpentryWebsite.Migrations
 {
     [DbContext(typeof(CarpentryWebsiteContext))]
-    partial class CarpentryWebsiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190929202654_Seed Carpentry Service Type table")]
+    partial class SeedCarpentryServiceTypetable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,24 +44,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasIndex("PictureId");
 
                     b.ToTable("CarpentryService");
-
-                    b.HasData(
-                        new { CarpentryServiceId = 1, CarpentryServiceTypeId = 1, Name = "Csak áthúzás, szivacsos", Price = 18000 },
-                        new { CarpentryServiceId = 2, CarpentryServiceTypeId = 1, Name = "Csak áthúzás, rugós", Price = 25000 },
-                        new { CarpentryServiceId = 3, CarpentryServiceTypeId = 1, Name = "Áthúzás szivacs cserével", Price = 25000 },
-                        new { CarpentryServiceId = 4, CarpentryServiceTypeId = 1, Name = "Áthúzás rugó cserével", Price = 31000 },
-                        new { CarpentryServiceId = 5, CarpentryServiceTypeId = 2, Name = "Szivacs cserével", Price = 12000 },
-                        new { CarpentryServiceId = 6, CarpentryServiceTypeId = 2, Name = "Rugó cserével", Price = 15000 },
-                        new { CarpentryServiceId = 7, CarpentryServiceTypeId = 2, Name = "Szivacs- és rugócserével", Price = 20000 },
-                        new { CarpentryServiceId = 8, CarpentryServiceTypeId = 3, Name = "Csak áthúzás", Price = 10000 },
-                        new { CarpentryServiceId = 9, CarpentryServiceTypeId = 3, Name = "Szivacs- vagy rugócsere", Price = 3000 },
-                        new { CarpentryServiceId = 10, CarpentryServiceTypeId = 4, Name = "Csak áthúzás", Price = 15000 },
-                        new { CarpentryServiceId = 11, CarpentryServiceTypeId = 4, Name = "Szivacs- vagy rugócsere", Price = 4000 },
-                        new { CarpentryServiceId = 12, CarpentryServiceTypeId = 5, Name = "Ülés és támla", Price = 3000 },
-                        new { CarpentryServiceId = 13, CarpentryServiceTypeId = 5, Name = "Szivacs cserével", Price = 4500 },
-                        new { CarpentryServiceId = 14, CarpentryServiceTypeId = 6, Name = "Látottak alapján", Price = 20000 },
-                        new { CarpentryServiceId = 15, CarpentryServiceTypeId = 7, Name = "Látottak alapján", Price = 20000 }
-                    );
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.CarpentryServiceType", b =>
@@ -75,13 +59,7 @@ namespace CarpentryWebsite.Migrations
                     b.ToTable("CarpentryServiceType");
 
                     b.HasData(
-                        new { CarpentryServiceTypeId = 1, Name = "Franciaágyak" },
-                        new { CarpentryServiceTypeId = 2, Name = "Heverők" },
-                        new { CarpentryServiceTypeId = 3, Name = "Fotelek" },
-                        new { CarpentryServiceTypeId = 4, Name = "Kanapék" },
-                        new { CarpentryServiceTypeId = 5, Name = "Szék" },
-                        new { CarpentryServiceTypeId = 6, Name = "Antik bútorok" },
-                        new { CarpentryServiceTypeId = 7, Name = "Autókárpitozás" }
+                        new { CarpentryServiceTypeId = 1, Name = "Szövetcsoport 1" }
                     );
                 });
 
@@ -100,12 +78,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("ContactId");
 
                     b.ToTable("Contact");
-
-                    b.HasData(
-                        new { ContactId = 1, EmailAddress = "szabo.janos@butorkarpitos.hu", Name = "Szabó János", Phone = "202-555-0112" },
-                        new { ContactId = 2, EmailAddress = "kovacs.akos@butorkarpitos.hu", Name = "Kovács Ákos", Phone = "202-555-0113" },
-                        new { ContactId = 3, EmailAddress = "nagy.bela@butorkarpitos.hu", Name = "Nagy Béla", Phone = "202-555-0155" }
-                    );
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.Fabric", b =>
@@ -129,31 +101,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasIndex("PictureId");
 
                     b.ToTable("Fabric");
-
-                    b.HasData(
-                        new { FabricId = 1, FabricTypeId = 1, Name = "Almara", PictureId = 1, Price = 2390 },
-                        new { FabricId = 2, FabricTypeId = 1, Name = "Bölény", PictureId = 2, Price = 6760 },
-                        new { FabricId = 3, FabricTypeId = 1, Name = "Essenza", PictureId = 3, Price = 11850 },
-                        new { FabricId = 4, FabricTypeId = 1, Name = "Dollár", PictureId = 4, Price = 2450 },
-                        new { FabricId = 5, FabricTypeId = 1, Name = "Sorrento", PictureId = 5, Price = 5190 },
-                        new { FabricId = 6, FabricTypeId = 2, Name = "Artemis", PictureId = 6, Price = 2980 },
-                        new { FabricId = 7, FabricTypeId = 2, Name = "City life", PictureId = 7, Price = 2450 },
-                        new { FabricId = 8, FabricTypeId = 2, Name = "Diana", PictureId = 8, Price = 10670 },
-                        new { FabricId = 9, FabricTypeId = 3, Name = "Astoria", PictureId = 9, Price = 9230 },
-                        new { FabricId = 10, FabricTypeId = 3, Name = "Carabu", PictureId = 10, Price = 12180 },
-                        new { FabricId = 11, FabricTypeId = 3, Name = "Imperia", PictureId = 11, Price = 5190 },
-                        new { FabricId = 12, FabricTypeId = 3, Name = "Infinity", PictureId = 12, Price = 3990 },
-                        new { FabricId = 13, FabricTypeId = 4, Name = "Eerie", PictureId = 13, Price = 2790 },
-                        new { FabricId = 14, FabricTypeId = 4, Name = "Samoa", PictureId = 14, Price = 2350 },
-                        new { FabricId = 15, FabricTypeId = 4, Name = "Tarim", PictureId = 15, Price = 3140 },
-                        new { FabricId = 16, FabricTypeId = 4, Name = "Genezis", PictureId = 16, Price = 7920 },
-                        new { FabricId = 17, FabricTypeId = 5, Name = "Baccara", PictureId = 17, Price = 5520 },
-                        new { FabricId = 18, FabricTypeId = 5, Name = "Fidélió", PictureId = 18, Price = 7250 },
-                        new { FabricId = 19, FabricTypeId = 5, Name = "Genf", PictureId = 19, Price = 5520 },
-                        new { FabricId = 20, FabricTypeId = 6, Name = "Alaska", PictureId = 20, Price = 1990 },
-                        new { FabricId = 21, FabricTypeId = 6, Name = "Galeria 9520", PictureId = 21, Price = 1790 },
-                        new { FabricId = 22, FabricTypeId = 6, Name = "Galeria 9521", PictureId = 22, Price = 1790 }
-                    );
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.FabricType", b =>
@@ -167,15 +114,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("FabricTypeId");
 
                     b.ToTable("FabricType");
-
-                    b.HasData(
-                        new { FabricTypeId = 1, Name = "Textilbőrök" },
-                        new { FabricTypeId = 2, Name = "Síkszövetek" },
-                        new { FabricTypeId = 3, Name = "Vízzel tisztítható bútorszövetek" },
-                        new { FabricTypeId = 4, Name = "Vízlepergető bútorszövetek" },
-                        new { FabricTypeId = 5, Name = "Plüss bútorszövetek" },
-                        new { FabricTypeId = 6, Name = "Matrachuzatok" }
-                    );
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.MyUser", b =>
@@ -265,42 +203,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("PictureId");
 
                     b.ToTable("Picture");
-
-                    b.HasData(
-                        new { PictureId = 1, PictureName = "fabric_picture_1.png" },
-                        new { PictureId = 2, PictureName = "fabric_picture_2.png" },
-                        new { PictureId = 3, PictureName = "fabric_picture_3.png" },
-                        new { PictureId = 4, PictureName = "fabric_picture_4.png" },
-                        new { PictureId = 5, PictureName = "fabric_picture_5.png" },
-                        new { PictureId = 6, PictureName = "fabric_picture_6.png" },
-                        new { PictureId = 7, PictureName = "fabric_picture_7.png" },
-                        new { PictureId = 8, PictureName = "fabric_picture_8.png" },
-                        new { PictureId = 9, PictureName = "fabric_picture_9.png" },
-                        new { PictureId = 10, PictureName = "fabric_picture_10.png" },
-                        new { PictureId = 11, PictureName = "fabric_picture_11.png" },
-                        new { PictureId = 12, PictureName = "fabric_picture_12.png" },
-                        new { PictureId = 13, PictureName = "fabric_picture_13.png" },
-                        new { PictureId = 14, PictureName = "fabric_picture_14.png" },
-                        new { PictureId = 15, PictureName = "fabric_picture_15.png" },
-                        new { PictureId = 16, PictureName = "fabric_picture_16.png" },
-                        new { PictureId = 17, PictureName = "fabric_picture_17.png" },
-                        new { PictureId = 18, PictureName = "fabric_picture_18.png" },
-                        new { PictureId = 19, PictureName = "fabric_picture_19.png" },
-                        new { PictureId = 20, PictureName = "fabric_picture_20.png" },
-                        new { PictureId = 21, PictureName = "fabric_picture_21.png" },
-                        new { PictureId = 22, PictureName = "fabric_picture_22.png" },
-                        new { PictureId = 23, PictureName = "reference_picture_1.png" },
-                        new { PictureId = 24, PictureName = "reference_picture_2.png" },
-                        new { PictureId = 25, PictureName = "reference_picture_3.png" },
-                        new { PictureId = 26, PictureName = "reference_picture_4.png" },
-                        new { PictureId = 27, PictureName = "reference_picture_5.png" },
-                        new { PictureId = 28, PictureName = "reference_picture_6.png" },
-                        new { PictureId = 29, PictureName = "reference_picture_7.png" },
-                        new { PictureId = 30, PictureName = "reference_picture_8.png" },
-                        new { PictureId = 31, PictureName = "reference_picture_9.png" },
-                        new { PictureId = 32, PictureName = "reference_picture_10.png" },
-                        new { PictureId = 33, PictureName = "reference_picture_11.png" }
-                    );
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.Rating", b =>
@@ -318,14 +220,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasKey("RatingId");
 
                     b.ToTable("Rating");
-
-                    b.HasData(
-                        new { RatingId = 1, Text = "Minden szuper, csak ajánlani tudom!", User = "Szabó Béla", UserRating = "Elégedett" },
-                        new { RatingId = 2, Text = "Gyors és hatékony.", User = "Tóth János", UserRating = "Nagyon elégedett" },
-                        new { RatingId = 3, Text = "Korrekt, szakértő kiszolgálás. Gyors, pontos értékesítés.", User = "Kovács Ákos", UserRating = "Nagyon elégedett" },
-                        new { RatingId = 4, Text = "Mindennel meg voltam elégedve", User = "Tibor", UserRating = "Elégedett" },
-                        new { RatingId = 5, Text = "Kicsit lassan zajlott a szolgáltatás véghezvitele, de összességében elfogadható", User = "István", UserRating = "Közepesen elégedett" }
-                    );
                 });
 
             modelBuilder.Entity("CarpentryWebsite.Models.ReferencePicture", b =>
@@ -341,20 +235,6 @@ namespace CarpentryWebsite.Migrations
                     b.HasIndex("PictureId");
 
                     b.ToTable("ReferencePicture");
-
-                    b.HasData(
-                        new { ReferencePictureId = 1, PictureId = 23 },
-                        new { ReferencePictureId = 2, PictureId = 24 },
-                        new { ReferencePictureId = 3, PictureId = 25 },
-                        new { ReferencePictureId = 4, PictureId = 26 },
-                        new { ReferencePictureId = 5, PictureId = 27 },
-                        new { ReferencePictureId = 6, PictureId = 28 },
-                        new { ReferencePictureId = 7, PictureId = 29 },
-                        new { ReferencePictureId = 8, PictureId = 30 },
-                        new { ReferencePictureId = 9, PictureId = 31 },
-                        new { ReferencePictureId = 10, PictureId = 32 },
-                        new { ReferencePictureId = 11, PictureId = 33 }
-                    );
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

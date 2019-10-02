@@ -42,6 +42,3 @@ testem.log
 .DS_Store
 Thumbs.db
 
-/src/assets/fabric_pictures/*
-/src/assets/reference_pictures/*
-
