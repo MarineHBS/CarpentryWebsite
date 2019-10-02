@@ -35,6 +35,10 @@
           Bejelentkezés</a>
       </li>
       <li *ngIf="loggedIn" class="collection">
+        <a class="nav-link" [routerLink]='["/admin-area"]'>Admin felület
+        </a>
+      </li>
+      <li *ngIf="loggedIn" class="collection">
         <a class="nav-link" [routerLink]='["logout"]'>Kijelentkezés<span class="glyphicon glyphicon-log-out"></span>
         </a>
       </li>
