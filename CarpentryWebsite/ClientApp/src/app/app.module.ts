@@ -121,7 +121,7 @@ import { OfferFormPopupComponent } from './offer-form-popup/offer-form-popup.com
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase),
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBrskK5WRN_tcO3tMM6k1QpIwoSzbOMnwY'
+      apiKey: 'AIzaSyC3SIMdMnmH5cEa3Ybm7ZxYriIHRnjFSWA'
     }),
     SlideshowModule,
     MatCardModule,
