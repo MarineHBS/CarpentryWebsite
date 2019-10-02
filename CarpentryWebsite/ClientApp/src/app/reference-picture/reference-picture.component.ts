@@ -20,7 +20,6 @@ export class ReferencePictureComponent implements OnInit {
     private _referencePictureService: ReferencePictureService, private _userService: UserService) {
     this.getReferencePictures();
     this.adminFlag = this._userService.isLoggedIn();
-    console.log('BASEURLLLLLLLLLLLLLLLLLL' + baseUrl);
   }
 
   ngOnInit() {

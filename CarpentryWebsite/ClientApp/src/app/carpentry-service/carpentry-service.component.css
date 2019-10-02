@@ -96,3 +96,7 @@ a.list-group-item.active small {
   display: flex;
   align-items: center;
 }
+
+.service-ul {
+  margin-bottom: 60px;
+}

@@ -29,7 +29,7 @@ export class AddCarpentryServiceComponent implements OnInit {
         this.addCarpentryServiceForm = this._fb.group({
             carpentryServiceId: 0,
             name: ['', [Validators.required]],
-            description: ['', [Validators.required]],
+            description: ['', []],
             price: ['', [Validators.required]],
             carpentryServiceTypeId: ['', [Validators.required]],
             // picture: ['']

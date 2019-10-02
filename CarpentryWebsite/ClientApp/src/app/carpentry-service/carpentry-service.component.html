@@ -17,7 +17,7 @@
   </div>
   <h3> Szolgáltatásaink </h3>
   <div *ngIf="carpentryServices && carpentryServiceTypes">
-    <ul *ngFor="let type of carpentryServiceTypes">
+    <ul *ngFor="let type of carpentryServiceTypes" class="service-ul">
       <div class="type-container">
         <div *ngIf=adminFlag>
           <button class="btn btn-danger btnDelete" (click)="deleteType(type.carpentryServiceTypeId, type.name)">
