@@ -38,7 +38,7 @@
       </select>
     </div>
   </div>
-  <span *ngIf="currentFabricPrice">Szövet mérete</span>
+  <span *ngIf="currentFabricPrice">Szövet mérete (négyzetméterben)</span>
   <input *ngIf="currentFabricPrice" type="number" class="form-control" [(ngModel)]="size" placeholder="méret">
   <div class="estimateButton" *ngIf="currentFabricPrice">
     <button class="btn btn-primary" [disabled]="!size" (click)="calculateEstimate()"
