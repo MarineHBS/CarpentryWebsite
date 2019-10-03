@@ -3,6 +3,7 @@ import { OfferRequestService } from '../services/offer-request.service';
 import { Router } from '@angular/router';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { OfferRequest } from '../models/offer-request';
+import undefined = require('firebase/empty-import');
 
 @Component({
   selector: 'app-offer-form',
@@ -41,7 +42,8 @@ export class OfferFormComponent implements OnInit {
     this.errors = '';
     if (this.offerRequestForm.valid) {
       const formData: FormData = new FormData();
-      if (this.selectedFile !== null) {
+      console.log('asd ' + this.selectedFile)
+      if (this.selectedFile ) {
         formData.append('image', this.selectedFile, this.selectedFile.name);
         formData.append('imageAdded', 'true');
       } else {
