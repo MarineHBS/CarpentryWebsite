@@ -149,7 +149,7 @@ namespace CarpentryWebsite.Models
             {
                 var dir = _env.ContentRootPath;
 
-                string pathToReferencePictures = "/ClientApp/src/assets/reference_pictures";
+                string pathToReferencePictures = "/Images/reference_pictures";
 
                 string fullPath = dir + pathToReferencePictures;
                

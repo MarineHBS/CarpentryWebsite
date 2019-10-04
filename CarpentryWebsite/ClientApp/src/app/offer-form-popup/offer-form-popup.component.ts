@@ -26,7 +26,7 @@ export class OfferFormPopupComponent implements OnInit {
     this.name = this.data.offerDetails.name;
     this.emailAddress = this.data.offerDetails.emailAddress;
     this.message = this.data.offerDetails.message;
-    this.imageUrl = '{{baseUrl}}images/offer_pictures/' + this.data.pictureName;
+    this.imageUrl = 'images/offer_pictures/' + this.data.pictureName;
   }
 
   close() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { FabricType } from '../models/fabric-type';
 import { Fabric } from '../models/fabric';
@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FabricTypeService } from '../services/fabric-type.service';
 import { FabricService } from '../services/fabric.service';
 import { PictureService } from '../services/picture.service';
+import { getBaseUrl } from 'src/main';
 
 @Component({
     selector: 'app-add-fabric',
@@ -23,7 +24,7 @@ export class AddFabricComponent implements OnInit {
 
     constructor(private _fb: FormBuilder,
         private _avRoute: ActivatedRoute, private _fabricTypeService: FabricTypeService, private pictureService: PictureService,
-        private _fabricService: FabricService, private _router: Router) {
+        private _fabricService: FabricService, private _router: Router, @Inject('BASE_URL') baseUrl: string) {
         if (this._avRoute.snapshot.params['id']) {
             this.fabricId = this._avRoute.snapshot.params['id'];
         }
@@ -42,7 +43,7 @@ export class AddFabricComponent implements OnInit {
             this._fabricService.getFabricDetails(this.fabricId)
                 .subscribe(resp => {
                     this.pictureService.getPictureDetails(resp.pictureId)
-                        .subscribe(pic => this.pictureLocation = '../../assets/fabric_pictures/' + pic.pictureName);
+                        .subscribe(pic => this.pictureLocation = 'images/fabric_pictures/' + pic.pictureName);
                     this.addFabricForm.setValue(resp);
                 },
                     error => this.errorMessage = error);
