@@ -14,7 +14,8 @@ export class OfferFormPopupComponent implements OnInit {
   imageUrl: string;
   imageExists: boolean;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<OfferFormPopupComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, @Inject('BASE_URL') baseUrl: string,
+   public dialogRef: MatDialogRef<OfferFormPopupComponent>) { }
 
   ngOnInit() {
     if (this.data.pictureName === undefined) {
@@ -25,7 +26,7 @@ export class OfferFormPopupComponent implements OnInit {
     this.name = this.data.offerDetails.name;
     this.emailAddress = this.data.offerDetails.emailAddress;
     this.message = this.data.offerDetails.message;
-    this.imageUrl = '../../assets/offer_pictures/' + this.data.pictureName;
+    this.imageUrl = '{{baseUrl}}images/offer_pictures/' + this.data.pictureName;
   }
 
   close() {

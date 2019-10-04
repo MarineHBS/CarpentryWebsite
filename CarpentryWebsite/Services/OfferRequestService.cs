@@ -53,7 +53,7 @@ namespace CarpentryWebsite.Services
                 }
                 var dir = _env.ContentRootPath;
 
-                string pathToFabricPictures = "/ClientApp/src/assets/offer_pictures";
+                string pathToFabricPictures = "/Images/offer_pictures";
 
                 string fullPath = dir + pathToFabricPictures;
 

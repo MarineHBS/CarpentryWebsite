@@ -15,6 +15,8 @@ using System.Text;
 using CarpentryWebsite.Models;
 using CarpentryWebsite.Auth;
 using CarpentryWebsite.Helpers;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace CarpentryWebsite
 {
@@ -126,6 +128,13 @@ namespace CarpentryWebsite
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseStaticFiles("/Images");
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(
+            Path.Combine(Directory.GetCurrentDirectory(), "Images")),
+                RequestPath = "/Images"
+            });
             app.UseSpaStaticFiles();
 
             app.UseAuthentication();

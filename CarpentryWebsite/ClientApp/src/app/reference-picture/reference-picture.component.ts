@@ -6,6 +6,7 @@ import { ReferencePictureService } from '../services/reference-picture.service';
 import { PictureService } from '../services/picture.service';
 import { Picture } from '../models/picture';
 import { UserService } from '../services/user.service';
+import { getBaseUrl } from '../../main';
 
 @Component({
   selector: 'app-reference-picture',

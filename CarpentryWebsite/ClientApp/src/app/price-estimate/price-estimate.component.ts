@@ -99,6 +99,7 @@ export class PriceEstimateComponent implements OnInit {
   }
 
   calculateEstimate(priceEstimateResult: number) {
+    
     this.showEstimate = true;
     this.priceEstimateResult = this.currentCarpentryServicePrice + this.currentFabricPrice * this.size;
     this.priceEstimateResultEvent.emit(this.priceEstimateResult);

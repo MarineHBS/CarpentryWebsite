@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Fabric } from '../models/fabric';
 import { FabricType } from '../models/fabric-type';
 import { Http } from '@angular/http';
@@ -22,7 +22,7 @@ export class FabricComponent implements OnInit {
   adminFlag: boolean;
 
   constructor(public http: Http, private _router: Router, private _fabricTypeService: FabricTypeService,
-    private _fabricService: FabricService, private _userService: UserService) {
+    private _fabricService: FabricService, @Inject('BASE_URL') baseUrl: string, private _userService: UserService) {
     this.adminFlag = this._userService.isLoggedIn();
   }
 

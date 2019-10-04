@@ -65,7 +65,7 @@ namespace CarpentryWebsite.Models
             {
                 var dir = _env.ContentRootPath;
 
-                string pathToFabricPictures = "/ClientApp/src/assets/fabric_pictures";
+                string pathToFabricPictures = "/Images/fabric_pictures";
 
                 string fullPath = dir + pathToFabricPictures;
 
@@ -137,7 +137,7 @@ namespace CarpentryWebsite.Models
 
                     var dir = _env.ContentRootPath;
 
-                    string pathToReferencePictures = "/ClientApp/src/assets/fabric_pictures";
+                    string pathToReferencePictures = "/Images/fabric_pictures";
 
                     string fullPath = dir + pathToReferencePictures;
 
