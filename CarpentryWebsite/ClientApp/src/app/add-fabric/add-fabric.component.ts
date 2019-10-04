@@ -6,7 +6,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FabricTypeService } from '../services/fabric-type.service';
 import { FabricService } from '../services/fabric.service';
 import { PictureService } from '../services/picture.service';
-import { getBaseUrl } from 'src/main';
 
 @Component({
     selector: 'app-add-fabric',
