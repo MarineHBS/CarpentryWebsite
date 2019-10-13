@@ -39,10 +39,12 @@
     </div>
   </div>
   <span *ngIf="currentFabricPrice">Szövet mérete (négyzetméterben)</span>
-  <input *ngIf="currentFabricPrice" type="number" class="form-control" [(ngModel)]="size" placeholder="méret">
-  <div class="estimateButton" *ngIf="currentFabricPrice">
-    <button class="btn btn-primary" [disabled]="!size" (click)="calculateEstimate()"
-      style="font-size:16px">Számol</button>
+  <input *ngIf="currentFabricPrice" type="number" class="form-control" [(ngModel)]="size" placeholder="méret" (ngModelChange)="calculateEstimate()">
+  <div class="price" *ngIf="currentFabricPrice">
+      <div style="float: right;">
+          <span class="concreteFtField" >{{priceEstimateResult}}</span>
+          <span class="ftField">HUF</span>
+        </div>
   </div>
 </div>
 <hr>

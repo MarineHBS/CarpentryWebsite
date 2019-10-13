@@ -10,6 +10,18 @@ body{
     height:100px;
 }
 
+.concreteFtField{
+  font-style: italic;
+  font-size: 20px;
+}
+
+.ftField{
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  padding-left: 40px;
+}
+
 .price-div{
     margin:30px;
     align-content: center;

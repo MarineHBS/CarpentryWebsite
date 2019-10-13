@@ -91,7 +91,7 @@ export class PriceEstimateComponent implements OnInit {
     return this.carpentryServicesWithIds.get(this.carpentryServiceTypeList.find(x => x.carpentryServiceTypeId === type));
   }
 
-  calculateEstimate(priceEstimateResult: number) {
+  calculateEstimate() {
     this.showEstimate = true;
     this.priceEstimateResult = this.currentCarpentryServicePrice + this.currentFabricPrice * this.size;
     this.priceEstimateResultEvent.emit(this.priceEstimateResult);
