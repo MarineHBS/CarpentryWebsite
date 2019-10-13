@@ -19,7 +19,7 @@ export class CarpentryServiceComponent implements OnInit {
   carpentryServicesWithIds: Map<CarpentryServiceType, CarpentryService[]> = new Map();
   adminFlag: boolean;
 
-  constructor(public http: Http, private _router: Router, private _carpentryServiceTypeService: CarpentryServiceTypeService,
+  constructor(private _router: Router, private _carpentryServiceTypeService: CarpentryServiceTypeService,
     private _carpentryServiceService: CarpentryServiceService, private _userService: UserService) {
     this.adminFlag = this._userService.isLoggedIn();
   }

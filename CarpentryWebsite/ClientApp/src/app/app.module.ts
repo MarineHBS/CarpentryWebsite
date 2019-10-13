@@ -22,9 +22,7 @@ import { CarpentryServiceTypeService } from './services/carpentry-service-type.s
 import { FabricService } from './services/fabric.service';
 import { FabricTypeService } from './services/fabric-type.service';
 import { ReferencePictureService } from './services/reference-picture.service';
-import { FabricTypeComponent } from './fabric-type/fabric-type.component';
 import { CarpentryServiceComponent } from './carpentry-service/carpentry-service.component';
-import { CarpentryServiceTypeComponent } from './carpentry-service-type/carpentry-service-type.component';
 import { FabricComponent } from './fabric/fabric.component';
 import { ReferencePictureComponent } from './reference-picture/reference-picture.component';
 import { AddCarpentryServiceComponent } from './add-carpentry-service/add-carpentry-service.component';
@@ -54,8 +52,6 @@ import { MatDialogModule, MatButtonModule, MatTableModule, MatCheckboxModule,
  MatCardModule, MatSelectModule, MatAutocompleteModule, MatListModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AdminAreaComponent } from './admin-area/admin-area.component';
-import { PageBottomComponent } from './page-bottom/page-bottom.component';
-import { RatingsComponent } from './ratings/ratings.component';
 import { MapComponent } from './map/map.component';
 import { AgmCoreModule } from '@agm/core';
 import {SlideshowModule} from 'ng-simple-slideshow';
@@ -76,9 +72,7 @@ import { OfferFormPopupComponent } from './offer-form-popup/offer-form-popup.com
     ContactComponent,
     AboutUsComponent,
     HomepageComponent,
-    FabricTypeComponent,
     CarpentryServiceComponent,
-    CarpentryServiceTypeComponent,
     FabricComponent,
     ReferencePictureComponent,
     AddCarpentryServiceComponent,
@@ -98,8 +92,6 @@ import { OfferFormPopupComponent } from './offer-form-popup/offer-form-popup.com
     AddFabricTypeComponent,
     PriceEstimateComponent,
     AdminAreaComponent,
-    PageBottomComponent,
-    RatingsComponent,
     MapComponent,
     OfferFormComponent,
     RequestOfferComponent,

@@ -7,9 +7,17 @@
     "start": "ng serve",
     "build": "ng build",
     "build:ssr": "npm run build -- --app=ssr --output-hashing=media",
-    "test": "ng test",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:cc": "jest --coverage",
     "lint": "ng lint",
     "e2e": "ng e2e"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "./setupJest.ts"
+    ]
   },
   "private": true,
   "dependencies": {
@@ -45,7 +53,7 @@
     "rxjs": "^6.4.0",
     "rxjs-compat": "^6.0.0-rc.0",
     "tslib": "^1.9.0",
-    "zone.js": "^0.8.29"
+    "zone.js": "^0.8.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.14.0-beta.5",
@@ -54,10 +62,13 @@
     "@angular/language-service": "^8.0.0-beta.7",
     "@types/jasmine": "~3.3.9",
     "@types/jasminewd2": "~2.0.6",
+    "@types/jest": "^24.0.18",
     "@types/node": "~11.11.0",
     "codelyzer": "^4.5.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
+    "jest": "^24.9.0",
+    "jest-preset-angular": "^7.1.1",
     "karma": "~4.0.1",
     "karma-chrome-launcher": "~2.2.0",
     "karma-coverage-istanbul-reporter": "^2.0.5",
