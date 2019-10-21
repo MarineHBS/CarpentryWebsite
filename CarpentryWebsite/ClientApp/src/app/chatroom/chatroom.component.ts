@@ -44,9 +44,8 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
     if (!this.userNameForm.valid) {
       return;
     }
-    console.log('' + this.email.value + this.password.value + this.displayName.value);
     this.authService.signUp(this.email.value, this.password.value, this.displayName.value)
-    .then(resolve => this.loggedIn = true);
+    .then(resolve => this.loggedIn = true).catch(error => window.alert(error));
 
     console.log(this.email);
   }

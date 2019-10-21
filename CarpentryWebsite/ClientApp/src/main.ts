@@ -7,8 +7,8 @@ import { getTestBed } from '@angular/core/testing';
 import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@angular/platform-browser-dynamic/testing';
 
 export function getBaseUrl() {
-  // return document.getElementsByTagName('base')[0].href;
-  return location.href;
+   return document.getElementsByTagName('base')[0].href;
+  // return location.href;
 }
 
 const providers = [

@@ -7,13 +7,8 @@
         </div>
       </li>
       <li class="nav-item">
-        <div class="collection">
-          <a class="nav-link" [routerLink]='["/carpentry-services"]'>Szolgáltatások</a>
-        </div>
-      </li>
-      <li class="nav-item">
         <div class="collection" style="margin-right: 40px;">
-          <a class="nav-link" [routerLink]='["/fabrics"]'>Szövetek</a>
+          <a class="nav-link" [routerLink]='["/carpentry-services"]'>Szolgáltatások</a>
         </div>
       </li>
       <li class="nav-item">
@@ -23,16 +18,13 @@
       </li>
       <li class="nav-item">
         <div class="collection" style="margin-left: 40px;">
-          <a class="nav-link" [routerLink]='["/contact-us"]'>Kapcsolat</a>
+          <a class="nav-link" [routerLink]='["/fabrics"]'>Szövetek</a>
         </div>
       </li>
-      <li *ngIf="!loggedIn" class="collection">
-        <a class="nav-link" [routerLink]='["/registration"]'><span class="glyphicon glyphicon-user"></span>
-          Regisztráció</a>
-      </li>
-      <li *ngIf="!loggedIn" class="collection">
-        <a class="nav-link" [routerLink]='["/login"]'><span class="glyphicon glyphicon-log-in"></span>
-          Bejelentkezés</a>
+      <li class="nav-item">
+        <div class="collection" >
+          <a class="nav-link" [routerLink]='["/contact-us"]'>Kapcsolat</a>
+        </div>
       </li>
       <li *ngIf="loggedIn" class="collection">
         <a class="nav-link" [routerLink]='["/admin-area"]'>Admin felület
