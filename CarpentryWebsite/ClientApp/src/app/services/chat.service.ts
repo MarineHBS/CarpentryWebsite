@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {AngularFireDatabase, AngularFireList} from '@angular/fire/database';
-import {AngularFireAuth} from '@angular/fire/auth';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
+import { AngularFireAuth } from '@angular/fire/auth';
 import { ChatMessage } from '../models/chat';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,20 +10,36 @@ import { Observable } from 'rxjs';
 export class ChatService {
   asd: any;
 
-  user: any;
-  // todo: change any to Chatmessage
+  user: firebase.User;
   chatMessages: AngularFireList<any>;
   chatMessage: ChatMessage;
   userName: Observable<string>;
 
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
-    /*this.afAuth.authState.subscribe(auth => {
+    this.afAuth.authState.subscribe(auth => {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
       }
-    });*/
-   }
+      this.getUser().subscribe(a => {
+        // this.userName = a.displayName;
+      });
+    });
+  }
+
+  getUser() {
+    const userId = this.user.uid;
+    const path = `/users/${userId}`;
+    const name = `/users/${userId}/displayName`;
+    console.log(' ÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁ', this.db.object(path));
+    console.log(' ÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁ', this.db.object(name));
+    return of(this.db.object(path));
+  }
+
+  getUsers() {
+    const path = '/users';
+    return this.db.list(path);
+  }
 
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
@@ -37,7 +53,6 @@ export class ChatService {
       userName: 'testuser',
       email: email
     });
-    console.log('Called sendmessage()');
   }
 
   getMessages(): AngularFireList<ChatMessage[]> {
@@ -53,11 +68,11 @@ export class ChatService {
   getTimeStamp() {
     const now = new Date();
     const date = now.getUTCFullYear() + '/' +
-                 (now.getUTCMonth() + 1) + '/' +
-                 now.getUTCDate();
+      (now.getUTCMonth() + 1) + '/' +
+      now.getUTCDate();
     const time = now.getUTCHours() + ':' +
-                 (now.getUTCMinutes()) + ':' +
-                 now.getUTCSeconds();
+      (now.getUTCMinutes()) + ':' +
+      now.getUTCSeconds();
     return (date + ' ' + time);
   }
 }

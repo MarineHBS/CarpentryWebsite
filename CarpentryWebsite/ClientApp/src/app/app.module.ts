@@ -61,6 +61,7 @@ import { OfferRequestService } from './services/offer-request.service';
 import { AgGridModule } from 'ag-grid-angular';
 import { PictureService } from './services/picture.service';
 import { OfferFormPopupComponent } from './offer-form-popup/offer-form-popup.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -129,7 +130,7 @@ import { OfferFormPopupComponent } from './offer-form-popup/offer-form-popup.com
   providers: [LocationService, CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,
     ReferencePictureService, RatingService, UserService, AuthGuard, ChatService,
-    AngularFireAuth, OfferRequestService, PictureService],
+    AngularFireAuth, OfferRequestService, PictureService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

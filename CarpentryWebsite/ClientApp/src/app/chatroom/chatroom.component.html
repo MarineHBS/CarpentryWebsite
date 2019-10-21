@@ -1,17 +1,40 @@
 <div class="chatWindow">
-  <div class="chatWindowHeader">
-    <h3 class="chatHeader">Chat</h3>
-  </div>
-  <div class="mainContent">
-    <div class="userListWrapper">
-      <app-user-list></app-user-list>
-    </div>
-    <div #scroller class="feedWrapper">
-      <app-feed></app-feed>
-    </div>
+  <div class="mainLoginContent" *ngIf="!loggedIn">
+    <form [formGroup]="userNameForm" (ngSubmit)="login()" #formDir="ngForm" novalidate>
+      <label style=" margin-top: 5%;">Email</label>
+      <input class="chat-login-input form-control" formControlName="email" type="text" placeholder="Adjon meg egy emailt..." >
+      <span class="text-danger" *ngIf="email.invalid && formDir.submitted">
+        Kérjük adjon meg egy emailt
+      </span>
+      <label>Jelszó</label>
+      <input class="chat-login-input form-control" formControlName="password" type="password" placeholder="Adjon meg egy jelszavat...">
+      <span class="text-danger" *ngIf="password.invalid && formDir.submitted">
+        Kérjük adjon meg egy jelszavat
+      </span>
+      <label>Felhasználónév</label>
+      <input class="chat-login-input form-control" formControlName="displayName" type="text" placeholder="Adjon meg egy nevet...">
+      <span class="text-danger" *ngIf="displayName.invalid && formDir.submitted">
+        Kérjük adjon meg egy nevet
+      </span>
+      <button type="submit" class="btn-primary logBtn"><span class="btnText">Ugrás a chatre</span></button>
+    </form>
   </div>
 
-  <div class="chatFormWrapper">
-    <app-chat-form></app-chat-form>
-  </div>
+  <ng-container *ngIf="loggedIn">
+    <div class="chatWindowHeader">
+      <h3 class="chatHeader">Chat</h3>
+    </div>
+    <div class="mainContent">
+      <div class="userListWrapper">
+        <app-user-list></app-user-list>
+      </div>
+      <div #scroller class="feedWrapper">
+        <app-feed></app-feed>
+      </div>
+    </div>
+
+    <div class="chatFormWrapper">
+      <app-chat-form></app-chat-form>
+    </div>
+  </ng-container>
 </div>

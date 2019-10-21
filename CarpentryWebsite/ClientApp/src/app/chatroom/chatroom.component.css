@@ -5,6 +5,47 @@
   padding: 10px;  
 }
 
+.mainLoginContent {
+  width: 300px;
+  height:300px;
+  text-align: center;
+}
+
+.text-danger {
+    display: block;
+}
+
+.chat-login-input {
+    width: 80%;
+    margin: auto;
+    margin-bottom: 5%;
+}
+
+label {
+    color: rgb(94, 185, 238);
+    text-align: left;
+    font-weight: 100;
+    display: block;
+    margin-left: 10%;
+}
+
+.logBtn {
+    border-radius: 4px;
+    font-size:12px;
+    background-color: #1f1f1f;
+    border-color: #1f1f1f;
+    text-transform: uppercase;
+    margin-top: 5%;
+    width: 80%;
+    height: 45px;
+}
+
+.logBtn:hover {
+    background-color: #57595D;
+    border-color: #57595D;
+    transition: 0.5s background-color;
+}
+
 .chatWindow{
     position:fixed;
 	bottom:50px;
@@ -23,9 +64,6 @@
 .chatWindow h3{
     text-align:center;
     color:#ffffff;
-}
-
-.chatHeader{
 }
 
 .chatFormWrapper{
