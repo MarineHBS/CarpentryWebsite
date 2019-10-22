@@ -3,6 +3,7 @@ import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ChatMessage } from '../models/chat';
 import { Observable, of } from 'rxjs';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,26 +15,23 @@ export class ChatService {
   chatMessages: AngularFireList<any>;
   chatMessage: ChatMessage;
   userName: Observable<string>;
+  displayName: string;
 
 
-  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth) {
+  constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth,
+    private authService: AuthService) {
     this.afAuth.authState.subscribe(auth => {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
       }
-      this.getUser().subscribe(a => {
-        // this.userName = a.displayName;
-      });
+      this.displayName = this.getUser();
     });
   }
 
   getUser() {
     const userId = this.user.uid;
-    const path = `/users/${userId}`;
-    const name = `/users/${userId}/displayName`;
-    console.log(' ÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁ', this.db.object(path));
-    console.log(' ÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁ', this.db.object(name));
-    return of(this.db.object(path));
+    // const path = `/users/${userId}`;
+    return this.authService.getDisplayName();
   }
 
   getUsers() {
@@ -49,17 +47,12 @@ export class ChatService {
     this.chatMessages.push({
       timeSent: timestamp,
       message: msg,
-      // userName: this.userName,
-      userName: 'testuser',
+      userName: this.displayName,
       email: email
     });
   }
 
   getMessages(): AngularFireList<ChatMessage[]> {
-
-    console.log('' + this.db.list('messages', ref => {
-      return ref.limitToLast(25).orderByKey();
-    }));
     return this.db.list('messages', ref => {
       return ref.limitToLast(25).orderByKey();
     });

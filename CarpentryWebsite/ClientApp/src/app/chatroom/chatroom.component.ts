@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, OnChanges } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ChatService } from '../services/chat.service';
 import { Router } from '@angular/router';
@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './chatroom.component.html',
   styleUrls: ['./chatroom.component.css']
 })
-export class ChatroomComponent implements OnInit, AfterViewChecked {
+export class ChatroomComponent implements OnInit, AfterViewChecked, OnChanges {
   @ViewChild('scroller') private feedContainer: ElementRef;
   userNameForm: FormGroup;
   loggedIn = false;
@@ -22,6 +22,9 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
       displayName: ['', [Validators.required]]
   });
   }
+  ngOnChanges(): void {
+    this.scrolltoBottom();
+  }
 
   ngOnInit() {
       if ( this.authService.currentUserId === '') {
@@ -32,8 +35,8 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
   }
 
   scrolltoBottom(): void {
-    // this.feedContainer.nativeElement.scrollTop
-    // = this.feedContainer.nativeElement.scrollHeight;
+     this.feedContainer.nativeElement.scrolltoBottom
+     = this.feedContainer.nativeElement.scrollHeight;
   }
 
   ngAfterViewChecked(): void {
@@ -47,7 +50,6 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
     this.authService.signUp(this.email.value, this.password.value, this.displayName.value)
     .then(resolve => this.loggedIn = true).catch(error => window.alert(error));
 
-    console.log(this.email);
   }
 
   get email() { return this.userNameForm.get('email'); }

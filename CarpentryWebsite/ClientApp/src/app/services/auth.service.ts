@@ -10,6 +10,7 @@ import { User } from '../models/user';
 export class AuthService {
   private user: Observable<firebase.User>;
   private authState: any;
+  private displayName: string;
 
   constructor(private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
@@ -22,7 +23,7 @@ export class AuthService {
     }
 
     get currentUserId(): string {
-      return this.authState !== null ? this.authState.uid : '';
+      return this.authState.user.uid !== null ? this.authState.user.uid : '';
     }
 
     login(email: string, password: string) {
@@ -43,9 +44,18 @@ export class AuthService {
       return this.afAuth.auth.createUserWithEmailAndPassword(email, password)
               .then((user) => {
                 this.authState = user;
+                this.setDisplayName(displayName);
                 const status = 'online';
                 this.setUserData(email, displayName, status);
               });
+    }
+
+    setDisplayName( displayName: string) {
+      this.displayName = displayName;
+    }
+
+    getDisplayName() {
+      return this.displayName;
     }
 
     setUserData(email: string, displayName: string, status: string): void {
