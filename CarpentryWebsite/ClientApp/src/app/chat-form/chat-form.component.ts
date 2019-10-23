@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../services/chat.service';
+import { NotifierService } from "angular-notifier";
 
 @Component({
   selector: 'app-chat-form',
@@ -9,15 +10,21 @@ import { ChatService } from '../services/chat.service';
 export class ChatFormComponent implements OnInit {
 
   message: string;
+  @Input() userId: string;
+  private readonly notifier: NotifierService;
 
-  constructor(private chat: ChatService) { }
+  constructor(private chat: ChatService, notifierService: NotifierService) {
+    this.notifier = notifierService;
+   }
 
   ngOnInit() {
   }
 
   send() {
+    console.log('asdasdasdads', this.userId);
+    this.notifier.notify("success", "You are awesome! I mean it!");
     if (this.message !== '') {
-      this.chat.sendMessage(this.message);
+      this.chat.sendMessageWithUser(this.message, this.userId);
     }
     this.message = '';
   }

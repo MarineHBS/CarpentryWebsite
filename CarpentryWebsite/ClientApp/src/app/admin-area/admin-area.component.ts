@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked, OnChanges } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { OfferRequestService } from '../services/offer-request.service';
 import { MatDialog } from '@angular/material';
 import { OfferFormPopupComponent } from '../offer-form-popup/offer-form-popup.component';
 import { PictureService } from '../services/picture.service';
+import { ChatService } from '../services/chat.service';
+import { Observable } from 'rxjs';
+import { UserRegistration } from '../models/user-registration';
+import { User } from '../models/user-model';
+import { ChatMessage } from '../models/chat';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-admin-area',
   templateUrl: './admin-area.component.html',
   styleUrls: ['./admin-area.component.css']
 })
-export class AdminAreaComponent implements OnInit {
+export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
+  @ViewChild('scroller') private messageContainer: ElementRef;
 
   isLoggedIn: boolean;
   defaultColDef: any;
@@ -26,9 +33,13 @@ export class AdminAreaComponent implements OnInit {
 
   rowData: any;
   pictureName: string;
+  users: Observable<User[][]>;
+  usersMessages: Observable<ChatMessage[][]>;
+  userId;
 
   constructor(userService: UserService, private offerRequestService: OfferRequestService,
-     private dialog: MatDialog, private pictureService: PictureService) {
+     private dialog: MatDialog, private pictureService: PictureService, private chatService: ChatService,
+     private authService: AuthService) {
     this.isLoggedIn = userService.isLoggedIn();
     this.defaultColDef = {
       width: 300,
@@ -38,6 +49,48 @@ export class AdminAreaComponent implements OnInit {
     };
     this.rowData = offerRequestService.getOfferRequests();
     this.rowSelection = 'single';
+  }
+
+  scrolltoBottom(): void {
+    if (this.messageContainer) {
+      this.messageContainer.nativeElement.scrollTop
+        = this.messageContainer.nativeElement.scrollHeight;
+    }
+  }
+
+  ngOnInit() {
+    this.users = this.chatService.getUsers().valueChanges();
+    this.authService.login('admin@admin.hu', 'admin1');
+  }
+
+  ngOnChanges() {
+    this.users = this.chatService.getUsers().valueChanges();
+  }
+
+  ngAfterViewChecked () {
+    this.scrolltoBottom();
+  }
+
+  setUsersMessages() {
+    this.usersMessages = this.chatService.getUserMessages(this.userId).valueChanges();
+  }
+
+  userSelected(uid) {
+    this.userId = uid;
+    this.setUsersMessages();
+  }
+
+  send() {
+    if (this.message !== '') {
+      this.chatService.sendMessageWithUser(this.message, this.userId);
+    }
+    this.message = '';
+  }
+
+  handleSubmit(event) {
+    if (event.keyCode === 13 && this.message !== '') {
+      this.send();
+    }
   }
 
   onRowSelected(event) {
@@ -66,8 +119,4 @@ export class AdminAreaComponent implements OnInit {
       });
     }
   }
-
-  ngOnInit() {
-  }
-
 }

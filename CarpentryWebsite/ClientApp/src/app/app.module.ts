@@ -62,6 +62,7 @@ import { AgGridModule } from 'ag-grid-angular';
 import { PictureService } from './services/picture.service';
 import { OfferFormPopupComponent } from './offer-form-popup/offer-form-popup.component';
 import { AuthService } from './services/auth.service';
+import { NotifierModule } from "angular-notifier";
 
 @NgModule({
   declarations: [
@@ -121,7 +122,8 @@ import { AuthService } from './services/auth.service';
     MatSelectModule,
     MatAutocompleteModule,
     MatListModule,
-    AgGridModule.withComponents([])
+    AgGridModule.withComponents([]),
+    NotifierModule
   ],
   entryComponents: [
     PriceEstimateComponent,

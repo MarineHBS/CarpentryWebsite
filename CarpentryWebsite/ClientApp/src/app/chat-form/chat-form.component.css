@@ -8,9 +8,13 @@
 .chatButton{
     background: #5adf5a;
     color:#ffffff;
-    width:100%;
+    width:30%;
 }
 
 .chatButton:hover{
     background:green;
+}
+
+input {
+    width: 100%;
 }

@@ -1,4 +1,4 @@
-<div class="messageContainer">
+<div class="message-container">
   <hr/>
   <div class="messageData">
     <span class="sender">
@@ -8,7 +8,9 @@
       {{timeStamp}}
     </span>
   </div>
-  <div class="messageContent">
+  <div class="messageContent"
+  [ngClass]="{'isOwnMessageContent':isOwnMessage, 'isTheirMessageContent': !isOwnMessage}"
+  [ngClass]="{'isTheirMessageContent': !isOwnMessage}">
     {{messageContent}}
   </div>
 </div>

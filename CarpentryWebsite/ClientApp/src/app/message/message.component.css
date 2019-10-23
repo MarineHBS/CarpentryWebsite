@@ -1,3 +1,43 @@
-.isOwnMessage{
-    background-color: #01579b;
+.isOwnMessageContent{
+    background-color: #01579B;
+    color: white;
+    border-radius: 10px;
+    border: 3px #01579B solid;
+}
+
+.messageData {
+    width: 32%;
+    display: inline-block;
+    overflow: hidden;
+    margin-right: 8px;
+}
+
+.messageContent {
+    width: 65%;
+    float: right;
+    word-break: break-all;
+    height: 100%;
+}
+
+.sender {
+    word-break: break-all;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.isTheirMessageContent {
+    background-color: rgba(227, 230, 233, 0.87);
+    color: #01579B;
+    border-radius: 10px;
+    border: 3px rgba(227, 230, 233, 0.87) solid;
+}
+
+.message-container {
+    margin-top: 20px;
+    display: flex;
+}
+
+.timestamp {
+    font-style: italic;
+    font-size: 12px;
 }

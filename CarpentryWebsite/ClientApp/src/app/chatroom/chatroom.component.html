@@ -1,6 +1,7 @@
 <div class="chatWindow">
-  <div class="mainLoginContent" *ngIf="!loggedIn">
-    <form [formGroup]="userNameForm" (ngSubmit)="login()" #formDir="ngForm" novalidate>
+  <div class="mainLoginContent" *ngIf="!loggedIn && registerChosen">
+    <h2>Regisztráció</h2>
+    <form [formGroup]="userNameForm" (ngSubmit)="register()" #formDir="ngForm" novalidate>
       <label style=" margin-top: 5%;">Email</label>
       <input class="chat-login-input form-control" formControlName="email" type="text" placeholder="Adjon meg egy emailt..." >
       <label>Jelszó</label>
@@ -12,7 +13,19 @@
       </span>
       <button type="submit" class="btn-primary logBtn"><span class="btnText">Ugrás a chatre</span></button>
     </form>
+    <button class="existing-user" (click)="existingUser()">Már van felhasználója? Lépjen be!</button>
   </div>
+  <div class="mainLoginContent" *ngIf="!loggedIn && !registerChosen">
+      <h2>Belépés</h2>
+      <form [formGroup]="loginForm" (ngSubmit)="login()" #formDir="ngForm" novalidate>
+        <label style=" margin-top: 5%;">Email</label>
+        <input class="chat-login-input form-control" formControlName="loginEmail" type="text" placeholder="Adja meg az email címét..." >
+        <label>Jelszó</label>
+        <input class="chat-login-input form-control" formControlName="loginPassword" type="password" placeholder="Adja meg a jelszavát...">
+        <button type="submit" class="btn-primary logBtn"><span class="btnText">Ugrás a chatre</span></button>
+      </form>
+      <button class="existing-user" (click)="notExistingUser()">Még nincs felhasználója? Regisztráljon!</button>
+    </div>
 
   <ng-container *ngIf="loggedIn">
     <div class="chatWindowHeader">
@@ -23,12 +36,12 @@
         <app-user-list></app-user-list>
       </div>
       <div class="feedWrapper">
-        <app-feed></app-feed>
+        <app-feed [userId]=userId></app-feed>
       </div>
     </div>
 
     <div class="chatFormWrapper">
-      <app-chat-form></app-chat-form>
+      <app-chat-form [userId]=userId></app-chat-form>
     </div>
   </ng-container>
 </div>

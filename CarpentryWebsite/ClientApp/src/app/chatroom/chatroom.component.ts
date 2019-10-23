@@ -12,7 +12,10 @@ import { AuthService } from '../services/auth.service';
 export class ChatroomComponent implements OnInit, AfterViewChecked {
   @ViewChild('scroller') private feedContainer: ElementRef;
   userNameForm: FormGroup;
+  loginForm: FormGroup;
   loggedIn = false;
+  userId: string;
+  registerChosen = true;
 
   constructor(private _fb: FormBuilder, private chatService: ChatService,
     private router: Router, private authService: AuthService) {
@@ -20,6 +23,10 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
       email: ['', [Validators.required]],
       password: ['', [Validators.required]],
       displayName: ['', [Validators.required]]
+    });
+    this.loginForm = this._fb.group({
+      loginEmail: ['', [Validators.required]],
+      loginPassword: ['', [Validators.required]]
     });
   }
 
@@ -29,6 +36,7 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
     } else {
       this.loggedIn = true;
     }
+    this.userId = this.authService.currentUserId;
   }
 
   scrolltoBottom(): void {
@@ -42,16 +50,40 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
     this.scrolltoBottom();
   }
 
-  login() {
+  register() {
     if (!this.userNameForm.valid) {
       return;
     }
     this.authService.signUp(this.email.value, this.password.value, this.displayName.value)
-      .then(resolve => this.loggedIn = true).catch(error => window.alert(error));
+      .then(resolve => {
+        this.loggedIn = true;
+        this.userId = this.authService.currentUserId;
+      }).catch(error => window.alert(error));
+  }
 
+  login() {
+    if (!this.loginForm.valid) {
+      return;
+    }
+    this.authService.login(this.loginForm.get('loginEmail').value,
+     this.loginForm.get('loginPassword').value)
+      .then(resolve => {
+        this.loggedIn = true;
+        this.userId = this.authService.currentUserId;
+      }).catch(error => window.alert(error));
+  }
+
+  existingUser() {
+    this.registerChosen = false;
+  }
+
+  notExistingUser() {
+    this.registerChosen = true;
   }
 
   get email() { return this.userNameForm.get('email'); }
   get password() { return this.userNameForm.get('password'); }
   get displayName() { return this.userNameForm.get('displayName'); }
+  get loginEmail() { return this.userNameForm.get('loginEmail'); }
+  get loginPassword() { return this.userNameForm.get('loginPassword'); }
 }

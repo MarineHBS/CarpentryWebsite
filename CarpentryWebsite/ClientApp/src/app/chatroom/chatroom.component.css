@@ -1,14 +1,20 @@
 .mainContent {
-  max-width: 300px;
-  max-height:300px;
+  width: 300px;
+  height:300px;
   overflow-y: scroll;
   overflow-x: hidden;
   padding: 10px;  
 }
 
+.existing-user {
+    background: white;
+    border: none;
+    color: blue;
+}
+
 .mainLoginContent {
   width: 300px;
-  height:300px;
+  height:400px;
   text-align: center;
 }
 

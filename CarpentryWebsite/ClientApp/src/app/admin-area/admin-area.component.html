@@ -1,42 +1,62 @@
 <head>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </head>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+</head>
 
 <body>
   <div *ngIf="isLoggedIn">
     <h3>Ajánlatkérések</h3>
-    <ag-grid-angular 
-    #agGrid
-      style="width: 902px; height: 300px;" 
-      class="ag-theme-balham"
-      [rowData]="rowData | async" 
-      [columnDefs]="columnDefs"
-      [defaultColDef]="defaultColDef"
-      [rowSelection]="rowSelection"
-      (rowSelected)="onRowSelected($event)"
-      >
+    <ag-grid-angular #agGrid style="width: 902px; height: 300px;" class="ag-theme-balham" [rowData]="rowData | async"
+      [columnDefs]="columnDefs" [defaultColDef]="defaultColDef" [rowSelection]="rowSelection"
+      (rowSelected)="onRowSelected($event)">
     </ag-grid-angular>
   </div>
   <div class="modal" *ngIf="showModal" tabindex="-1" role="dialog">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Modal title</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            </button>
-          </div>
-          <div class="modal-body">
-            {{message}}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="showModal=false">Save changes</button>
-            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModal=false">Close </button>
-          </div>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          </button>
+        </div>
+        <div class="modal-body">
+          {{message}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="showModal=false">Save changes</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="showModal=false">Close </button>
         </div>
       </div>
     </div>
+  </div>
+  <h3 style="margin-top:60px;">Chat</h3>
+  <hr>
+  <div class="chat-container">
+    <div class="user-list">
+      <div *ngFor="let user of users | async" class="user-element">
+        <button class="user-button" (click)="userSelected(user.uid)">{{user.displayName}}</button>
+      </div>
+    </div>
+    <div #scroller class="message-container">
+      <app-feed [userId]=userId></app-feed>
+    </div>
+    <div style="float: right; width: 80%;">
+        <input
+        class="chatInput"
+        [(ngModel)]="message"
+        (keydown)="handleSubmit($event)"
+        placeholder="Ide írja az üzenetet..."/>
+    
+        <button class="chatButton" (click)=send()>Küldés</button>
+    </div>
+  </div>
   <div *ngIf="!isLoggedIn">
     <h1>Csak adminok számára elérhető</h1>
   </div>

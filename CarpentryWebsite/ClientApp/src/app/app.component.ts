@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
 import { MatDialog } from '@angular/material';
+import { UserService } from './services/user.service';
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,11 @@ export class AppComponent {
   title = 'app';
   public isChatOpened: boolean;
   isOpened: boolean;
+  loggedIn = false;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private userService: UserService) {
+    this.loggedIn = userService.isLoggedIn();
+    this.userService.loggedInUpdated.subscribe(loggedIn => this.loggedIn = loggedIn);
   }
 
   openChat() {

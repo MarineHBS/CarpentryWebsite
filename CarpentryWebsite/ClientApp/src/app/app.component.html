@@ -10,14 +10,15 @@
     </div>
   </div>
   <div class='main-content row content'>
+    <notifier-container></notifier-container>
     <div class='col-sm-12 body-content'>
       <router-outlet></router-outlet>
     </div>
-    <button class="fa my-float float" [routerLink]="[ '/request-offer' ]">Árajánlat kérése</button>
+    <button class="fa my-float float" [routerLink]="[ '/request-offer' ]" *ngIf="!loggedIn">Árajánlat kérése</button>
     <a [routerLink]="[ '/add-rating' ]">
-      <button class="fa my-float ratingButton">Értékeljen minket!</button>
+      <button class="fa my-float ratingButton" *ngIf="!loggedIn">Értékeljen minket!</button>
     </a>
-    <button class="fa my-float chat open-button" (click)="openChat()">Chat</button>
+    <button class="fa my-float chat open-button" (click)="openChat()" *ngIf="!loggedIn">Chat</button>
     <div *ngIf="isChatOpened">
       <app-chatroom></app-chatroom>
     </div>
