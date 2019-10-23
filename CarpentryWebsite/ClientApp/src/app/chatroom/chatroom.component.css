@@ -2,6 +2,7 @@
   max-width: 300px;
   max-height:300px;
   overflow-y: scroll;
+  overflow-x: hidden;
   padding: 10px;  
 }
 
