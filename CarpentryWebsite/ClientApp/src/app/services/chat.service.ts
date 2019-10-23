@@ -70,7 +70,6 @@ export class ChatService {
 
   sendMessageWithUser(msg: string, uid: string, displayName?: string) {
     const timestamp = this.getTimeStamp();
-    const email = this.user.email;
     let userName;
     this.getDisplayName(uid).valueChanges().subscribe(
       res => {
@@ -88,7 +87,6 @@ export class ChatService {
       timeSent: timestamp,
       message: msg,
       userName: userName,
-      email: email
     });
   }
 
