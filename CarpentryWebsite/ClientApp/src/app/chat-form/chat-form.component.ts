@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ChatService } from '../services/chat.service';
 import { NotifierService } from "angular-notifier";
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-chat-form',
@@ -13,15 +14,17 @@ export class ChatFormComponent implements OnInit {
   @Input() userId: string;
   private readonly notifier: NotifierService;
 
-  constructor(private chat: ChatService, notifierService: NotifierService) {
+  constructor(private chat: ChatService, notifierService: NotifierService, private userService: UserService) {
     this.notifier = notifierService;
-   }
+  }
 
   ngOnInit() {
   }
 
   send() {
-    this.notifier.notify("success", "You are awesome! I mean it!");
+    if (this.userService.isLoggedIn()) {
+      this.notifier.notify("success", "Új üzenet érkezett");
+    }
     if (this.message !== '') {
       this.chat.sendMessageWithUser(this.message, this.userId);
     }

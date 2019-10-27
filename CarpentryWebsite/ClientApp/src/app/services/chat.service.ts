@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { AngularFireDatabase, AngularFireList, AngularFireObject } from '@angular/fire/database';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { ChatMessage } from '../models/chat';
@@ -19,6 +19,9 @@ export class ChatService {
   chatMessage: ChatMessage;
   userName: Observable<string>;
   displayName: string;
+
+  private messageSentBy;
+  @Output() messageSentEvent: EventEmitter<boolean> = new EventEmitter();
 
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth,
@@ -86,6 +89,9 @@ export class ChatService {
         } else {
           userName = res.displayName;
           email = res.email;
+          this.messageSentBy = res.displayName;
+          this.messageSentEvent.emit(this.messageSentBy);
+          console.log('message sent');
           this.chatMessages = this.getMessagesWithUser(uid);
           this.chatMessages.push({
             timeSent: timestamp,

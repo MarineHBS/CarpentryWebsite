@@ -10,6 +10,7 @@ import { UserRegistration } from '../models/user-registration';
 import { User } from '../models/user-model';
 import { ChatMessage } from '../models/chat';
 import { AuthService } from '../services/auth.service';
+import { NotifierService } from 'angular-notifier';
 
 @Component({
   selector: 'app-admin-area',
@@ -38,10 +39,12 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
   userId;
   adminUid;
   userIsSelected = false;
+  private readonly notifier: NotifierService;
 
   constructor(userService: UserService, private offerRequestService: OfferRequestService,
      private dialog: MatDialog, private pictureService: PictureService, private chatService: ChatService,
-     private authService: AuthService) {
+     private authService: AuthService, notifierService: NotifierService) {
+      this.notifier = notifierService;
     this.isLoggedIn = userService.isLoggedIn();
     this.defaultColDef = {
       width: 300,
@@ -51,6 +54,10 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
     };
     this.rowData = offerRequestService.getOfferRequests();
     this.rowSelection = 'single';
+    this.chatService.messageSentEvent.subscribe(sentBy => {
+      console.log('event received', sentBy);
+      this.notifier.notify("success", "Új üzenet érkezett");
+    });
   }
 
   scrolltoBottom(): void {
