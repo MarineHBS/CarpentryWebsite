@@ -21,7 +21,6 @@ export class ChatFormComponent implements OnInit {
   }
 
   send() {
-    console.log('asdasdasdads', this.userId);
     this.notifier.notify("success", "You are awesome! I mean it!");
     if (this.message !== '') {
       this.chat.sendMessageWithUser(this.message, this.userId);

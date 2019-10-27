@@ -47,7 +47,7 @@
     <div #scroller class="message-container">
       <app-feed [userId]=userId></app-feed>
     </div>
-    <div style="float: right; width: 80%;">
+    <div style="float: right; width: 80%;" *ngIf="userIsSelected">
         <input
         class="chatInput"
         [(ngModel)]="message"

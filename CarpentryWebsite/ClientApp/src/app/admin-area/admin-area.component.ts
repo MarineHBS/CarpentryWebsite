@@ -36,6 +36,8 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
   users: Observable<User[][]>;
   usersMessages: Observable<ChatMessage[][]>;
   userId;
+  adminUid;
+  userIsSelected = false;
 
   constructor(userService: UserService, private offerRequestService: OfferRequestService,
      private dialog: MatDialog, private pictureService: PictureService, private chatService: ChatService,
@@ -59,8 +61,10 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
   }
 
   ngOnInit() {
+    this.userIsSelected = false;
     this.users = this.chatService.getUsers().valueChanges();
     this.authService.login('admin@admin.hu', 'admin1');
+    this.authService.authUser().subscribe( u => this.adminUid = u.uid);
   }
 
   ngOnChanges() {
@@ -76,13 +80,14 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
   }
 
   userSelected(uid) {
+    this.userIsSelected = true;
     this.userId = uid;
     this.setUsersMessages();
   }
 
   send() {
     if (this.message !== '') {
-      this.chatService.sendMessageWithUser(this.message, this.userId);
+      this.chatService.sendMessageWithUser(this.message, this.userId, this.adminUid);
     }
     this.message = '';
   }

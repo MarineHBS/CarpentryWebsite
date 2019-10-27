@@ -6,6 +6,7 @@ import { Observable, of } from 'rxjs';
 import { AuthService } from './auth.service';
 import { UserRegistration } from '../models/user-registration';
 import { User } from '../models/user-model';
+import { take } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -53,7 +54,6 @@ export class ChatService {
   sendMessage(msg: string) {
     const timestamp = this.getTimeStamp();
     const email = this.user.email;
-    this.chatMessages = this.getMessages();
     this.chatMessages.push({
       timeSent: timestamp,
       message: msg,
@@ -62,32 +62,40 @@ export class ChatService {
     });
   }
 
-  getMessages(): AngularFireList<ChatMessage[]> {
-    return this.db.list('messages', ref => {
-      return ref.limitToLast(25).orderByKey();
-    });
-  }
-
-  sendMessageWithUser(msg: string, uid: string, displayName?: string) {
+  sendMessageWithUser(msg: string, uid: string, adminUid?: string) {
     const timestamp = this.getTimeStamp();
-    let userName;
-    this.getDisplayName(uid).valueChanges().subscribe(
+    this.getDisplayName(uid).valueChanges().pipe(take(1)).subscribe(
       res => {
-        console.log('LUL', res);
-        // this.displayName = res.displayName;
+        // tslint:disable-next-line: no-shadowed-variable
+        let userName;
+        let email;
+        if (adminUid) {
+          userName = 'admin';
+          this.getDisplayName(adminUid).valueChanges().pipe(take(1)).subscribe(
+            adminUser => {
+              email = adminUser.email;
+              this.chatMessages = this.getMessagesWithUser(uid);
+              this.chatMessages.push({
+                timeSent: timestamp,
+                message: msg,
+                userName: userName,
+                email: email
+              });
+            }
+          );
+        } else {
+          userName = res.displayName;
+          email = res.email;
+          this.chatMessages = this.getMessagesWithUser(uid);
+          this.chatMessages.push({
+            timeSent: timestamp,
+            message: msg,
+            userName: userName,
+            email: email
+          });
+        }
       }
     );
-    if (this.displayName) {
-      userName = this.displayName;
-    } else {
-      userName = 'admin';
-    }
-    this.chatMessages = this.getMessagesWithUser(uid);
-    this.chatMessages.push({
-      timeSent: timestamp,
-      message: msg,
-      userName: userName,
-    });
   }
 
   getMessagesWithUser(uid: string): AngularFireList<ChatMessage[]> {
@@ -97,7 +105,7 @@ export class ChatService {
   }
 
   setDisplayName(uid: string) {
-    this.getDisplayName(uid).valueChanges().subscribe(
+    this.getDisplayName(uid).valueChanges().pipe(take(1)).subscribe(
       res => {
         console.log('LUL' + res);
         // this.displayName = res.displayName;
@@ -106,7 +114,7 @@ export class ChatService {
     console.log('HELP', this.getDisplayName(uid));
   }
 
-  getDisplayName(uid: string): AngularFireObject<User[]> {
+  getDisplayName(uid: string): AngularFireObject<User> {
     return this.db.object('users/' + uid);
   }
 
