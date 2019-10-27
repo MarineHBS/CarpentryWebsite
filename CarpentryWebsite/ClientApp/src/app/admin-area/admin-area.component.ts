@@ -56,7 +56,7 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
     this.rowSelection = 'single';
     this.chatService.messageSentEvent.subscribe(sentBy => {
       console.log('event received', sentBy);
-      this.notifier.notify("success", "Új üzenet érkezett");
+      this.notifier.notify("success", "Új üzenet érkezett, feladó:" + sentBy);
     });
   }
 

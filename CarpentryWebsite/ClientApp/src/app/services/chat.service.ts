@@ -21,8 +21,7 @@ export class ChatService {
   displayName: string;
 
   private messageSentBy;
-  @Output() messageSentEvent: EventEmitter<boolean> = new EventEmitter();
-
+  @Output() messageSentEvent: EventEmitter<string> = new EventEmitter();
 
   constructor(private db: AngularFireDatabase, private afAuth: AngularFireAuth,
     private authService: AuthService) {
@@ -35,8 +34,6 @@ export class ChatService {
   }
 
   getUser() {
-    const userId = this.user.uid;
-    // const path = `/users/${userId}`;
     return this.authService.getDisplayName();
   }
 
@@ -91,7 +88,6 @@ export class ChatService {
           email = res.email;
           this.messageSentBy = res.displayName;
           this.messageSentEvent.emit(this.messageSentBy);
-          console.log('message sent');
           this.chatMessages = this.getMessagesWithUser(uid);
           this.chatMessages.push({
             timeSent: timestamp,
@@ -130,7 +126,7 @@ export class ChatService {
       (now.getUTCMonth() + 1) + '/' +
       now.getUTCDate();
 
-    const hours = now.getUTCHours() + 2;
+    const hours = now.getUTCHours() + 1;
     const minutes = now.getUTCMinutes();
     const seconds = now.getUTCSeconds();
 

@@ -1,20 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatFormComponent } from './chat-form.component';
 import { AppModule } from '../app.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { appRoutes } from '../routes';
 import { APP_BASE_HREF } from '@angular/common';
 import { getBaseUrl } from '../../main';
-import { ChatService } from '../services/chat.service';
-import { NotifierService } from 'angular-notifier';
 import { UserService } from '../services/user.service';
+import { NavMenuComponent } from './nav-menu.component';
 
-describe('ChatFormComponent', () => {
-  let component: ChatFormComponent;
-  let fixture: ComponentFixture<ChatFormComponent>;
+describe('NavMenuComponent', () => {
+  let component: NavMenuComponent;
+  let fixture: ComponentFixture<NavMenuComponent>;
 
-  let sendMessageWithUserSpy;
+  let logoutSpy;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,32 +21,44 @@ describe('ChatFormComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: 'BASE_URL', useFactory: getBaseUrl },
-        ChatService, NotifierService, UserService
+        UserService
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatFormComponent);
+    fixture = TestBed.createComponent(NavMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    sendMessageWithUserSpy = spyOn(ChatService.prototype, 'sendMessageWithUser').and.callThrough();
+    logoutSpy = spyOn(UserService.prototype, 'logout').and.callThrough();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('send should call service', () => {
-    // given
-    component.message = 'message';
-    component.userId = 'id';
-
+  it('logout should call logout', () => {
     // when
-    component.send();
+    component.logout();
 
     // then
-    expect(sendMessageWithUserSpy).toHaveBeenCalledWith('message', 'id');
+    expect(logoutSpy).toHaveBeenCalled();
+  });
+
+  it('collapse should set isExpanded to false', () => {
+    // when
+    component.collapse();
+
+    // then
+    expect(component.isExpanded).toBeFalsy();
+  });
+
+  it('toggle should set isExpanded to the opposite', () => {
+    // when
+    component.toggle();
+    expect(component.isExpanded).toBeTruthy();
+    component.toggle();
+    expect(component.isExpanded).toBeFalsy();
   });
 });

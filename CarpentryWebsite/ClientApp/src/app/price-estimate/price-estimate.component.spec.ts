@@ -253,7 +253,7 @@ describe('PriceEstimateComponent', () => {
     spyOn(component.priceEstimateResultEvent, 'emit');
 
     // when
-    component.calculateEstimate(5);
+    component.calculateEstimate();
 
     // then
     expect(component.priceEstimateResult).toEqual(2000);

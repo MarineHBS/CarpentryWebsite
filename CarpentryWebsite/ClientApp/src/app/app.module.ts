@@ -10,7 +10,6 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { LocationService } from './services/locationservice.service';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
 import { RouterModule } from '@angular/router';
@@ -129,7 +128,7 @@ import { NotifierModule } from "angular-notifier";
     PriceEstimateComponent,
     OfferFormPopupComponent
   ],
-  providers: [LocationService, CarpentryServiceService,
+  providers: [CarpentryServiceService,
     CarpentryServiceTypeService, FabricService, FabricTypeService, ContactService,
     ReferencePictureService, RatingService, UserService, AuthGuard, ChatService,
     AngularFireAuth, OfferRequestService, PictureService, AuthService],

@@ -1,20 +1,30 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ChatFormComponent } from './chat-form.component';
 import { AppModule } from '../app.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { appRoutes } from '../routes';
 import { APP_BASE_HREF } from '@angular/common';
 import { getBaseUrl } from '../../main';
-import { ChatService } from '../services/chat.service';
-import { NotifierService } from 'angular-notifier';
 import { UserService } from '../services/user.service';
+import { LogoutComponent } from './logout.component';
+import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
-describe('ChatFormComponent', () => {
-  let component: ChatFormComponent;
-  let fixture: ComponentFixture<ChatFormComponent>;
+describe('LogoutComponent', () => {
+  let component: LogoutComponent;
+  let fixture: ComponentFixture<LogoutComponent>;
+  let location: Location;
+  let router: Router;
 
-  let sendMessageWithUserSpy;
+  window.alert = jest.fn();
+
+  let logoutSpy;
+
+  const mockUserService = {
+    logout: () => {
+      return '';
+    }
+  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,32 +33,24 @@ describe('ChatFormComponent', () => {
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
         { provide: 'BASE_URL', useFactory: getBaseUrl },
-        ChatService, NotifierService, UserService
+        { provide: UserService, useValue: mockUserService }
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ChatFormComponent);
+    fixture = TestBed.createComponent(LogoutComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-    sendMessageWithUserSpy = spyOn(ChatService.prototype, 'sendMessageWithUser').and.callThrough();
+    logoutSpy = spyOn(mockUserService, 'logout').and.callThrough();
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
+
+    router.initialNavigation();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('send should call service', () => {
-    // given
-    component.message = 'message';
-    component.userId = 'id';
-
-    // when
-    component.send();
-
-    // then
-    expect(sendMessageWithUserSpy).toHaveBeenCalledWith('message', 'id');
+    expect(location.path()).toBe('/home');
   });
 });

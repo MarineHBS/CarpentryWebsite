@@ -8,7 +8,7 @@ import { BrowserDynamicTestingModule, platformBrowserDynamicTesting } from '@ang
 
 export function getBaseUrl() {
    return document.getElementsByTagName('base')[0].href;
-  // return location.href;
+   return location.href;
 }
 
 const providers = [

@@ -9,6 +9,8 @@ import { getBaseUrl } from '../../main';
 import { ChatMessage } from '../models/chat';
 import { Location } from '@angular/common';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { of } from 'rxjs';
 
 describe('MessageComponent', () => {
   let component: MessageComponent;
@@ -16,13 +18,25 @@ describe('MessageComponent', () => {
   let location: Location;
   let router: Router;
 
+  const mockUser = {
+    displayName: "user",
+    email: "emai@gmail.com"
+  };
+
+  const mockAuthService = {
+    authUser: () => {
+      return of(mockUser);
+    }
+  };
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [AppModule, RouterTestingModule.withRoutes(appRoutes)],
       declarations: [],
       providers: [
         { provide: APP_BASE_HREF, useValue: '/' },
-        { provide: 'BASE_URL', useFactory: getBaseUrl }
+        { provide: 'BASE_URL', useFactory: getBaseUrl },
+        { provide: AuthService, useValue: mockAuthService}
       ]
     })
     .compileComponents();
@@ -38,7 +52,7 @@ describe('MessageComponent', () => {
     const chatMessage: ChatMessage = new ChatMessage();
     chatMessage.message = 'message';
     chatMessage.timeSent = new Date('2005');
-    chatMessage.userEmail = 'email';
+    chatMessage.email = 'email';
     chatMessage.userName = 'name';
     component.chatMessage = chatMessage;
     fixture.detectChanges();
@@ -49,7 +63,7 @@ describe('MessageComponent', () => {
   });
 
   it('ngOnInit should initialize variables', () => {
-    console.log('asdasdasd' + component.chatMessage);
+    console.log('asdasdasd', component.chatMessage);
     // when
     component.ngOnInit();
 

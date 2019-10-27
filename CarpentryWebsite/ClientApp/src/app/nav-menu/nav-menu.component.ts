@@ -26,10 +26,6 @@ export class NavMenuComponent {
     this.isExpanded = false;
   }
 
-  refresh() {
-    window.location.reload();
-  }
-
   toggle() {
     this.isExpanded = !this.isExpanded;
   }

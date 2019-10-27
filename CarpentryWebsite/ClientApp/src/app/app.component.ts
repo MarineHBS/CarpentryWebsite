@@ -1,5 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { PriceEstimateComponent } from './price-estimate/price-estimate.component';
 import { MatDialog } from '@angular/material';
 import { UserService } from './services/user.service';
 

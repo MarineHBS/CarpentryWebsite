@@ -12,7 +12,7 @@ describe('FeedComponent', () => {
   let component: FeedComponent;
   let fixture: ComponentFixture<FeedComponent>;
 
-  let spyGetMessages;
+  let spyGetMessagesWithUser;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -31,7 +31,7 @@ describe('FeedComponent', () => {
     fixture = TestBed.createComponent(FeedComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    spyGetMessages = spyOn(ChatService.prototype, 'getMessages').and.callThrough();
+    spyGetMessagesWithUser = spyOn(ChatService.prototype, 'getMessagesWithUser').and.callThrough();
   });
 
   it('should create', () => {
@@ -43,6 +43,6 @@ describe('FeedComponent', () => {
     component.ngOnInit();
 
     // then
-    expect(spyGetMessages).toHaveBeenCalled();
+    expect(spyGetMessagesWithUser).toHaveBeenCalled();
   });
 });
