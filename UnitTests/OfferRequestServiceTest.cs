@@ -27,6 +27,7 @@ namespace UnitTests
             var offerRequests = Enumerable.Range(1, 10)
                 .Select(i => new OfferRequest ( $"Name{i}", $"testEmail{i}@email.hu", $"message is: {i}" ));
             context.OfferRequest.AddRange(offerRequests);
+            offerRequests
             int changed = context.SaveChanges();
             carpentryWebsiteContext = context;
         }
@@ -38,6 +39,17 @@ namespace UnitTests
             var controller = new OfferRequestService(carpentryWebsiteContext);
             OfferRequest result = controller.GetOfferRequestDetails(7);
             Assert.Equal(expectedEmail, result.EmailAddress);
+        }
+
+        [Fact]
+        public void TestEditOfferRequests()
+        {
+            string expectedName = "Different name";
+            var controller = new OfferRequestService(carpentryWebsiteContext);
+
+            controller.UpdateOfferRequest(new OfferRequest { OfferRequestId = 5, Name = "Different name", EmailAddress = "Different email", Message = "Different message" });
+            OfferRequest result = controller.GetOfferRequestDetails(5);
+            Assert.Equal(expectedName, result.Name);
         }
     }
 }
