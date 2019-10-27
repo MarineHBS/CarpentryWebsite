@@ -23,6 +23,10 @@ namespace CarpentryWebsite.Models
         public CarpentryServiceService()
         {
         }
+        public CarpentryServiceService(CarpentryWebsiteContext carpentryWebsiteContext)
+        {
+            db = carpentryWebsiteContext;
+        }
 
         public bool adminFlag(string userId)
         {

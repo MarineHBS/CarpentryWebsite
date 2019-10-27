@@ -23,6 +23,10 @@ namespace CarpentryWebsite.Models
         public RatingService()
         {
         }
+        public RatingService(CarpentryWebsiteContext carpentryWebsiteContext)
+        {
+            db = carpentryWebsiteContext;
+        }
 
         public IEnumerable<Rating> GetAllRatings()
         {

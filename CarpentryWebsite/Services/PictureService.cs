@@ -23,6 +23,10 @@ namespace CarpentryWebsite.Models
         public PictureService()
         {
         }
+        public PictureService(CarpentryWebsiteContext carpentryWebsiteContext)
+        {
+            db = carpentryWebsiteContext;
+        }
 
         public IEnumerable<Picture> GetAllPictures()
         {

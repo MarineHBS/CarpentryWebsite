@@ -18,11 +18,13 @@ namespace CarpentryWebsite.Controllers
         RatingService ratingService = new RatingService();
 
         private readonly UserManager<MyUser> _userManager;
+        private readonly CarpentryWebsiteContext _carpentryWebsiteContext;
 
         public RatingController(UserManager<MyUser> userManager)
         {
             _userManager = userManager;
         }
+
 
         [HttpGet]
         [Route("/api/rating/get")]

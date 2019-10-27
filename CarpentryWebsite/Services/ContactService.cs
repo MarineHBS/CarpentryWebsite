@@ -23,6 +23,10 @@ namespace CarpentryWebsite.Models
         public ContactService()
         {
         }
+        public ContactService(CarpentryWebsiteContext carpentryWebsiteContext)
+        {
+            db = carpentryWebsiteContext;
+        }
 
         public IEnumerable<Contact> GetAllContacts()
         {

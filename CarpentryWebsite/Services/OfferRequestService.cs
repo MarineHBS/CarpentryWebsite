@@ -28,6 +28,10 @@ namespace CarpentryWebsite.Services
         public OfferRequestService()
         {
         }
+        public OfferRequestService(CarpentryWebsiteContext carpentryWebsiteContext)
+        {
+            db = carpentryWebsiteContext;
+        }
 
         public IEnumerable<OfferRequest> GetAllOfferRequests()
         {

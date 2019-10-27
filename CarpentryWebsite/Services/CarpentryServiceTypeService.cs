@@ -23,6 +23,10 @@ namespace CarpentryWebsite.Models
         public CarpentryServiceTypeService()
         {
         }
+        public CarpentryServiceTypeService(CarpentryWebsiteContext carpentryWebsiteContext)
+        {
+            db = carpentryWebsiteContext;
+        }
 
         public IEnumerable<CarpentryServiceType> GetAllCarpentryServiceTypes()
         {

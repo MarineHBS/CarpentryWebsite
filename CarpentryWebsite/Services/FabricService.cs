@@ -29,6 +29,10 @@ namespace CarpentryWebsite.Models
         public FabricService()
         {
         }
+        public FabricService(CarpentryWebsiteContext carpentryWebsiteContext)
+        {
+            db = carpentryWebsiteContext;
+        }
 
         public IEnumerable<Fabric> GetAllFabrics()
         {
