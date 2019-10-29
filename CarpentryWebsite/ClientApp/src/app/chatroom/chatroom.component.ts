@@ -15,7 +15,7 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
   loginForm: FormGroup;
   loggedIn = false;
   userId: string;
-  registerChosen = true;
+  registerChosen = false;
 
   constructor(private _fb: FormBuilder, private chatService: ChatService,
     private router: Router, private authService: AuthService) {
