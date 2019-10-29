@@ -17,6 +17,7 @@
     float: right;
     word-break: break-word;
     height: 100%;
+    padding-left: 7px;
 }
 
 .sender {

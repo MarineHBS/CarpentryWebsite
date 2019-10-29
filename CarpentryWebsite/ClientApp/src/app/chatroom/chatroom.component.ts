@@ -54,11 +54,12 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
     if (!this.userNameForm.valid) {
       return;
     }
+
     this.authService.signUp(this.email.value, this.password.value, this.displayName.value)
       .then(resolve => {
         this.loggedIn = true;
         this.userId = this.authService.currentUserId;
-      }).catch(error => window.alert(error));
+      }).catch(error => window.alert(this.mapError(error)));
   }
 
   login() {
@@ -70,7 +71,26 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
       .then(resolve => {
         this.loggedIn = true;
         this.userId = this.authService.currentUserId;
-      }).catch(error => window.alert(error));
+      }).catch(error => window.alert(this.mapError(error)));
+  }
+
+  mapError (error: string): string {
+    console.log('maperror' + error);
+    // tslint:disable-next-line: triple-equals
+    if (error == 'Error: The email address is badly formatted.') {
+      return 'Nem megfelelő e-mail formátum';
+      // tslint:disable-next-line: triple-equals
+    } else if ( error == 'Error: Password should be at least 6 characters') {
+      return 'A jelszónak legalább 6 karakterből kell állnia';
+      // tslint:disable-next-line: triple-equals
+    } else if ( error == 'Error: There is no user record corresponding to this identifier. The user may have been deleted.') {
+      return 'Nem található ilyen felhasználó';
+      // tslint:disable-next-line: triple-equals
+    } else if ( error == 'Error: The password is invalid or the user does not have a password.') {
+      return 'Nem megfelelő a jelszó';
+    } else {
+      return error;
+    }
   }
 
   existingUser() {

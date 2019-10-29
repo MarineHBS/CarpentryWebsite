@@ -71,7 +71,6 @@ export class AddFabricComponent implements OnInit {
         formData.append('fabricTypeId', this.addFabricForm.value.fabricTypeId);
         formData.append('fabricName', this.addFabricForm.value.name);
         formData.append('price', this.addFabricForm.value.price);
-        console.log('formData', formData);
         if (this.title === 'Szövet felvétele') {
             this._fabricService.createFabric(formData)
                 .subscribe((data) => {

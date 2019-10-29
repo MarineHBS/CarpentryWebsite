@@ -39,7 +39,7 @@ namespace CarpentryWebsite.Controllers
             var identity = await GetClaimsIdentity(credentials.UserName, credentials.Password);
             if (identity == null)
             {
-                return BadRequest(Errors.AddErrorToModelState("login_failure", "Invalid username or password.", ModelState));
+                return BadRequest(Errors.AddErrorToModelState("login_failure", "Érvénytelen felhasználónév vagy jelszó.", ModelState));
             }
             var id = identity.Claims.Single(c => c.Type == "id").Value;
             var jwt = await Tokens.GenerateJwt(identity, _jwtFactory, credentials.UserName, _jwtOptions, new JsonSerializerSettings { Formatting = Formatting.Indented }, carpentryServiceService.adminFlag(id));

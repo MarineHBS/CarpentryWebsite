@@ -16,7 +16,7 @@
         <span class="text-danger" *ngIf="emailAddress.invalid && f.submitted && !successFulSubmit">Kérjük adjon meg egy valós email címet</span>
         <div class="form-group">
           <label>E-mail (kötelező)</label>
-          <input type="emailAddress" name="emailAddress" formControlName="emailAddress" class="form-control" id="emailAddress"
+          <input type="email" name="emailAddress" formControlName="emailAddress" class="form-control" id="emailAddress"
             placeholder="Adja meg a e-mail címét...">
         </div>
         <span class="text-danger" *ngIf="message.invalid && f.submitted && !successFulSubmit">Kérjük adjon meg egy üzenetet</span>

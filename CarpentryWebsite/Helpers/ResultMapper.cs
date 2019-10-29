@@ -18,13 +18,13 @@ namespace CarpentryWebsite.Helpers
             switch (formattedMessage)
             {
                 case "DuplicateUserName":
-                    return "This username already exists";
+                    return "Ez a felhasználónév létezik";
                 case "DuplicateEmail":
-                    return "This email already exists";
+                    return "Ez az email cím már létezik";
                 case "PasswordTooShort":
-                    return "Password is too short";
+                    return "Túl rövid jelszó, legalább 6 karakterből kell állnia";
                 case "InvalidUserName":
-                    return "Please enter only characters A-Z and 0-9";
+                    return "Kérem csak A-Z és 0-9 karaktereket adjon meg névnek";
                 default:
                     return "Server error";
             }
