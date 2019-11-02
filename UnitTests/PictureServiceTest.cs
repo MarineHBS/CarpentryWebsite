@@ -38,5 +38,26 @@ namespace UnitTests
             Picture result = controller.GetPictureDetails(5);
             Assert.Equal(expectedPictureName, result.PictureName);
         }
+
+        [Fact]
+        public void TestEditPictures()
+        {
+            string expectedName = "Different Picture Name";
+            var service = new PictureService(carpentryWebsiteContext);
+            carpentryWebsiteContext.Entry(service.GetPictureDetails(1)).State = EntityState.Detached;
+
+            service.UpdatePicture(new Picture(1, "Different Picture Name"));
+            Picture result = service.GetPictureDetails(1);
+            Assert.Equal(expectedName, result.PictureName);
+        }
+
+        [Fact]
+        public void TestDeletePicture()
+        {
+            var service = new PictureService(carpentryWebsiteContext);
+            service.DeletePicture(5);
+            Picture result = service.GetPictureDetails(5);
+            Assert.Null(result);
+        }
     }
 }

@@ -38,5 +38,26 @@ namespace UnitTests
             Rating result = controller.GetRatingDetails(2);
             Assert.Equal(expectedUser, result.User);
         }
+
+        [Fact]
+        public void TestEditRatings()
+        {
+            string expectedText = "Nem vagyok elégedett";
+            var service = new RatingService(carpentryWebsiteContext);
+            carpentryWebsiteContext.Entry(service.GetRatingDetails(4)).State = EntityState.Detached;
+
+            service.UpdateRating(new Rating { RatingId = 4, User = "5", UserRating = "Wrox Press", Text = "Nem vagyok elégedett" });
+            Rating result = service.GetRatingDetails(4);
+            Assert.Equal(expectedText, result.Text);
+        }
+
+        [Fact]
+        public void TestDeleteRating()
+        {
+            var service = new RatingService(carpentryWebsiteContext);
+            service.DeleteRating(5);
+            Rating result = service.GetRatingDetails(5);
+            Assert.Null(result);
+        }
     }
 }

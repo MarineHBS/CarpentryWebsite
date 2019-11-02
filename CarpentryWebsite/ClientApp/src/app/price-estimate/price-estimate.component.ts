@@ -9,6 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FabricTypeService } from '../services/fabric-type.service';
 import { CarpentryServiceTypeService } from '../services/carpentry-service-type.service';
 import { EventEmitter } from '@angular/core';
+import { Picture } from '../models/picture';
 
 @Component({
   selector: 'app-price-estimate',
@@ -20,6 +21,7 @@ export class PriceEstimateComponent implements OnInit {
   fabricTypes: FabricType[];
   fabricsWithIds: Map<FabricType, Fabric[]> = new Map();
   currentFabricPrice: number;
+  currentFabric: Fabric;
   carpentryServices: CarpentryService[];
   carpentryServiceTypeList: CarpentryServiceType[];
   currentCarpentryServicePrice: number;
@@ -29,6 +31,11 @@ export class PriceEstimateComponent implements OnInit {
   size: number;
   hour: number;
   showInputData = false;
+  fabricSelected = false;
+  fabricsWithUrls: Map<string, string> = new Map();
+  fabricPictures: Picture[];
+
+  currentFabricPictureUrl: string;
 
   priceEstimateResult: number;
 
@@ -57,6 +64,14 @@ export class PriceEstimateComponent implements OnInit {
           for (const type of types) {
             this.addFabricsToFabricsMap(type);
           }
+          this._fabricService.getFabricsPictureUrl().subscribe(
+            pictures => {
+              this.fabricPictures = pictures;
+              for (const fabric of fabrics) {
+                this.fabricsWithUrls.set(fabric.fabricId, this.fabricPictures
+                  .filter(pic => pic.pictureId === fabric.pictureId)[0].pictureName);
+              }
+            });
         });
     });
 
@@ -91,7 +106,16 @@ export class PriceEstimateComponent implements OnInit {
     return this.carpentryServicesWithIds.get(this.carpentryServiceTypeList.find(x => x.carpentryServiceTypeId === type));
   }
 
+  assignPictureSrc(fabric: Fabric) {
+    this.fabricSelected = true;
+    if (fabric) {
+    console.log(fabric.pictureId + 'ÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁ');
+    }
+  }
+
   calculateEstimate() {
+    this.currentFabricPrice = this.currentFabric.price;
+    console.log('helo');
     this.showEstimate = true;
     this.priceEstimateResult = this.currentCarpentryServicePrice + this.currentFabricPrice * this.size;
     this.priceEstimateResultEvent.emit(this.priceEstimateResult);
@@ -101,4 +125,9 @@ export class PriceEstimateComponent implements OnInit {
     this.showInputData = true;
     this.needNewComponentEvent.emit(true);
   }
+
+  getFabricUrlById(id: string) {
+    return this.fabricsWithUrls.get(id);
+  }
+
 }

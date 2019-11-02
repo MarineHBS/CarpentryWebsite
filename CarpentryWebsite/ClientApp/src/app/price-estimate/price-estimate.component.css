@@ -22,6 +22,21 @@ body{
   padding-left: 40px;
 }
 
+.fabric-image {
+  height: 100px;
+  width: 100px;
+}
+
+.right-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.fabric-select {
+  width: 60%;
+  height: 30%;
+}
+
 .price-div{
     margin:30px;
     align-content: center;
@@ -31,7 +46,7 @@ body{
     font-size: 14px;
     font-weight: 100;
     box-shadow: 0 0 10px #888;
-    height: 370px;
+    height: 430px;
     width: 800px;
 }
 
@@ -105,7 +120,7 @@ button {
 .show-input-button {
     font-size:30px;
     width: 50px;
-    margin: 15% 0 0 48%;
+    margin: 20% 0 0 48%;
 }
 
 .combobox {

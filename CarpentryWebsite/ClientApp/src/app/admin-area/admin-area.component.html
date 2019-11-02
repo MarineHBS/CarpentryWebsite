@@ -41,7 +41,7 @@
   <div class="chat-container">
     <div class="user-list">
       <div *ngFor="let user of users | async" class="user-element">
-        <button class="user-button" (click)="userSelected(user.uid)">{{user.displayName}}</button>
+        <button class="user-button" (click)="userSelected(user.uid)" *ngIf="user.displayName !== 'admin'">{{user.displayName}}</button>
       </div>
     </div>
     <div #scroller class="message-container">

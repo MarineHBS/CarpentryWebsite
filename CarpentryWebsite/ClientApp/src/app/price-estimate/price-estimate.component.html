@@ -31,20 +31,25 @@
     </div>
     <span class="right-span" *ngIf="fabricTypeId">Szövet</span>
     <div class="select-div right-div" *ngIf="fabricTypeId">
-      <select [(ngModel)]="currentFabricPrice">
-        <option *ngFor="let fabric of getFabricsByTypeId(fabricTypeId)" [ngValue]="fabric.price">
+      <select class="fabric-select"  [(ngModel)]="currentFabric">
+        <option *ngFor="let fabric of getFabricsByTypeId(fabricTypeId)" [ngValue]="fabric">
           {{fabric.name}}
         </option>
       </select>
+      <div *ngIf=currentFabric>
+        <img class="fabric-image" src="{{baseUrl}}images/fabric_pictures/{{getFabricUrlById(currentFabric.fabricId)}}"
+          alt="Carpentry ">
+      </div>
     </div>
   </div>
-  <span *ngIf="currentFabricPrice">Szövet mérete (négyzetméterben)</span>
-  <input *ngIf="currentFabricPrice" type="number" class="form-control" [(ngModel)]="size" placeholder="méret" (ngModelChange)="calculateEstimate()">
-  <div class="price" *ngIf="currentFabricPrice">
-      <div style="float: right;">
-          <span class="concreteFtField" >{{priceEstimateResult}}</span>
-          <span class="ftField">HUF</span>
-        </div>
+  <span *ngIf="currentFabric">Szövet mérete (négyzetméterben)</span>
+  <input *ngIf="currentFabric" type="number" class="form-control" [(ngModel)]="size" placeholder="méret"
+    (ngModelChange)="calculateEstimate()">
+  <div class="price" *ngIf="currentFabric">
+    <div style="float: right;">
+      <span class="concreteFtField">{{priceEstimateResult}}</span>
+      <span class="ftField">HUF</span>
+    </div>
   </div>
 </div>
 <hr>
