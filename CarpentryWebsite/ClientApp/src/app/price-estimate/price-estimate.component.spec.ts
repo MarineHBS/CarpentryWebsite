@@ -111,6 +111,16 @@ describe('PriceEstimateComponent', () => {
     },
   ];
 
+  const currentFabric = {
+    fabricId: 1,
+    name: "Almara",
+    price: 500,
+    fabricTypeId: 1,
+    fabricType: null,
+    pictureId: 1,
+    picture: null
+  };
+
   const mockFabrics = [{
     fabricId: 1,
     name: "Almara",
@@ -248,7 +258,7 @@ describe('PriceEstimateComponent', () => {
   it('calculateEstimate should return correct results', () => {
     // given
     component.currentCarpentryServicePrice = 500;
-    component.currentFabricPrice = 500;
+    component.currentFabric = currentFabric;
     component.size = 3;
     spyOn(component.priceEstimateResultEvent, 'emit');
 
