@@ -7,15 +7,15 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class ContactServiceTest
+    public class ContactServiceTest : TestBase
     {
 
         public ContactServiceTest()
         {
-            InitContext();
+            //InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -28,7 +28,6 @@ namespace UnitTests
             context.Contact.AddRange(contacts);
             int changed = context.SaveChanges();
             carpentryWebsiteContext = context;
-            carpentryWebsiteContext.Database.EnsureDeleted();
         }
 
         [Fact]
@@ -46,10 +45,12 @@ namespace UnitTests
         {
             string expectedPhone = "062088888888";
             var service = new ContactService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetContactDetails(3)).State = EntityState.Detached;
+            Contact itemToAdd = new Contact { ContactId = 13, Name = "Name", Phone = "062088888888", EmailAddress = "testEmail@email.hu" };
+            service.AddContact(itemToAdd);
+            carpentryWebsiteContext.Entry(service.GetContactDetails(13)).State = EntityState.Detached;
 
-            service.UpdateContact(new Contact { ContactId = 3, Name = "Name", Phone = "062088888888", EmailAddress = "testEmail@email.hu" });
-            Contact result = service.GetContactDetails(3);
+            service.UpdateContact(new Contact { ContactId = 13, Name = "Name", Phone = "062088888888", EmailAddress = "testEmail@email.hu" });
+            Contact result = service.GetContactDetails(13);
             Assert.Equal(expectedPhone, result.Phone);
             carpentryWebsiteContext.Database.EnsureDeleted();
         }
@@ -61,6 +62,16 @@ namespace UnitTests
             service.DeleteContact(5);
             Contact result = service.GetContactDetails(5);
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void TestAddContact()
+        {
+            var service = new ContactService(carpentryWebsiteContext);
+            Contact itemToAdd = new Contact { ContactId = 105, Name = "Name", Phone = "062088888888", EmailAddress = "testEmail@email.hu" };
+            service.AddContact(itemToAdd);
+            Contact result = service.GetContactDetails(105);
+            Assert.Equal(itemToAdd, result);
         }
     }
 }

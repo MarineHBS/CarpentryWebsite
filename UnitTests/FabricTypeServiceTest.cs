@@ -7,15 +7,15 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class FabricTypeServiceTest
+    public class FabricTypeServiceTest : TestBase
     {
 
         public FabricTypeServiceTest()
         {
-            InitContext();
+            //InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -45,10 +45,12 @@ namespace UnitTests
         {
             string expectedName = "Different name";
             var service = new FabricTypeService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetFabricTypeDetails(4)).State = EntityState.Detached;
+            FabricType itemToAdd = new FabricType { FabricTypeId = 14, Name = "Different name" };
+            service.AddFabricType(itemToAdd);
+            carpentryWebsiteContext.Entry(service.GetFabricTypeDetails(14)).State = EntityState.Detached;
 
-            service.UpdateFabricType(new FabricType { FabricTypeId = 4, Name = "Different name" });
-            FabricType result = service.GetFabricTypeDetails(4);
+            service.UpdateFabricType(new FabricType { FabricTypeId = 14, Name = "Different name" });
+            FabricType result = service.GetFabricTypeDetails(14);
             Assert.Equal(expectedName, result.Name);
         }
 
@@ -59,6 +61,16 @@ namespace UnitTests
             service.DeleteFabricType(5);
             FabricType result = service.GetFabricTypeDetails(5);
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void TestAddFabricType()
+        {
+            var service = new FabricTypeService(carpentryWebsiteContext);
+            FabricType itemToAdd = new FabricType { FabricTypeId = 105, Name = "Different name" };
+            service.AddFabricType(itemToAdd);
+            FabricType result = service.GetFabricTypeDetails(105);
+            Assert.Equal(itemToAdd, result);
         }
     }
 }

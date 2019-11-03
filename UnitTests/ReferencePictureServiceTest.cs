@@ -1,19 +1,20 @@
 using CarpentryWebsite.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
 namespace UnitTests
 {
-    public class ReferencePictureServiceTest
+    public class ReferencePictureServiceTest : TestBase
     {
 
         public ReferencePictureServiceTest()
         {
-            InitContext();
+            //InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -35,29 +36,6 @@ namespace UnitTests
             var service = new ReferencePictureService(carpentryWebsiteContext);
             ReferencePicture result = service.GetReferencePictureDetails(2);
             Assert.Equal(expectedPictureId, result.ReferencePictureId);
-            carpentryWebsiteContext.Database.EnsureDeleted();
-        }
-
-        [Fact]
-        public void TestEditReferencePictures()
-        {
-            int expectedPictureId = 2;
-            var service = new ReferencePictureService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetReferencePictureDetails(2)).State = EntityState.Detached;
-
-            service.UpdateReferencePicture(new ReferencePicture { ReferencePictureId = 2, Picture = new Picture(17, "PictureName5"), PictureId = 5 });
-            ReferencePicture result = service.GetReferencePictureDetails(2);
-            Assert.Equal(expectedPictureId, result.ReferencePictureId);
-            carpentryWebsiteContext.Database.EnsureDeleted();
-        }
-
-        [Fact]
-        public void TestDeleteReferencePicture()
-        {
-            var service = new ReferencePictureService(carpentryWebsiteContext);
-            service.DeleteReferencePicture(5);
-            ReferencePicture result = service.GetReferencePictureDetails(5);
-            Assert.Null(result);
             carpentryWebsiteContext.Database.EnsureDeleted();
         }
     }

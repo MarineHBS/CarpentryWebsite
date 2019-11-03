@@ -7,15 +7,15 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class RatingServiceTest
+    public class RatingServiceTest : TestBase
     {
 
         public RatingServiceTest()
         {
-            InitContext();
+            //InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -44,10 +44,12 @@ namespace UnitTests
         {
             string expectedText = "Nem vagyok elégedett";
             var service = new RatingService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetRatingDetails(4)).State = EntityState.Detached;
+            Rating itemToAdd = new Rating { RatingId = 14, User = "5", UserRating = "Wrox Press", Text = "Nem vagyok elégedett" };
+            service.AddRating(itemToAdd);
+            carpentryWebsiteContext.Entry(service.GetRatingDetails(14)).State = EntityState.Detached;
 
-            service.UpdateRating(new Rating { RatingId = 4, User = "5", UserRating = "Wrox Press", Text = "Nem vagyok elégedett" });
-            Rating result = service.GetRatingDetails(4);
+            service.UpdateRating(new Rating { RatingId = 14, User = "5", UserRating = "Wrox Press", Text = "Nem vagyok elégedett" });
+            Rating result = service.GetRatingDetails(14);
             Assert.Equal(expectedText, result.Text);
         }
 
@@ -58,6 +60,16 @@ namespace UnitTests
             service.DeleteRating(5);
             Rating result = service.GetRatingDetails(5);
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void TestAddRating()
+        {
+            var service = new RatingService(carpentryWebsiteContext);
+            Rating itemToAdd = new Rating { RatingId = 105, User = "5", UserRating = "Wrox Press", Text = "Nem vagyok elégedett" };
+            service.AddRating(itemToAdd);
+            Rating result = service.GetRatingDetails(105);
+            Assert.Equal(itemToAdd, result);
         }
     }
 }

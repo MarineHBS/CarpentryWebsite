@@ -7,15 +7,15 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class FabricServiceTest
+    public class FabricServiceTest : TestBase
     {
 
         public FabricServiceTest()
         {
-            InitContext();
+            //InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -40,28 +40,6 @@ namespace UnitTests
             Assert.Equal(expectedFabricId, result.FabricId);
             carpentryWebsiteContext.Database.EnsureDeleted();
         }
-
-        [Fact]
-        public void TestEditFabrics()
-        {
-            int expectedPrice = 4500;
-            var service = new FabricService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetFabricDetails(9)).State = EntityState.Detached;
-
-            service.UpdateFabric(new Fabric(9, "FabricName", 4500, 3), null, "false");
-            Fabric result = service.GetFabricDetails(9);
-            Assert.Equal(expectedPrice, result.Price);
-            carpentryWebsiteContext.Database.EnsureDeleted();
-        }
-
-        [Fact]
-        public void TestDeleteFabrics()
-        {
-            var service = new FabricService(carpentryWebsiteContext);
-            service.DeleteFabric(5);
-            Fabric result = service.GetFabricDetails(5);
-            Assert.Null(result);
-            carpentryWebsiteContext.Database.EnsureDeleted();
-        }
+        
     }
 }

@@ -8,15 +8,15 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class OfferRequestServiceTest
+    public class OfferRequestServiceTest : TestBase
     {
 
         public OfferRequestServiceTest()
         {
-            InitContext();
+            //InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -46,10 +46,12 @@ namespace UnitTests
         {
             string expectedName = "Different name";
             var service = new OfferRequestService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetOfferRequestDetails(5)).State = EntityState.Detached;
+            OfferRequest itemToAdd = new OfferRequest { OfferRequestId = 17, Name = "New name", EmailAddress = "New email", Message = "New message" };
+            service.AddOfferRequest(itemToAdd, null, "false");
+            carpentryWebsiteContext.Entry(service.GetOfferRequestDetails(17)).State = EntityState.Detached;
 
-            service.UpdateOfferRequest(new OfferRequest { OfferRequestId = 5, Name = "Different name", EmailAddress = "Different email", Message = "Different message" });
-            OfferRequest result = service.GetOfferRequestDetails(5);
+            service.UpdateOfferRequest(new OfferRequest { OfferRequestId = 17, Name = "Different name", EmailAddress = "Different email", Message = "Different message" });
+            OfferRequest result = service.GetOfferRequestDetails(17);
             Assert.Equal(expectedName, result.Name);
         }
 
@@ -60,6 +62,16 @@ namespace UnitTests
             service.DeleteOfferRequest(5);
             OfferRequest result = service.GetOfferRequestDetails(5);
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void TestAddOfferRequest()
+        {
+            var service = new OfferRequestService(carpentryWebsiteContext);
+            OfferRequest itemToAdd = new OfferRequest { OfferRequestId = 105, Name = "New name", EmailAddress = "New email", Message = "New message" };
+            service.AddOfferRequest(itemToAdd, null, "false");
+            OfferRequest result = service.GetOfferRequestDetails(105);
+            Assert.Equal(itemToAdd, result);
         }
     }
 }

@@ -7,15 +7,15 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class PictureServiceTest
+    public class PictureServiceTest : TestBase
     {
 
         public PictureServiceTest()
         {
-            InitContext();
+           // InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -44,10 +44,12 @@ namespace UnitTests
         {
             string expectedName = "Different Picture Name";
             var service = new PictureService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetPictureDetails(1)).State = EntityState.Detached;
+            Picture itemToAdd = new Picture { PictureId = 11, PictureName = "Different name" };
+            service.AddPicture(itemToAdd);
+            carpentryWebsiteContext.Entry(service.GetPictureDetails(11)).State = EntityState.Detached;
 
-            service.UpdatePicture(new Picture(1, "Different Picture Name"));
-            Picture result = service.GetPictureDetails(1);
+            service.UpdatePicture(new Picture(11, "Different Picture Name"));
+            Picture result = service.GetPictureDetails(11);
             Assert.Equal(expectedName, result.PictureName);
         }
 
@@ -58,6 +60,16 @@ namespace UnitTests
             service.DeletePicture(5);
             Picture result = service.GetPictureDetails(5);
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void TestAddPicture()
+        {
+            var service = new PictureService(carpentryWebsiteContext);
+            Picture itemToAdd = new Picture { PictureId = 105, PictureName = "Different name" };
+            service.AddPicture(itemToAdd);
+            Picture result = service.GetPictureDetails(105);
+            Assert.Equal(itemToAdd, result);
         }
     }
 }

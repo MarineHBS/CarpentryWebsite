@@ -7,15 +7,15 @@ using Xunit;
 
 namespace UnitTests
 {
-    public class CarpentryServiceTypeServiceTest
+    public class CarpentryServiceTypeServiceTest : TestBase
     {
 
         public CarpentryServiceTypeServiceTest()
         {
-            InitContext();
+            //InitContext();
         }
 
-        private CarpentryWebsiteContext carpentryWebsiteContext;
+        private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
 
         public void InitContext()
         {
@@ -37,7 +37,6 @@ namespace UnitTests
             var service = new CarpentryServiceTypeService(carpentryWebsiteContext);
             CarpentryServiceType result = service.GetCarpentryServiceTypeDetails(5);
             Assert.Equal(expectedCarpentryServiceTypeId, result.CarpentryServiceTypeId);
-            carpentryWebsiteContext.Database.EnsureDeleted();
         }
 
         [Fact]
@@ -45,12 +44,13 @@ namespace UnitTests
         {
             string expectedName = "Edited name";
             var service = new CarpentryServiceTypeService(carpentryWebsiteContext);
-            carpentryWebsiteContext.Entry(service.GetCarpentryServiceTypeDetails(5)).State = EntityState.Detached;
+            CarpentryServiceType itemToAdd = new CarpentryServiceType { CarpentryServiceTypeId = 16, Name = "Name" };
+            service.AddCarpentryServiceType(itemToAdd);
+            carpentryWebsiteContext.Entry(service.GetCarpentryServiceTypeDetails(16)).State = EntityState.Detached;
 
-            service.UpdateCarpentryServiceType(new CarpentryServiceType { CarpentryServiceTypeId = 5, Name = "Edited name" });
-            CarpentryServiceType result = service.GetCarpentryServiceTypeDetails(5);
+            service.UpdateCarpentryServiceType(new CarpentryServiceType { CarpentryServiceTypeId = 16, Name = "Edited name" });
+            CarpentryServiceType result = service.GetCarpentryServiceTypeDetails(16);
             Assert.Equal(expectedName, result.Name);
-            carpentryWebsiteContext.Database.EnsureDeleted();
         }
         [Fact]
         public void TestDeleteCarpentryServiceTypes()
@@ -59,6 +59,16 @@ namespace UnitTests
             service.DeleteCarpentryServiceType(5);
             CarpentryServiceType result = service.GetCarpentryServiceTypeDetails(5);
             Assert.Null(result);
+        }
+
+        [Fact]
+        public void TestAddCarpentryServiceType()
+        {
+            var service = new CarpentryServiceTypeService(carpentryWebsiteContext);
+            CarpentryServiceType itemToAdd = new CarpentryServiceType { CarpentryServiceTypeId = 105, Name = "Name"};
+            service.AddCarpentryServiceType(itemToAdd);
+            CarpentryServiceType result = service.GetCarpentryServiceTypeDetails(105);
+            Assert.Equal(itemToAdd, result);
         }
     }
 }
