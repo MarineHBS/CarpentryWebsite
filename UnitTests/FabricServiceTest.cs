@@ -12,25 +12,10 @@ namespace UnitTests
 
         public FabricServiceTest()
         {
-            //InitContext();
         }
 
         private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
-
-        public void InitContext()
-        {
-            var builder = new DbContextOptionsBuilder<CarpentryWebsiteContext>()
-                .UseInMemoryDatabase();
-
-            var context = new CarpentryWebsiteContext(builder.Options);
-            context.Database.EnsureDeleted();
-            var fabrics = Enumerable.Range(1, 10)
-                .Select(i => new Fabric( i, $"fabricName{i}", 5000*i, i));
-            context.Fabric.AddRange(fabrics);
-            int changed = context.SaveChanges();
-            carpentryWebsiteContext = context;
-        }
-
+        
         [Fact]
         public void TestGetFabricById()
         {

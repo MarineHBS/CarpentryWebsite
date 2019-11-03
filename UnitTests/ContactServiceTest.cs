@@ -12,23 +12,9 @@ namespace UnitTests
 
         public ContactServiceTest()
         {
-            //InitContext();
         }
 
         private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
-
-        public void InitContext()
-        {
-            var builder = new DbContextOptionsBuilder<CarpentryWebsiteContext>()
-                .UseInMemoryDatabase();
-
-            var context = new CarpentryWebsiteContext(builder.Options);
-            var contacts = Enumerable.Range(1, 10)
-                .Select(i => new Contact { ContactId = i, Name = $"Name1e{i}", Phone = $"06304234{i}323", EmailAddress = "test1Email@email.hu" });
-            context.Contact.AddRange(contacts);
-            int changed = context.SaveChanges();
-            carpentryWebsiteContext = context;
-        }
 
         [Fact]
         public void TestGetContactsById()

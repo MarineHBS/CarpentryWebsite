@@ -12,23 +12,9 @@ namespace UnitTests
 
         public PictureServiceTest()
         {
-           // InitContext();
         }
 
         private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
-
-        public void InitContext()
-        {
-            var builder = new DbContextOptionsBuilder<CarpentryWebsiteContext>()
-                .UseInMemoryDatabase();
-
-            var context = new CarpentryWebsiteContext(builder.Options);
-            var pictures = Enumerable.Range(1, 10)
-                .Select(i => new Picture(i, $"PictureName{i}"));
-            context.Picture.AddRange(pictures);
-            int changed = context.SaveChanges();
-            carpentryWebsiteContext = context;
-        }
 
         [Fact]
         public void TestGetPictureByName()

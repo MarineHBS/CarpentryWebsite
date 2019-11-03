@@ -12,23 +12,9 @@ namespace UnitTests
 
         public CarpentryServiceTypeServiceTest()
         {
-            //InitContext();
         }
 
         private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
-
-        public void InitContext()
-        {
-            var builder = new DbContextOptionsBuilder<CarpentryWebsiteContext>()
-                .UseInMemoryDatabase();
-
-            var context = new CarpentryWebsiteContext(builder.Options);
-            var fabricTypes = Enumerable.Range(1, 10)
-                .Select(i => new CarpentryServiceType { CarpentryServiceTypeId = i, Name = $"Name{i}"});
-            context.CarpentryServiceType.AddRange(fabricTypes);
-            int changed = context.SaveChanges();
-            carpentryWebsiteContext = context;
-        }
 
         [Fact]
         public void TestGetCarpentryServiceTypeById()

@@ -12,23 +12,9 @@ namespace UnitTests
 
         public RatingServiceTest()
         {
-            //InitContext();
         }
 
         private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
-
-        public void InitContext()
-        {
-            var builder = new DbContextOptionsBuilder<CarpentryWebsiteContext>()
-                .UseInMemoryDatabase();
-
-            var context = new CarpentryWebsiteContext(builder.Options);
-            var ratings = Enumerable.Range(1, 10)
-                .Select(i => new Rating { RatingId = i, User = $"User{i}", UserRating = "Wrox Press", Text = "Elégedett vagyok" });
-            context.Rating.AddRange(ratings);
-            int changed = context.SaveChanges();
-            carpentryWebsiteContext = context;
-        }
 
         [Fact]
         public void TestGetRatingByUser()

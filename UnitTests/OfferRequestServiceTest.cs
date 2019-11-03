@@ -13,24 +13,9 @@ namespace UnitTests
 
         public OfferRequestServiceTest()
         {
-            //InitContext();
         }
 
         private CarpentryWebsiteContext carpentryWebsiteContext = GetNewDbContext<CarpentryWebsiteContext>();
-
-        public void InitContext()
-        {
-            var builder = new DbContextOptionsBuilder<CarpentryWebsiteContext>()
-                .UseInMemoryDatabase();
-
-            var context = new CarpentryWebsiteContext(builder.Options);
-            context.Database.EnsureDeleted();
-            var offerRequests = Enumerable.Range(1, 10)
-                .Select(i => new OfferRequest ( $"Name{i}", $"testEmail{i}@email.hu", $"message is: {i}" ));
-            context.OfferRequest.AddRange(offerRequests);
-            int changed = context.SaveChanges();
-            carpentryWebsiteContext = context;
-        }
 
         [Fact]
         public void TestGetOfferRequestsById()
