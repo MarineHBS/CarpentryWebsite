@@ -33,6 +33,7 @@ export class AuthService {
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
+        console.log('USER is ',user);
         this.authState = user;
         this.setUserStatus('online');
       });

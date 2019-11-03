@@ -88,6 +88,8 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
       // tslint:disable-next-line: triple-equals
     } else if ( error == 'Error: The password is invalid or the user does not have a password.') {
       return 'Nem megfelelő a jelszó';
+    } else if ( error == 'Error: The email address is already in use by another account.'){
+      return 'Ez az email cím használatban van';
     } else {
       return error;
     }
