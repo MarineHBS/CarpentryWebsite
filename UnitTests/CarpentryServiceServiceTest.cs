@@ -3,6 +3,7 @@ using CarpentryWebsite.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -58,6 +59,14 @@ namespace UnitTests
             service.AddCarpentryService(itemToAdd);
             CarpentryService result = service.GetCarpentryServiceDetails(105);
             Assert.Equal(itemToAdd, result);
+        }
+
+        [Fact]
+        public void TestGetAllCarpentryServiceById()
+        {
+            var service = new CarpentryServiceService(carpentryWebsiteContext);
+            IEnumerable<CarpentryService> result = service.GetAllCarpentryServices();
+            Assert.NotNull(result);
         }
     }
 }

@@ -3,6 +3,7 @@ using CarpentryWebsite.Models;
 using CarpentryWebsite.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.SqlServer;
+using System.Collections.Generic;
 using System.Linq;
 using Xunit;
 
@@ -38,6 +39,14 @@ namespace UnitTests
             service.UpdateOfferRequest(new OfferRequest { OfferRequestId = 17, Name = "Different name", EmailAddress = "Different email", Message = "Different message" });
             OfferRequest result = service.GetOfferRequestDetails(17);
             Assert.Equal(expectedName, result.Name);
+        }
+
+        [Fact]
+        public void TestGetAllOfferRequests()
+        {
+            var service = new OfferRequestService(carpentryWebsiteContext);
+            IEnumerable<OfferRequest> result = service.GetAllOfferRequests();
+            Assert.NotNull(result);
         }
 
         [Fact]
