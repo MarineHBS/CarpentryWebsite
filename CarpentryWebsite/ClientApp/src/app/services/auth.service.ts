@@ -30,11 +30,15 @@ export class AuthService {
     }
   }
 
+  adminLogin(email: string, password: string) {
+    return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
   login(email: string, password: string) {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then((user) => {
-        console.log('USER is ',user);
         this.authState = user;
+        console.log("user", user);
         this.setUserStatus('online');
       });
   }

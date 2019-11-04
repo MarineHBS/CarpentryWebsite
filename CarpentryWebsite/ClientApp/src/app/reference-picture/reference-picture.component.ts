@@ -34,7 +34,6 @@ export class ReferencePictureComponent implements OnInit {
   }
 
   delete(referencePictureId) {
-    console.log(referencePictureId);
     const confirmation = confirm('Biztosan törölni szeretné ezt a képet?' + referencePictureId);
     if (confirmation) {
       this._referencePictureService.deleteReferencePicture(referencePictureId)

@@ -45,7 +45,6 @@ export class ChatService {
   }
 
   getUserMessages(userId): AngularFireList<ChatMessage[]> {
-    console.log('users/' + userId + '/messages');
     return this.db.list('users/' + userId + '/messages', ref => {
       return ref.limitToLast(25).orderByKey();
     });
@@ -109,11 +108,9 @@ export class ChatService {
   setDisplayName(uid: string) {
     this.getDisplayName(uid).valueChanges().pipe(take(1)).subscribe(
       res => {
-        console.log('LUL' + res);
         // this.displayName = res.displayName;
       }
     );
-    console.log('HELP', this.getDisplayName(uid));
   }
 
   getDisplayName(uid: string): AngularFireObject<User> {

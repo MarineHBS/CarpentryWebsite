@@ -22,9 +22,6 @@ export class ChatFormComponent implements OnInit {
   }
 
   send() {
-    if (this.userService.isLoggedIn()) {
-      this.notifier.notify("success", "Új üzenet érkezett");
-    }
     if (this.message !== '') {
       this.chat.sendMessageWithUser(this.message, this.userId);
     }

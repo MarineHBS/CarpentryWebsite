@@ -56,7 +56,6 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
     this.rowSelection = 'single';
     this.chatService.messageSentEvent.subscribe(sentBy => {
       console.log('event received', sentBy);
-      this.notifier.notify("success", "Új üzenet érkezett, feladó:" + sentBy);
     });
   }
 
@@ -70,8 +69,10 @@ export class AdminAreaComponent implements OnInit, AfterViewChecked, OnChanges {
   ngOnInit() {
     this.userIsSelected = false;
     this.users = this.chatService.getUsers().valueChanges();
-    this.authService.login('admin@admin.hu', 'admin1');
-    this.authService.authUser().subscribe( u => this.adminUid = u.uid);
+    this.authService.adminLogin('admin@admin.hu', 'admin1').then((user) =>
+    this.adminUid = user.user.uid
+    );
+    // this.authService.authUser().subscribe( u => this.adminUid = u.uid);
   }
 
   ngOnChanges() {

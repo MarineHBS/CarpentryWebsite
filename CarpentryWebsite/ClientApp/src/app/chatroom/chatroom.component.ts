@@ -75,7 +75,6 @@ export class ChatroomComponent implements OnInit, AfterViewChecked {
   }
 
   mapError (error: string): string {
-    console.log('maperror' + error);
     // tslint:disable-next-line: triple-equals
     if (error == 'Error: The email address is badly formatted.') {
       return 'Nem megfelelő e-mail formátum';

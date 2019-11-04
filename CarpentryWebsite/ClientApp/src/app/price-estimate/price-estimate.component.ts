@@ -108,14 +108,10 @@ export class PriceEstimateComponent implements OnInit {
 
   assignPictureSrc(fabric: Fabric) {
     this.fabricSelected = true;
-    if (fabric) {
-    console.log(fabric.pictureId + 'ÁÁÁÁÁÁÁÁÁÁÁÁÁÁÁ');
-    }
   }
 
   calculateEstimate() {
     this.currentFabricPrice = this.currentFabric.price;
-    console.log('helo');
     this.showEstimate = true;
     this.priceEstimateResult = this.currentCarpentryServicePrice + this.currentFabricPrice * this.size;
     this.priceEstimateResultEvent.emit(this.priceEstimateResult);

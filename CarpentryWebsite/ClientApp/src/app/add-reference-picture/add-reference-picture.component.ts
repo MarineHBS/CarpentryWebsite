@@ -57,7 +57,6 @@ export class AddReferencePictureComponent implements OnInit {
             this.pictureLocation = _event.target.result;
         };
         reader.readAsDataURL(this.selectedFile);
-        console.log(this.selectedFile);
     }
 
     get pictureUrl() {

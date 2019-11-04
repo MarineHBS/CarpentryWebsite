@@ -63,7 +63,6 @@ describe('MessageComponent', () => {
   });
 
   it('ngOnInit should initialize variables', () => {
-    console.log('asdasdasd', component.chatMessage);
     // when
     component.ngOnInit();
 
